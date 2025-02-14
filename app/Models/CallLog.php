@@ -23,6 +23,7 @@ class CallLog extends Model
         'audio_attachment',
         'summary',
         'created_by',
+        'status',
     ];
 
     protected static function boot()
