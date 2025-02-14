@@ -41,11 +41,24 @@ class CallLogRepository
      */
     public function store($request)
     {
-        $audioPath = $request->file('audio_attachment')->store('public/audio');
-        $data = CallLog::create($request->all(), [
-            'audio_attachment' => Storage::url($audioPath),
+        $audioFile = $request->file('audio_attachment');
+        $audioName = time() . '_' . $audioFile->getClientOriginalName();
+        $audioPath = 'audio/' . $audioName; // Path relative to public
+
+        // Move the file to the public/audio directory
+        $audioFile->move(public_path('audio'), $audioName);
+
+        $data = CallLog::create([
+            'name' => $request->input('name'),
+            'building_id' => $request->input('building_id'),
+            'number' => $request->input('number'),
+            'building_manager' => $request->input('building_manager'),
+            'strata_manager' => $request->input('strata_manager'),
+            'contractor_id' => $request->input('contractor_id'),
             'summary' => $request->input('summary'),
+            'audio_attachment' => $audioPath, // Store the path in the database
         ]);
+
         return $data;
     }
 
@@ -71,7 +84,13 @@ class CallLogRepository
      */
     public function update($request, $id)
     {
-        $audioPath = $request->file('audio_attachment')->store('public/audio');
+        // $audioPath = $request->file('audio_attachment')->store('public/audio');
+        $audioFile = $request->file('audio_attachment');
+        $audioName = time() . '_' . $audioFile->getClientOriginalName();
+        $audioPath = 'audio/' . $audioName; // Path relative to public
+
+        // Move the file to the public/audio directory
+        $audioFile->move(public_path('audio'), $audioName);
         $call_log = CallLog::find($id);
         return $call_log->update($request->all(), [
             'audio_attachment' => Storage::url($audioPath),

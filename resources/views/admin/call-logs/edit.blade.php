@@ -35,7 +35,7 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-name-input">Name</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                        name="name" value="{{ $call_log->name }}" id="formrow-name-input">
+                                        name="name" value="{{ $call_log->name }}" id="formrow-name-input" required>
                                     @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -45,7 +45,7 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-email-input">Email</label>
                                     <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ $call_log->email ?? '' }}" id="formrow-email-input">
+                                        name="email" value="{{ $call_log->email ?? '' }}" id="formrow-email-input" required>
                                     @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -56,7 +56,7 @@
                                     <label class="form-label" for="formrow-company-input">Select Building</label>
                                     <select class="form-select mb-3" name="building_id"
                                         @error('building_id') is-invalid @enderror aria-label="Default select example"
-                                        id="buildingSelect">
+                                        id="buildingSelect" required>
                                         <option selected disabled>Select a building</option>
                                         @foreach ($buildings as $building)
                                         <option value="{{ $building->id }}"
@@ -78,7 +78,7 @@
                                     <input type="hidden" id="selectedContractorId"
                                         value="{{ $call_log->contractor_id }}">
                                     <select class="form-select mb-3" name="contractor_id" id="contractorSelect"
-                                        aria-label="Default select example">
+                                        aria-label="Default select example" required>
                                         <option selected disabled>Select a contractor</option>
                                     </select>
                                     @error('contractor_id')
@@ -90,7 +90,7 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-mobile-input">Number</label>
                                     <input type="number" class="form-control @error('number') is-invalid @enderror"
-                                        name="number" value="{{ $call_log->number }}" id="formrow-mobile-input">
+                                        name="number" value="{{ $call_log->number }}" id="formrow-mobile-input" required>
                                     @error('number')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -102,7 +102,7 @@
                                     <input type="text"
                                         class="form-control @error('building_manager') is-invalid @enderror"
                                         name="building_manager" value="{{ $call_log->building_manager }}"
-                                        id="formrow-email-input">
+                                        id="formrow-email-input" required>
                                     @error('building_manager')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -114,7 +114,7 @@
                                     <input type="text"
                                         class="form-control @error('strata_manager') is-invalid @enderror"
                                         name="strata_manager" value="{{ $call_log->strata_manager }}"
-                                        id="formrow-category-input">
+                                        id="formrow-category-input" required>
                                     @error('strata_manager')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -124,7 +124,7 @@
                                 <div class="form-group">
                                     <label for="audio_attachment">Upload Audio</label>
                                     <input type="file" name="audio_attachment" id="audio_attachment"
-                                        class="form-control">
+                                        class="form-control" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -133,7 +133,7 @@
                                         <label class="form-label" for="formrow-company-input">Select Status</label>
                                         <select class="form-select mb-3" name="status"
                                             @error('status') is-invalid @enderror aria-label="Default select example"
-                                            id="statusSelect">
+                                            id="statusSelect" required>
                                             <option disabled>Select a Status</option>
                                             <option value="Pending" {{ $call_log->status == 'Pending' ? 'selected' : '' }}>Pending</option>
                                             <option value="Approved" {{ $call_log->status == 'Approved' ? 'selected' : '' }}>Approved</option>
@@ -149,7 +149,7 @@
                                 <div class="form-group">
                                     <label for="summary">Summary</label>
                                     <textarea name="summary" id="summary" class="form-control" rows="4"
-                                        placeholder="Enter summary or description"></textarea>
+                                        placeholder="Enter summary or description">{{ old('summary', $callLog->summary ?? '') }}</textarea>
                                 </div>
                             </div>
 
