@@ -73,6 +73,7 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['prefix' => '/reports'], function () {
         Route::get('/', [ReportsController::class, 'index'])->name('reports.index');
+        Route::get('/export/pdf', [ReportsController::class, 'exportPDF'])->name('reports.export.pdf');
     });
 });
 
