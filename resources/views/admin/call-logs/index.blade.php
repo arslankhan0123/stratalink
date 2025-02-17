@@ -13,8 +13,9 @@
         <div class="card">
             <div class="card-header justify-content-between d-flex align-items-center">
                 <h4 class="card-title shine">Call Logs Table</h4>
-                <a href="{{ route('call-logs.create') }}" class="btn btn-sm btn-info">Create <i
-                        class="mdi mdi-arrow-right align-middle"></i></a>
+                @if (Auth::check() && in_array(Auth::user()?->role()?->first()?->name, ['admin', 'staff']))
+                <a href="{{ route('call-logs.create') }}" class="btn btn-sm btn-info">Create <i class="mdi mdi-arrow-right align-middle"></i></a>
+                @endif
             </div>
             <div class="card-body">
                 <!-- Table -->
