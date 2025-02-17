@@ -4,6 +4,7 @@ use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\CallLogsController;
 use App\Http\Controllers\ContractorController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ManagersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
@@ -69,6 +70,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/{id}', [ContractorController::class, 'edit'])->name('contractors.edit');
         Route::post('/update/{id}', [ContractorController::class, 'update'])->name('contractors.update');
         Route::get('/destroy/{id}', [ContractorController::class, 'destroy'])->name('contractors.delete');
+    });
+
+    Route::group(['prefix' => '/managers'], function () {
+        Route::get('/', [ManagersController::class, 'index'])->name('managers.index');
+        Route::get('/create', [ManagersController::class, 'create'])->name('managers.create');
+        Route::post('/store', [ManagersController::class, 'store'])->name('managers.store');
+        Route::get('/edit/{id}', [ManagersController::class, 'edit'])->name('managers.edit');
+        Route::post('/update/{id}', [ManagersController::class, 'update'])->name('managers.update');
+        Route::get('/destroy/{id}', [ManagersController::class, 'destroy'])->name('managers.delete');
     });
 
     Route::group(['prefix' => '/reports'], function () {

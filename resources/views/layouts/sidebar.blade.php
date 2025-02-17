@@ -58,6 +58,12 @@
                             <span class="menu-item" data-key="t-analytics">Users</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('managers.index') }}">
+                            <i class="fa fa-user-o" aria-hidden="true"></i>
+                            <span class="menu-item" data-key="t-analytics">Managers</span>
+                        </a>
+                    </li>
                 @endif
                 @if (Auth::check() && in_array(Auth::user()?->role()?->first()?->name, ['admin', 'staff', 'client']))
                     <li>
