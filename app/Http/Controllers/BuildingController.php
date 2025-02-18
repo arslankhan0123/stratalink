@@ -98,8 +98,14 @@ class BuildingController extends Controller
 
             // $contractors = Building::with('contractor:id,name')->where('id', $buildingId)->get();
             $contractors = Contractor::with('building:id,name')->where('building_id', $buildingId)->get();
+            $building = Building::where('id', $buildingId)->first();
+            $managers = Manager::where('id', $building->manager_id)->get();
+            // $managers = Manager::with('building:id,name')->where('building_id', $buildingId)->get();
 
-            return response()->json($contractors);
+            return response()->json([
+                'contractors' => $contractors,
+                'managers' => $managers,
+            ]);
         } catch (Exception $exception) {
             return redirect()->back()->with('error', 'Failed to execute the cron job.' . $exception->getMessage());
         }

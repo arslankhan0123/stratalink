@@ -30,7 +30,7 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-name-input">Name</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                        name="name" id="formrow-name-input">
+                                        name="name" id="formrow-name-input" required>
                                     @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -40,7 +40,7 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-email-input">Email</label>
                                     <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" id="formrow-email-input">
+                                        name="email" id="formrow-email-input" required>
                                     @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -54,7 +54,7 @@
                                     <label class="form-label" for="formrow-company-input">Select Building</label>
                                     <select class="form-select mb-3" name="building_id"
                                         @error('building_id') is-invalid @enderror aria-label="Default select example"
-                                        id="buildingSelect">
+                                        id="buildingSelect" required>
                                         <option selected disabled>Select a building</option>
                                         @foreach ($buildings as $building)
                                         <option value="{{ $building->id }}">{{ $building->name }}
@@ -72,7 +72,7 @@
                                     {{-- <input type="text" class="form-control @error('contractor') is-invalid @enderror"
                                         name="contractor" id="formrow-category-input"> --}}
                                     <select class="form-select mb-3" name="contractor_id" id="contractorSelect"
-                                        aria-label="Default select example">
+                                        aria-label="Default select example" required>
                                         <option selected disabled>Select a contractor</option>
                                     </select>
                                     @error('contractor_id')
@@ -82,7 +82,19 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-category-input">Manager</label>
+                                    <select class="form-select mb-3" name="manager_id" id="managerSelect"
+                                        aria-label="Default select example" required>
+                                        <option selected disabled>Select a Manager</option>
+                                    </select>
+                                    @error('manager_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-email-input">Building Manager</label>
                                     <input type="text"
@@ -92,8 +104,8 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="col-md-6">
+                            </div> -->
+                            <!-- <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-category-input">Strata Manager</label>
                                     <input type="text"
@@ -103,14 +115,14 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-mobile-input">Number</label>
                                     <input type="number" class="form-control @error('number') is-invalid @enderror"
-                                        name="number" id="formrow-mobile-input">
+                                        name="number" id="formrow-mobile-input" required>
                                     @error('number')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -120,7 +132,7 @@
                                 <div class="form-group">
                                     <label for="audio_attachment">Upload Audio</label>
                                     <input type="file" name="audio_attachment" id="audio_attachment"
-                                        class="form-control">
+                                        class="form-control" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -155,7 +167,6 @@
                                 </label>
                             </div>
                         </div>
-
                         <div class="mt-4">
                             <button type="submit" class="btn btn-primary w-md">Submit</button>
                         </div>
@@ -183,10 +194,11 @@
                         building_id: buildingId
                     },
                     success: function(response) {
-                        $('#contractorSelect').empty(); // Clear previous options
+                        $('#contractorSelect').empty();
+                        $('#managerSelect').empty();
 
-                        if (response.length > 0) {
-                            $.each(response, function(index, contractor) {
+                        if (response.contractors.length > 0) {
+                            $.each(response.contractors, function(index, contractor) {
                                 $('#contractorSelect').append(
                                     `<option value="${contractor.id}">${contractor.name}</option>`
                                 );
@@ -194,6 +206,18 @@
                         } else {
                             $('#contractorSelect').append(
                                 `<option disabled>No contractors found</option>`
+                            );
+                        }
+
+                        if (response.managers.length > 0) {
+                            $.each(response.managers, function(index, manager) {
+                                $('#managerSelect').append(
+                                    `<option value="${manager.id}">${manager.name}</option>`
+                                );
+                            });
+                        } else {
+                            $('#managerSelect').append(
+                                `<option disabled>No managers found</option>`
                             );
                         }
                         // if (response.length > 0) {

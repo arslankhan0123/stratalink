@@ -65,4 +65,9 @@ class Building extends Model
     ) {
         $query->where('user_id', $user_id);
     }
+
+    public function manager()
+    {
+        return $this->belongsTo(Manager::class, 'manager_id');
+    }
 }

@@ -31,8 +31,9 @@
                             <th>Name</th>
                             <th>Building Name</th>
                             <th>Number</th>
-                            <th>Building Manager</th>
-                            <th>Strata Manager</th>
+                            <th>Manager Type</th>
+                            <th>Manager</th>
+                            <!-- <th>Strata Manager</th> -->
                             <th>Contractor</th>
                             <th>PDF File</th>
                             <th>Summary</th>
@@ -55,8 +56,9 @@
                             <td>{{ $call_log->name }}</td>
                             <td>{{ $call_log->building->name }}</td>
                             <td>{{ $call_log->number }}</td>
-                            <td>{{ $call_log->building_manager }}</td>
-                            <td>{{ $call_log->strata_manager }}</td>
+                            <td>{{ $call_log->building->manager->type }}</td>
+                            <td>{{ $call_log->building->manager->name }}</td>
+                            <!-- <td>{{ $call_log->strata_manager }}</td> -->
                             <td>{{ $call_log->contractor->name ?? '' }}</td>
                             <td>
                                 @if ($call_log->email_file)

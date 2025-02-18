@@ -41,6 +41,13 @@ class CallLogRepository
      */
     public function store($request)
     {
+        // $audioFile = $request->file('audio_attachment');
+        // $audioName = time() . '_' . $audioFile->getClientOriginalName();
+        // $audioPath = 'audio/' . $audioName; // Path relative to public
+
+        // // Move the file to the public/audio directory
+        // $audioFile->move(public_path('audio'), $audioName);
+
         $audioFile = $request->file('audio_attachment');
         $audioName = time() . '_' . $audioFile->getClientOriginalName();
         $audioPath = 'audio/' . $audioName; // Path relative to public
@@ -50,12 +57,15 @@ class CallLogRepository
 
         $data = CallLog::create([
             'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'manager_id' => $request->input('manager_id'),
             'building_id' => $request->input('building_id'),
             'number' => $request->input('number'),
             'building_manager' => $request->input('building_manager'),
             'strata_manager' => $request->input('strata_manager'),
             'contractor_id' => $request->input('contractor_id'),
             'summary' => $request->input('summary'),
+            'status' => $request->input('status'),
             'audio_attachment' => $audioPath, // Store the path in the database
         ]);
 
@@ -71,7 +81,7 @@ class CallLogRepository
      */
     public function show($id)
     {
-        return CallLog::with('building:id,name')->find($id);
+        return CallLog::with('building:id,name,manager_id')->find($id);
     }
 
     /**
@@ -86,16 +96,45 @@ class CallLogRepository
     {
         // $audioPath = $request->file('audio_attachment')->store('public/audio');
         $audioFile = $request->file('audio_attachment');
-        $audioName = time() . '_' . $audioFile->getClientOriginalName();
-        $audioPath = 'audio/' . $audioName; // Path relative to public
 
-        // Move the file to the public/audio directory
-        $audioFile->move(public_path('audio'), $audioName);
-        $call_log = CallLog::find($id);
-        return $call_log->update($request->all(), [
-            'audio_attachment' => Storage::url($audioPath),
-            'summary' => $request->input('summary'),
-        ]);
+        if ($audioFile) {
+            $audioName = time() . '_' . $audioFile->getClientOriginalName();
+            $audioPath = 'audio/' . $audioName; // Path relative to public
+
+            // Move the file to the public/audio directory
+            $audioFile->move(public_path('audio'), $audioName);
+
+            // Find the call log
+            $call_log = CallLog::find($id);
+
+            if ($call_log) {
+                // Update the existing call log
+                $call_log->update([
+                    'name' => $request->input('name'),
+                    'email' => $request->input('email'),
+                    'manager_id' => $request->input('manager_id'),
+                    'building_id' => $request->input('building_id'),
+                    'number' => $request->input('number'),
+                    'building_manager' => $request->input('building_manager'),
+                    'strata_manager' => $request->input('strata_manager'),
+                    'contractor_id' => $request->input('contractor_id'),
+                    'summary' => $request->input('summary'),
+                    'status' => $request->input('status'),
+                    'audio_attachment' => $audioPath, // Make sure this variable has a value
+                ]);
+
+                return response()->json(['message' => 'Call log updated successfully']);
+            } else {
+                return response()->json(['error' => 'Call log not found'], 404);
+            }
+
+            // $call_log->update([
+            //     'audio_attachment' => $audioPath, // Storing relative path
+            //     'summary' => $request->input('summary'),
+            // ]);
+        }
+
+        return response()->json(['message' => 'Call log updated successfully!']);
     }
 
 
