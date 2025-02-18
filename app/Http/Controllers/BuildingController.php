@@ -64,8 +64,8 @@ class BuildingController extends Controller
             $clients = User::where('role_id', 3)->get();
             $building = $this->buildingRepo->show($id);
             $contractors = Contractor::get();
-
-            return view('admin.building.edit', compact('building', 'clients', 'contractors'));
+            $managers = Manager::get();
+            return view('admin.building.edit', compact('building', 'clients', 'contractors', 'managers'));
         } catch (Exception $exception) {
             return redirect()->back()->with('error', 'Failed to execute the cron job.' . $exception->getMessage());
         }
