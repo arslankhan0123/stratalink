@@ -46,6 +46,20 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="formrow-password-input">Select Manager</label>
+                                        <select class="form-select" aria-label="Default select example" name="manager_id">
+                                            <option selected>Select a Manager</option>
+                                            @foreach ($managers as $manager)
+                                                <option value="{{ $manager->id }}"
+                                                    {{ $building->manager_id == $manager->id ? 'selected' : '' }}>
+                                                    {{ ucfirst($manager->name) }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                                 <!-- <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="formrow-password-input">Select Contractor</label>

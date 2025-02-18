@@ -20,6 +20,9 @@ return new class extends Migration
             $table->unsignedBigInteger('created_by')->nullable()->unsigned();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             
+            $table->unsignedBigInteger('manager_id')->nullable()->unsigned();
+            $table->foreign('manager_id')->references('id')->on('managers')->onDelete('cascade')->onUpdate('cascade');
+
             $table->string('name')->nullable();
             $table->string('company')->nullable();
             $table->string('mobile')->nullable();

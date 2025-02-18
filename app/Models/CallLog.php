@@ -24,6 +24,7 @@ class CallLog extends Model
         'summary',
         'created_by',
         'status',
+        'manager_id',
     ];
 
     protected static function boot()
@@ -53,7 +54,7 @@ class CallLog extends Model
 
     public function scopeApplyFilter(
         $query,
-        array $filters,
+        array $filters
     ) {
         $filters = collect($filters);
         if (auth()->user()->role()->first()->name === 'staff')

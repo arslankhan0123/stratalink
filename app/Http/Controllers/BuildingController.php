@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Building;
 use App\Models\Contractor;
+use App\Models\Manager;
 use App\Models\User;
 use App\Repositories\BuildingRepository;
 use Exception;
@@ -40,7 +41,8 @@ class BuildingController extends Controller
         try {
             $clients = User::where('role_id', 3)->get();
             $contractors = Contractor::get();
-            return view('admin.building.create', compact('clients', 'contractors'));
+            $managers = Manager::get();
+            return view('admin.building.create', compact('clients', 'contractors', 'managers'));
         } catch (Exception $exception) {
             return redirect()->back()->with('error', 'Failed to execute the cron job.' . $exception->getMessage());
         }

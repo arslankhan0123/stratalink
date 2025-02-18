@@ -16,6 +16,7 @@ class Building extends Model
         'email',
         'category',
         'created_by',
+        'manager_id',
     ];
 
     protected static function boot()
@@ -49,7 +50,7 @@ class Building extends Model
 
     public function scopeApplyFilter(
         $query,
-        array $filters,
+        array $filters
     ) {
         $filters = collect($filters);
         if (auth()->user()->role()->first()->name === 'staff')

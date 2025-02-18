@@ -17,6 +17,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable()->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             
+            $table->unsignedBigInteger('created_by')->nullable()->unsigned();
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('type')->nullable();
