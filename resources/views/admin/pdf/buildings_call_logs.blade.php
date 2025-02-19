@@ -5,73 +5,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buildings & Call Logs Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+    </style>
 </head>
 
-<body style="font-family: Arial, sans-serif; margin: 20px; padding: 0; background-color: #f8f9fa;">
+<body>
 
-    <!-- Buildings Table -->
-    <div style="width: 100%; margin-bottom: 20px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-        <h2 style="text-align: center; background: #007bff; color: white; padding: 10px; border-radius: 5px;">Buildings Table</h2>
-        <div style="max-height: 300px; overflow-y: auto; border: 1px solid #ddd; border-radius: 5px;">
-            <table style="width: 100%; border-collapse: collapse;">
-                <thead>
-                    <tr style="background: #343a40; color: white;">
-                        <th style="padding: 8px;">Client Name</th>
-                        <th style="padding: 8px;">Building Name</th>
-                        <th style="padding: 8px;">Company</th>
-                        <th style="padding: 8px;">Mobile</th>
-                        <th style="padding: 8px;">Email</th>
-                        <th style="padding: 8px;">Category</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($buildings as $building)
-                    <tr style="border-bottom: 1px solid #ddd; background: #f9f9f9;">
-                        <td style="padding: 8px;">{{ $building->user->name }}</td>
-                        <td style="padding: 8px;">{{ $building->name }}</td>
-                        <td style="padding: 8px;">{{ $building->company }}</td>
-                        <td style="padding: 8px;">{{ $building->mobile }}</td>
-                        <td style="padding: 8px;">{{ $building->email }}</td>
-                        <td style="padding: 8px;">{{ $building->category }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <h2 style="text-align: center;">Buildings & Call Logs Report</h2>
 
-    <!-- Call Logs Table -->
-    <div style="width: 100%; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-        <h2 style="text-align: center; background: #28a745; color: white; padding: 10px; border-radius: 5px;">Call Logs Table</h2>
-        <div style="max-height: 300px; overflow-y: auto; border: 1px solid #ddd; border-radius: 5px;">
-            <table style="width: 100%; border-collapse: collapse;">
-                <thead>
-                    <tr style="background: #343a40; color: white;">
-                        <th style="padding: 8px;">Name</th>
-                        <th style="padding: 8px;">Building Name</th>
-                        <th style="padding: 8px;">Number</th>
-                        <th style="padding: 8px;">Building Manager</th>
-                        <th style="padding: 8px;">Strata Manager</th>
-                        <th style="padding: 8px;">Contractor</th>
-                        <th style="padding: 8px;">Summary</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($callLogs as $call_log)
-                    <tr style="border-bottom: 1px solid #ddd; background: #f9f9f9;">
-                        <td style="padding: 8px;">{{ $call_log->name }}</td>
-                        <td style="padding: 8px;">{{ $call_log->building->name }}</td>
-                        <td style="padding: 8px;">{{ $call_log->number }}</td>
-                        <td style="padding: 8px;">{{ $call_log->building_manager }}</td>
-                        <td style="padding: 8px;">{{ $call_log->strata_manager }}</td>
-                        <td style="padding: 8px;">{{ $call_log->contractor->name ?? '' }}</td>
-                        <td style="padding: 8px;">{{ $call_log->summary ?? '' }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
+    {{-- Buildings Table --}}
+    <div class="section-title">Buildings</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Category</th>
+                <th>Manager ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($buildings as $building)
+            <tr>
+                <td>{{ $building->name }}</td>
+                <td>{{ $building->company }}</td>
+                <td>{{ $building->mobile }}</td>
+                <td>{{ $building->email }}</td>
+                <td>{{ $building->category }}</td>
+                <td>{{ $building->manager_id }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    {{-- Page Break for PDF --}}
+    <!-- <div class="page-break"></div> -->
+
+    {{-- Call Logs Table --}}
+    <div class="section-title">Call Logs</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Building ID</th>
+                <!-- <th>Contractor</th> -->
+                <th>Number</th>
+                <th>Summary</th>
+                <th>Status</th>
+                <th>Created By</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($callLogs as $log)
+            <tr>
+                <td>{{ $log->name }}</td>
+                <td>{{ $log->email }}</td>
+                <td>{{ $log->building_id }}</td>
+                <!-- <td>{{ $log->contractor }}</td> -->
+                <td>{{ $log->number }}</td>
+                <td>{{ $log->summary }}</td>
+                <td>{{ $log->status }}</td>
+                <td>{{ $log->created_by }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 
 </body>
 

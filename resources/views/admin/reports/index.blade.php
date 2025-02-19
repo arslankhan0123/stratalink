@@ -37,7 +37,7 @@
         <option value="custom">Custom Report</option>
     </select>
 </div> -->
-<a href="{{ route('reports.export.pdf', ['buildings' => $buildings]) }}" class="btn btn-danger">Export PDF</a>
+<a href="{{ route('reports.export.pdf', ['buildings' => $buildings]) }}" class="btn btn-danger mb-2">Export PDF</a>
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
