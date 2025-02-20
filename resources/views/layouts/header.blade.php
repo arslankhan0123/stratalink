@@ -30,6 +30,11 @@
                 <i class="fa fa-fw fa-bars"></i>
             </button>
 
+
+            <div class="" style="text-align: center;">
+                <h1 style="text-align: center; font-weight:700" class="shine">Welcome to strataLink</h1>
+            </div>
+
             {{-- <div class="dropdown d-none d-lg-block ms-2">
                 <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="false"
                     aria-expanded="false">
