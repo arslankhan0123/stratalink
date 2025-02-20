@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ManagersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +62,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/destroy/{id}', [CallLogsController::class, 'destroy'])->name('call-logs.delete');
         Route::get('/signature/{token}', [CallLogsController::class, 'signature'])->name('call-logs.signature');
         Route::post('/signature/store/token', [CallLogsController::class, 'signatureUpdate'])->name('signature.store');
+    });
+
+    Route::group(['prefix' => '/user'], function () {
+        Route::get('/profile', [UserProfileController::class, 'index'])->name('user.profile');
+        Route::post('/profile/update/{id}', [UserProfileController::class, 'update'])->name('user.profile.update');
     });
 
     Route::group(['prefix' => '/contractors'], function () {
