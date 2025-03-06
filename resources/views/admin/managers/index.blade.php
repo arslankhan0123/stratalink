@@ -25,7 +25,6 @@
                 @endif
             </div>
             <div class="card-body">
-                <!-- Table -->
                 <table id="custom-table" class="table table-striped table-bordered">
                     <thead>
                         <tr>
