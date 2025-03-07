@@ -7,20 +7,55 @@ use Illuminate\Support\Facades\Auth;
 
 class Building extends Model
 {
+    // protected $fillable = [
+    //     'user_id',
+    //     'contractor_id',
+    //     'name',
+    //     'company',
+    //     'mobile',
+    //     'email',
+    //     'category',
+    //     'created_by',
+    //     'manager_id',
+    //     'building_manager_id',
+    //     'strata_manager_id',
+    //     'sp_no',
+    // ];
+
     protected $fillable = [
         'user_id',
-        'contractor_id',
-        'name',
-        'company',
-        'mobile',
-        'email',
-        'category',
         'created_by',
         'manager_id',
         'building_manager_id',
         'strata_manager_id',
         'sp_no',
-    ];
+        'name',
+        'mobile',
+        'address',
+        'lots',
+        'total_lots',
+        'commercial_lots',
+        'amenities',
+        'visitors_parking',
+        'gymnasium',
+        'tennis_court',
+        'other',
+        'waste_management',
+        'resident_garbage',
+        'green_waste',
+        'spare_keys',
+        'registered_keys',
+        'lock_out',
+        'no_lifts',
+        'contractor_keys',
+        'hours_keys',
+        'gas_meter_location',
+        'electricity_meter_location',
+        'site_hours',
+        'company',
+        'email',
+        'category',
+    ];    
 
     protected static function boot()
     {

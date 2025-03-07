@@ -89,6 +89,16 @@
                                 </div> -->
                             <div class="col-md-6">
                                 <div class="mb-3">
+                                    <label class="form-label" for="formrow-sp_no-input">Sp.No</label>
+                                    <input type="text" class="form-control @error('sp_no') is-invalid @enderror"
+                                        name="sp_no" id="formrow-sp_no-input">
+                                    @error('sp_no')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
                                     <label class="form-label" for="formrow-name-input">Name</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
                                         name="name" id="formrow-name-input">
@@ -97,7 +107,6 @@
                                     @enderror
                                 </div>
                             </div>
-
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-mobile-input">Mobile</label>
@@ -120,10 +129,210 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-sp_no-input">Sp.No</label>
-                                    <input type="text" class="form-control @error('sp_no') is-invalid @enderror"
-                                        name="sp_no" id="formrow-sp_no-input">
-                                    @error('sp_no')
+                                    <label class="form-label" for="formrow-email-input">Address</label>
+                                    <input type="text" class="form-control @error('address') is-invalid @enderror"
+                                        name="address" id="formrow-address-input">
+                                    @error('address')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Lots</label>
+                                    <input type="text" class="form-control @error('lots') is-invalid @enderror"
+                                        name="lots" id="formrow-lots-input">
+                                    @error('lots')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Total Lots</label>
+                                    <input type="text" class="form-control @error('total_lots') is-invalid @enderror"
+                                        name="total_lots" id="formrow-total_lots-input">
+                                    @error('total_lots')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Commercial Lots</label>
+                                    <input type="text" class="form-control @error('commercial_lots') is-invalid @enderror"
+                                        name="commercial_lots" id="formrow-commercial_lots-input">
+                                    @error('commercial_lots')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Amenities</label>
+                                    <input type="text" class="form-control @error('amenities') is-invalid @enderror"
+                                        name="amenities" id="formrow-amenities-input">
+                                    @error('amenities')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Visitors Parking</label>
+                                    <input type="text" class="form-control @error('visitors_parking') is-invalid @enderror"
+                                        name="visitors_parking" id="formrow-visitors_parking-input">
+                                    @error('visitors_parking')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Gymnasium</label>
+                                    <input type="text" class="form-control @error('gymnasium') is-invalid @enderror"
+                                        name="gymnasium" id="formrow-gymnasium-input">
+                                    @error('gymnasium')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Tennis Court</label>
+                                    <input type="text" class="form-control @error('tennis_court') is-invalid @enderror"
+                                        name="tennis_court" id="formrow-tennis_court-input">
+                                    @error('tennis_court')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Other</label>
+                                    <input type="text" class="form-control @error('other') is-invalid @enderror"
+                                        name="other" id="formrow-other-input">
+                                    @error('other')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Waste Management</label>
+                                    <input type="text" class="form-control @error('waste_management') is-invalid @enderror"
+                                        name="waste_management" id="formrow-waste_management-input">
+                                    @error('waste_management')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Resident Garbage</label>
+                                    <input type="text" class="form-control @error('resident_garbage') is-invalid @enderror"
+                                        name="resident_garbage" id="formrow-resident_garbage-input">
+                                    @error('resident_garbage')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Green Waste</label>
+                                    <input type="text" class="form-control @error('green_waste') is-invalid @enderror"
+                                        name="green_waste" id="formrow-green_waste-input">
+                                    @error('green_waste')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Spare Keys</label>
+                                    <input type="text" class="form-control @error('spare_keys') is-invalid @enderror"
+                                        name="spare_keys" id="formrow-spare_keys-input">
+                                    @error('spare_keys')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Registered Keys</label>
+                                    <input type="text" class="form-control @error('registered_keys') is-invalid @enderror"
+                                        name="registered_keys" id="formrow-registered_keys-input">
+                                    @error('registered_keys')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Lock Out</label>
+                                    <input type="text" class="form-control @error('lock_out') is-invalid @enderror"
+                                        name="lock_out" id="formrow-lock_out-input">
+                                    @error('lock_out')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">No Lifts</label>
+                                    <input type="text" class="form-control @error('no_lifts') is-invalid @enderror"
+                                        name="no_lifts" id="formrow-no_lifts-input">
+                                    @error('no_lifts')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Contractor Keys</label>
+                                    <input type="text" class="form-control @error('contractor_keys') is-invalid @enderror"
+                                        name="contractor_keys" id="formrow-contractor_keys-input">
+                                    @error('contractor_keys')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Hours Keys</label>
+                                    <input type="text" class="form-control @error('hours_keys') is-invalid @enderror"
+                                        name="hours_keys" id="formrow-hours_keys-input">
+                                    @error('hours_keys')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Gas Meter Location</label>
+                                    <input type="text" class="form-control @error('gas_meter_location') is-invalid @enderror"
+                                        name="gas_meter_location" id="formrow-gas_meter_location-input">
+                                    @error('gas_meter_location')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Electricity Meter Location</label>
+                                    <input type="text" class="form-control @error('electricity_meter_location') is-invalid @enderror"
+                                        name="electricity_meter_location" id="formrow-electricity_meter_location-input">
+                                    @error('electricity_meter_location')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-email-input">Site Hours</label>
+                                    <input type="text" class="form-control @error('site_hours') is-invalid @enderror"
+                                        name="site_hours" id="formrow-site_hours-input">
+                                    @error('site_hours')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
