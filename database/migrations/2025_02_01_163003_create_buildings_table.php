@@ -29,24 +29,36 @@ return new class extends Migration
             $table->unsignedBigInteger('strata_manager_id')->nullable()->unsigned();
             $table->foreign('strata_manager_id')->references('id')->on('managers')->onDelete('cascade')->onUpdate('cascade');
 
-            $table->string('name')->nullable();
-            $table->string('company')->nullable();
-            $table->string('mobile')->nullable();
-            $table->string('email')->nullable();
-            $table->string('category')->nullable();
             $table->string('sp_no')->nullable();
-            
+            $table->string('name')->nullable();
+            $table->string('mobile')->nullable();
             $table->string('address')->nullable();
             $table->string('lots')->nullable();
             $table->string('total_lots')->nullable();
             $table->string('commercial_lots')->nullable();
             $table->string('amenities')->nullable();
-            $table->string('visitor_parking')->nullable();
+            $table->string('visitors_parking')->nullable();
+            $table->string('gymnasium')->nullable();
+            $table->string('tennis_court')->nullable();
+            $table->string('other')->nullable();
             $table->string('waste_management')->nullable();
-            $table->string('residense_garbage')->nullable();
+            $table->string('resident_garbage')->nullable();
             $table->string('green_waste')->nullable();
             $table->string('spare_keys')->nullable();
             $table->string('registered_keys')->nullable();
+            $table->string('lock_out')->nullable();
+            $table->string('no_lifts')->nullable();
+            $table->string('contractor_keys')->nullable();
+            $table->string('hours_keys')->nullable();
+            $table->string('gas_meter_location')->nullable();
+            $table->string('electricity_meter_location')->nullable();
+            $table->string('site_hours')->nullable();
+
+
+            $table->string('company')->nullable();
+            $table->string('email')->nullable();
+            $table->string('category')->nullable();
+
 
             $table->timestamps();
         });
