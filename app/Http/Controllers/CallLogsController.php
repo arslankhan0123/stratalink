@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\File;
 
 use App\Mail\CallLogMail;
 use App\Models\Building;
+use App\Models\Contractor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -108,6 +109,19 @@ class CallLogsController extends Controller
                 ]);
                 Mail::to($buildingManager->email)->send(new CallLogMail($data));
             }
+
+            if ($request->send_contractor_email == 'yes') {
+                $contractor = Contractor::where('id', $data['contractor_id'])->first();
+                $token = Str::uuid()->toString();
+                $id_token = $data['id'] . '_' . $token;
+                $data['token'] = $id_token;
+                DB::table('call_logs')->where('id', $data['id'])->update([
+                    'token' => $id_token,
+                    'updated_at' => now(),
+                ]);
+                Mail::to($contractor->email)->send(new CallLogMail($data));
+            }
+
             return redirect()->route('call-logs.index')->with('success', 'Call log created successfully');
         } catch (Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());

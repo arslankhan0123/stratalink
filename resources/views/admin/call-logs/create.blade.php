@@ -207,6 +207,12 @@
                                     Send email notification to Strata Manager
                                 </label>
                             </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_contractor_email" value="yes">
+                                <label class="form-check-label" for="sendEmailCheckbox">
+                                    Send email notification to Contractor
+                                </label>
+                            </div>
                         </div>
                         <div class="mt-4">
                             <button type="submit" class="btn btn-primary w-md">Submit</button>
