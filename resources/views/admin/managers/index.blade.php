@@ -20,7 +20,7 @@
         <div class="card">
             <div class="card-header justify-content-between d-flex align-items-center">
                 <h4 class="card-title shine">Managers Table</h4>
-                @if (Auth::check() && in_array(Auth::user()?->role()?->first()?->name, ['admin', 'staff']))
+                @if (Auth::check() && in_array(Auth::user()?->role()?->first()?->name, ['admin']))
                 <a href="{{route('managers.create')}}" class="btn btn-sm btn-info">Create <i class="mdi mdi-arrow-right align-middle"></i></a>
                 @endif
             </div>
@@ -32,7 +32,7 @@
                             <th>Email</th>
                             <th>Type</th>
                             <th>Phone Number</th>
-                            @if (Auth::check() && in_array(Auth::user()?->role()?->first()?->name, ['admin', 'staff']))
+                            @if (Auth::check() && in_array(Auth::user()?->role()?->first()?->name, ['admin']))
                             <th>Actions</th>
                             @endif
                         </tr>
@@ -44,7 +44,7 @@
                             <td>{{$manager->email}}</td>
                             <td>{{$manager->type}}</td>
                             <td>{{$manager->phone_number}}</td>
-                            @if (Auth::check() && in_array(Auth::user()?->role()?->first()?->name, ['admin', 'staff']))
+                            @if (Auth::check() && in_array(Auth::user()?->role()?->first()?->name, ['admin']))
                             <td>
                                 <div class="btn-group" role="group" aria-label="Job Actions">
                                     <!-- <a class="text-decoration-none text-dark" fdprocessedid="pxicc" target="_blank" href="#" data-bs-toggle="tooltip" title="View">
