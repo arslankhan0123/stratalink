@@ -52,13 +52,10 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-company-input">Select Building</label>
-                                    <select class="form-select mb-3" name="building_id"
-                                        @error('building_id') is-invalid @enderror aria-label="Default select example"
-                                        id="buildingSelect" required>
+                                    <select class="form-select mb-3" name="building_id" id="buildingSelect" required>
                                         <option selected disabled>Select a building</option>
                                         @foreach ($buildings as $building)
-                                        <option value="{{ $building->id }}">{{ $building->name }}
-                                        </option>
+                                        <option value="{{ $building->id }}">{{ $building->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('building_id')
@@ -142,6 +139,16 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
+                                    <label class="form-label" for="formrow-mobile-input">Call Date</label>
+                                    <input type="date" class="form-control @error('call_date') is-invalid @enderror"
+                                        name="call_date" id="formrow-mobile-input" required>
+                                    @error('call_date')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
                                     <label class="form-label" for="formrow-mobile-input">Call Time</label>
                                     <input type="text" class="form-control @error('call_time') is-invalid @enderror"
                                         name="call_time" id="formrow-mobile-input" required>
@@ -165,9 +172,10 @@
                                             @error('status') is-invalid @enderror aria-label="Default select example"
                                             id="statusSelect">
                                             <option selected disabled>Select a Status</option>
-                                            <option value="Pending">Pending</option>
-                                            <option value="Completed">Completed</option>
-                                            <option value="Rejected">Rejected</option>
+                                            <option value="Contractor Engaged">Contractor Engaged</option>
+                                            <option value="Non emergency">Non emergency</option>
+                                            <option value="Complete">Complete</option>
+                                            <option value="Contractor already engaged">Contractor already engaged</option>
                                         </select>
                                         @error('status')
                                         <div class="invalid-feedback">{{ $message }}</div>

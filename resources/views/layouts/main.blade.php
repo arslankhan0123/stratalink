@@ -409,6 +409,20 @@
             /* height: 38px; */
         }
     </style>
+    <style>
+        .select2-container--default .select2-selection--single {
+            height: 40px !important;
+            line-height: 40px !important;
+        }
+
+        .select2-selection__rendered {
+            line-height: 40px !important;
+        }
+
+        .select2-selection__arrow {
+            height: 40px !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -458,6 +472,24 @@
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
     <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+    <!-- Include jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <!-- Include Select2 CSS & JS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Check if select2 is loaded
+            if ($.fn.select2) {
+                $('#buildingSelect').select2({
+                    placeholder: "Search for a building",
+                    allowClear: true
+                });
+            } else {
+                console.error("Select2 is not loaded!");
+            }
+        });
+    </script>
     <script src="https://unpkg.com/gridjs-jquery/dist/gridjs.production.min.js"></script>
     <script src="{{ asset('tmp/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('tmp/js/metismenujs.min.js') }}"></script>

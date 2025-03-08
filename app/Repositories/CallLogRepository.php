@@ -70,6 +70,7 @@ class CallLogRepository
             'call_time' => $request->input('call_time'),
             'building_manager_id' => $request->input('building_manager_id'),
             'audio_attachment' => $audioPath, // Store the path in the database
+            'call_date' => $request->input('call_date'),
         ]);
 
         return $data;
@@ -127,6 +128,7 @@ class CallLogRepository
                     'building_manager_id' => $request->input('building_manager_id'),
                     'audio_attachment' => $audioPath, // Make sure this variable has a value
                     'call_time' => $request->input('call_time'),
+                    'call_date' => $request->input('call_date'),
                 ]);
 
                 return response()->json(['message' => 'Call log updated successfully']);

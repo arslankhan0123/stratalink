@@ -22,12 +22,13 @@
                 <table id="custom-table" class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th>
+                            <!-- <th>
                                 <span class="custom-checkbox">
                                     <input type="checkbox" id="selectAll">
                                     <label for="selectAll"></label>
                                 </span>
-                            </th>
+                            </th> -->
+                            <th>ID</th>
                             <th>Name</th>
                             <th>Building Name</th>
                             <th>SP-NO</th>
@@ -47,12 +48,13 @@
                     <tbody>
                         @foreach ($call_logs as $call_log)
                         <tr>
-                            <td>
+                            <!-- <td>
                                 <span class="custom-checkbox">
                                     <input type="checkbox" id="checkbox1" name="options[]" value="1">
                                     <label for="checkbox1"></label>
                                 </span>
-                            </td>
+                            </td> -->
+                            <td>{{ $call_log->id }}</td>
                             <td>{{ $call_log->name }}</td>
                             <td>{{ $call_log->building->name }}</td>
                             <td>{{ $call_log->building->sp_no }}</td>

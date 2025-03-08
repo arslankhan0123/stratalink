@@ -41,6 +41,7 @@ return new class extends Migration
             $table->string('email_file')->nullable();
             $table->string('token')->nullable();
             $table->string('call_time')->nullable();
+            $table->string('call_date')->nullable();
             $table->string('status')->nullable()->default('Pending');
             $table->timestamps();
         });

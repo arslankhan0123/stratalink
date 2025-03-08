@@ -148,6 +148,16 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
+                                    <label class="form-label" for="formrow-mobile-input">Call Date</label>
+                                    <input type="date" class="form-control @error('call_date') is-invalid @enderror"
+                                        name="call_date" value="{{ $call_log->call_date }}" id="formrow-mobile-input" required>
+                                    @error('call_date')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
                                     <label class="form-label" for="formrow-mobile-input">Call Time</label>
                                     <input type="text" class="form-control @error('call_time') is-invalid @enderror"
                                         name="call_time" value="{{ $call_log->call_time }}" id="formrow-mobile-input" required>
@@ -163,9 +173,10 @@
                                         @error('status') is-invalid @enderror aria-label="Default select example"
                                         id="statusSelect" required>
                                         <option disabled>Select a Status</option>
-                                        <option value="Pending" {{ $call_log->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                        <option value="Contractor Engaged" {{ $call_log->status == 'Contractor Engaged' ? 'selected' : '' }}>Contractor Engaged</option>
+                                        <option value="Non emergency" {{ $call_log->status == 'Non emergency' ? 'selected' : '' }}>Non emergency</option>
                                         <option value="Completed" {{ $call_log->status == 'Completed' ? 'selected' : '' }}>Completed</option>
-                                        <option value="Rejected" {{ $call_log->status == 'Rejected' ? 'selected' : '' }}>Rejected</option>
+                                        <option value="Contractor already engaged" {{ $call_log->status == 'Contractor already engaged' ? 'selected' : '' }}>Contractor already engaged</option>
                                     </select>
                                     @error('status')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -207,8 +218,7 @@
         var selectedContractorId = $('#selectedContractorId').val();
         var selectedBuildingManagerId = $('#selectedBuildingManagerId').val();
         var selectedStrataManagerId = $('#selectedStrataManagerId').val();
-        alert(selectedBuildingManagerId);
-        alert(selectedStrataManagerId);
+
 
         $('#contractorSelect').html('<option selected disabled>Select a contractor</option>');
 
