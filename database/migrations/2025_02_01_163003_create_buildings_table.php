@@ -53,6 +53,10 @@ return new class extends Migration
             $table->string('gas_meter_location')->nullable();
             $table->string('electricity_meter_location')->nullable();
             $table->string('site_hours')->nullable();
+            $table->string('committee_member1')->nullable();
+            $table->string('committee_member2')->nullable();
+            $table->string('committee_member3')->nullable();
+            $table->string('committee_member4')->nullable();
 
 
             $table->string('company')->nullable();

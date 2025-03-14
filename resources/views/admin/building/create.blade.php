@@ -357,6 +357,46 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-committee_member1-input">Committee Member1</label>
+                                    <input type="text" class="form-control @error('committee_member1') is-invalid @enderror"
+                                        name="committee_member1" id="formrow-committee_member1-input">
+                                    @error('committee_member1')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-committee_member2-input">Committee Member 2</label>
+                                    <input type="text" class="form-control @error('committee_member2') is-invalid @enderror"
+                                        name="committee_member2" id="formrow-committee_member2-input">
+                                    @error('committee_member2')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-committee_member3-input">Committee Member 3</label>
+                                    <input type="text" class="form-control @error('committee_member3') is-invalid @enderror"
+                                        name="committee_member3" id="formrow-committee_member3-input">
+                                    @error('committee_member3')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-committee_member4-input">Committee Member 4</label>
+                                    <input type="text" class="form-control @error('committee_member4') is-invalid @enderror"
+                                        name="committee_member4" id="formrow-committee_member4-input">
+                                    @error('committee_member4')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
                 </div>
                 <div class="mt-4">

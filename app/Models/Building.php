@@ -55,6 +55,10 @@ class Building extends Model
         'company',
         'email',
         'category',
+        'committee_member1',
+        'committee_member2',
+        'committee_member3',
+        'committee_member4',
     ];    
 
     protected static function boot()
