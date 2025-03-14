@@ -161,10 +161,10 @@
                                 <div class="form-group">
                                     <label for="audio_attachment">Upload Audio</label>
                                     <input type="file" name="audio_attachment" id="audio_attachment"
-                                        class="form-control" required>
+                                        class="form-control">
                                 </div>
                             </div>
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="formrow-company-input">Select Status</label>
@@ -182,7 +182,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="summary">Summary</label>

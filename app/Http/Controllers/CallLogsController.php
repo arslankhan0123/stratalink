@@ -79,7 +79,7 @@ class CallLogsController extends Controller
     {
         try {
             $request->validate([
-                'audio_attachment' => 'required|file|mimes:mp3,wav|max:10240',
+                'audio_attachment' => 'nullable|file|mimes:mp3,wav|max:10240',
             ]);
             $data = $this->callLogRepo->store($request);
             if ($request->send_email == 'yes') {

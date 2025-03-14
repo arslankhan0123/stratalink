@@ -48,12 +48,14 @@ class CallLogRepository
         // // Move the file to the public/audio directory
         // $audioFile->move(public_path('audio'), $audioName);
 
-        $audioFile = $request->file('audio_attachment');
-        $audioName = time() . '_' . $audioFile->getClientOriginalName();
-        $audioPath = 'audio/' . $audioName; // Path relative to public
+        if ($request->file('audio_attachment')) {
+            $audioFile = $request->file('audio_attachment');
+            $audioName = time() . '_' . $audioFile->getClientOriginalName();
+            $audioPath = 'audio/' . $audioName; // Path relative to public
 
-        // Move the file to the public/audio directory
-        $audioFile->move(public_path('audio'), $audioName);
+            // Move the file to the public/audio directory
+            $audioFile->move(public_path('audio'), $audioName);
+        }
 
         $data = CallLog::create([
             'name' => $request->input('name'),
@@ -65,11 +67,11 @@ class CallLogRepository
             'strata_manager' => $request->input('strata_manager'),
             'contractor_id' => $request->input('contractor_id'),
             'summary' => $request->input('summary'),
-            'status' => $request->input('status'),
+            'status' => 'Contractor Engaged',
             'strata_manager_id' => $request->input('strata_manager_id'),
             'call_time' => $request->input('call_time'),
             'building_manager_id' => $request->input('building_manager_id'),
-            'audio_attachment' => $audioPath, // Store the path in the database
+            'audio_attachment' => $audioPath ?? null, // Store the path in the database
             'call_date' => $request->input('call_date'),
         ]);
 
@@ -98,49 +100,48 @@ class CallLogRepository
      */
     public function update($request, $id)
     {
-        // $audioPath = $request->file('audio_attachment')->store('public/audio');
-        $audioFile = $request->file('audio_attachment');
+        if ($request->file('audio_attachment')) {
+            // $audioPath = $request->file('audio_attachment')->store('public/audio');
+            $audioFile = $request->file('audio_attachment');
 
-        if ($audioFile) {
             $audioName = time() . '_' . $audioFile->getClientOriginalName();
             $audioPath = 'audio/' . $audioName; // Path relative to public
 
             // Move the file to the public/audio directory
             $audioFile->move(public_path('audio'), $audioName);
-
-            // Find the call log
-            $call_log = CallLog::find($id);
-
-            if ($call_log) {
-                // Update the existing call log
-                $call_log->update([
-                    'name' => $request->input('name'),
-                    'email' => $request->input('email'),
-                    'manager_id' => $request->input('manager_id'),
-                    'building_id' => $request->input('building_id'),
-                    'number' => $request->input('number'),
-                    'building_manager' => $request->input('building_manager'),
-                    'strata_manager' => $request->input('strata_manager'),
-                    'contractor_id' => $request->input('contractor_id'),
-                    'summary' => $request->input('summary'),
-                    'status' => $request->input('status'),
-                    'strata_manager_id' => $request->input('strata_manager_id'),
-                    'building_manager_id' => $request->input('building_manager_id'),
-                    'audio_attachment' => $audioPath, // Make sure this variable has a value
-                    'call_time' => $request->input('call_time'),
-                    'call_date' => $request->input('call_date'),
-                ]);
-
-                return response()->json(['message' => 'Call log updated successfully']);
-            } else {
-                return response()->json(['error' => 'Call log not found'], 404);
-            }
-
-            // $call_log->update([
-            //     'audio_attachment' => $audioPath, // Storing relative path
-            //     'summary' => $request->input('summary'),
-            // ]);
         }
+        // Find the call log
+        $call_log = CallLog::find($id);
+
+        if ($call_log) {
+            // Update the existing call log
+            $call_log->update([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'manager_id' => $request->input('manager_id'),
+                'building_id' => $request->input('building_id'),
+                'number' => $request->input('number'),
+                'building_manager' => $request->input('building_manager'),
+                'strata_manager' => $request->input('strata_manager'),
+                'contractor_id' => $request->input('contractor_id'),
+                'summary' => $request->input('summary'),
+                'status' => $call_log->status,
+                'strata_manager_id' => $request->input('strata_manager_id'),
+                'building_manager_id' => $request->input('building_manager_id'),
+                'audio_attachment' => $audioPath ?? null, // Make sure this variable has a value
+                'call_time' => $request->input('call_time'),
+                'call_date' => $request->input('call_date'),
+            ]);
+
+            return response()->json(['message' => 'Call log updated successfully']);
+        } else {
+            return response()->json(['error' => 'Call log not found'], 404);
+        }
+
+        // $call_log->update([
+        //     'audio_attachment' => $audioPath, // Storing relative path
+        //     'summary' => $request->input('summary'),
+        // ]);
 
         return response()->json(['message' => 'Call log updated successfully!']);
     }
