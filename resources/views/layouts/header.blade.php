@@ -8,7 +8,7 @@
                         <img src="{{ asset('tmp/logo.jpg') }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        
+
                         <img src="{{ asset('tmp/logo.jpg') }}" alt="" height="22">
 
                     </span>
@@ -35,93 +35,25 @@
                 <h1 style="text-align: center; font-weight:700" class="shine">Welcome to strataLink</h1>
             </div>
 
-            {{-- <div class="dropdown d-none d-lg-block ms-2">
-                <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="false"
-                    aria-expanded="false">
-                    <span>Components</span>
-                    <i class="mdi mdi-chevron-down"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-xl p-2">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <a class="dropdown-item" href="#!">Alerts</a>
-                            <a class="dropdown-item" href="#!">Buttons</a>
-                            <a class="dropdown-item" href="#!">Cards</a>
-                            <a class="dropdown-item" href="#!">Dropdowns</a>
-                            <a class="dropdown-item" href="#!">Lightbox</a>
-                            <a class="dropdown-item" href="#!">Modals</a>
-                            <a class="dropdown-item" href="#!">Range Slider</a>
-                        </div>
-                        <div class="col-md-6">
-                            <a class="dropdown-item" href="#!">Progress Bars</a>
-                            <a class="dropdown-item" href="#!">Sweet-Alert</a>
-                            <a class="dropdown-item" href="#!">Tabs & Accordions</a>
-                            <a class="dropdown-item" href="#!">Typography</a>
-                            <a class="dropdown-item" href="#!">General</a>
-                            <a class="dropdown-item" href="#!">Rating</a>
-                            <a class="dropdown-item" href="#!">Notifications</a>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-
-            {{-- <div class="dropdown dropdown-mega d-none d-lg-block">
-                <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="false"
-                    aria-expanded="false">
-                    <span>Categories</span>
-                    <i class="mdi mdi-chevron-down"></i>
-                </button>
-                <div class="dropdown-menu p-2 dropdown-megamenu">
-                    <div class="row">
-                        <div class="col">
-                            <h5 class="font-size-14 mx-4 mt-2">Computers & Accessories</h5>
-                            <a class="dropdown-item" href="#!">Laptops &amp; Tablets</a>
-                            <a class="dropdown-item" href="#!">Desktop Computers</a>
-                            <a class="dropdown-item" href="#!">Networking Products (NAS)</a>
-                            <a class="dropdown-item" href="#!">Monitors</a>
-                            <a class="dropdown-item" href="#!">Bags, Cases &amp; Sleeves</a>
-                            <a class="dropdown-item" href="#!">Batteries</a>
-                            <a class="dropdown-item" href="#!">Charges &amp; Adapters</a>
-                        </div>
-                        <div class="col">
-                            <h5 class="font-size-14 ms-4 mt-2">Smartphones & Tablets</h5>
-                            <a class="dropdown-item" href="#!">Apple iPhone</a>
-                            <a class="dropdown-item" href="#!">Android Smartphones</a>
-                            <a class="dropdown-item" href="#!">Phablets</a>
-                            <a class="dropdown-item" href="#!">Apple iPad</a>
-                            <a class="dropdown-item" href="#!">Android Tablets</a>
-                            <a class="dropdown-item" href="#!">Tablets with Keyboard</a>
-                        </div>
-                        <div class="col">
-                            <h5 class="font-size-14 ms-4 mt-2">Television & Video</h5>
-                            <a class="dropdown-item" href="#!">TV Sets</a>
-                            <a class="dropdown-item" href="#!">Home Theater Systems</a>
-                            <a class="dropdown-item" href="#!">DVD Players & Recorders</a>
-                            <a class="dropdown-item" href="#!">DVD-VCR Combos</a>
-                            <a class="dropdown-item" href="#!">Projectors</a>
-                            <a class="dropdown-item" href="#!">Projection Screens</a>
-                            <a class="dropdown-item" href="#!">Satelite Television</a>
-                        </div>
-                        <div class="col">
-                            <h5 class="font-size-14 ms-4 mt-2">Cameras, Photo & Video</h5>
-                            <a class="dropdown-item" href="#!">Point & Shoot Digital Cameras</a>
-                            <a class="dropdown-item" href="#!">DSLR Cameras</a>
-                            <a class="dropdown-item" href="#!">Mirrorless Cameras</a>
-                            <a class="dropdown-item" href="#!">Body Mounted Cameras</a>
-                            <a class="dropdown-item" href="#!">Camera Lenses</a>
-                            <a class="dropdown-item" href="#!">Video Studio</a>
-                        </div>
-                        <div class="col">
-                            <div class="py-lg-2 pr-lg-2">
-                                <img src="assets/images/illustrator/1.png" alt="" class="img-fluid mx-auto"
-                                    style="max-height: 250px;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
         </div>
+        <p style="text-align: center;"><b>Current Time in Australia:</b> <span id="australia-time"></span></p>
 
+        <script>
+            function updateAustraliaTime() {
+                let options = {
+                    timeZone: 'Australia/Sydney',
+                    hour12: true,
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                };
+                let formatter = new Intl.DateTimeFormat('en-AU', options);
+                document.getElementById('australia-time').innerText = formatter.format(new Date());
+            }
+
+            setInterval(updateAustraliaTime, 1000); // Time har second update karega
+            updateAustraliaTime(); // Pehli dafa time set karega
+        </script>
         <div class="d-flex">
             <div class="dropdown d-inline-block">
                 {{-- <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true"

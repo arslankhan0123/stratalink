@@ -159,7 +159,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-mobile-input">Call Time</label>
-                                    <input type="text" class="form-control @error('call_time') is-invalid @enderror"
+                                    <input type="time" class="form-control @error('call_time') is-invalid @enderror"
                                         name="call_time" value="{{ $call_log->call_time }}" id="formrow-mobile-input" required>
                                     @error('call_time')
                                     <div class="invalid-feedback">{{ $message }}</div>
