@@ -48,7 +48,7 @@
                                             <label for="checkbox1"></label>
                                         </span>
                                     </td>
-                                    <td>{{ $contractor->building->name }}</td>
+                                    <td>{{ $contractor->building ? $contractor->building->name : 'N/A' }}</td>
                                     <td>{{ $contractor->name }}</td>
                                     <td>{{ $contractor->company }}</td>
                                     <td>{{ $contractor->phone }}</td>

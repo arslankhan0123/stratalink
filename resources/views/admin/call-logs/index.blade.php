@@ -58,8 +58,8 @@
                             <td>{{ $call_log->id }}</td>
                             <td>{{ $call_log->createdBy->name }}</td>
                             <td>{{ $call_log->name }}</td>
-                            <td>{{ $call_log->building->name }}</td>
-                            <td>{{ $call_log->building->sp_no }}</td>
+                            <td>{{ $call_log->building ? $call_log->building->name : 'N/A' }}</td>
+                            <td>{{ $call_log->building ? $call_log->building->sp_no : 'N/A' }}</td>
                             <td>{{ $call_log->number }}</td>
                             <!-- <td>{{ $call_log->strata_manager }}</td> -->
                             <td>{{ $call_log->contractor->name ?? '' }}</td>
