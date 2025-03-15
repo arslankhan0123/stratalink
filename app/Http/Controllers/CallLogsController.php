@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CallLogContractorMail;
 use App\Models\CallLog;
 use App\Models\Manager;
 use App\Repositories\CallLogRepository;
@@ -228,7 +229,14 @@ class CallLogsController extends Controller
             file_put_contents($path, $dompdf->output());
 
             // Save filename in the database
-            $data->email_file = $filename; // Save relative path
+            if (Auth::user()->role_id == 3) {
+                $data->contractor_email_file = $filename;
+                $data->contractor_email_status = 'Accepted';
+                // Mail::to($data->email)->send(new CallLogContractorMail());
+            } else {
+                $data->email_file = $filename;
+            }
+            
             $data->save();
 
             return redirect()->back()->with('success', 'Signature updated successfully');
