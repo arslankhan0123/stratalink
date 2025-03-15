@@ -164,7 +164,7 @@
                                         class="form-control">
                                 </div>
                             </div>
-                            <!-- <div class="row">
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="formrow-company-input">Select Status</label>
@@ -172,6 +172,7 @@
                                             @error('status') is-invalid @enderror aria-label="Default select example"
                                             id="statusSelect">
                                             <option selected disabled>Select a Status</option>
+                                            <option value="Pending">Pending</option>
                                             <option value="Contractor Engaged">Contractor Engaged</option>
                                             <option value="Non emergency">Non emergency</option>
                                             <option value="Complete">Complete</option>
@@ -182,7 +183,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="summary">Summary</label>

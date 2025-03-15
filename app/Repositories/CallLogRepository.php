@@ -67,7 +67,7 @@ class CallLogRepository
             'strata_manager' => $request->input('strata_manager'),
             'contractor_id' => $request->input('contractor_id'),
             'summary' => $request->input('summary'),
-            'status' => 'Contractor Engaged',
+            'status' => $request->input('status'),
             'strata_manager_id' => $request->input('strata_manager_id'),
             'call_time' => $request->input('call_time'),
             'building_manager_id' => $request->input('building_manager_id'),

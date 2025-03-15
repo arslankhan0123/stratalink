@@ -92,6 +92,38 @@
                                     <select class="form-select" aria-label="Default select example"
                                         name="category">
                                         <option value="" selected>Select a Category</option>
+                                        <option value="Plumber">Plumber</option>
+                                        <option value="Electrician">Electrician</option>
+                                        <option value="HVAC Technician">HVAC Technician</option>
+                                        <option value="Carpenter">Carpenter</option>
+                                        <option value="Mason">Mason</option>
+                                        <option value="Painter">Painter</option>
+                                        <option value="Roofer">Roofer</option>
+                                        <option value="Welder/Fabricator">Welder/Fabricator</option>
+                                        <option value="Pest Control Specialist">Pest Control Specialist</option>
+                                        <option value="General Handyman">General Handyman</option>
+                                        <option value="Elevator Technician">Elevator Technician</option>
+                                        <option value="Fire Safety Technician">Fire Safety Technician</option>
+                                        <option value="Security System Installer">Security System Installer</option>
+                                        <option value="Flooring Specialist">Flooring Specialist</option>
+                                        <option value="Glass & Window Installer">Glass & Window Installer</option>
+                                        <option value="Waterproofing Specialist">Waterproofing Specialist</option>
+                                        <option value="Landscaper/Gardener">Landscaper/Gardener</option>
+                                        <option value="Cleaning & Janitorial Services">Cleaning & Janitorial Services</option>
+                                    </select>
+                                    @error('category')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-assign-input">Assign</label>
+                                    <!-- <input type="text" class="form-control @error('assign') is-invalid @enderror"
+                                            name="assign" id="formrow-assign-input"> -->
+                                    <select class="form-select" aria-label="Default select example"
+                                        name="assign">
+                                        <option value="" selected>Select a Assign</option>
                                         <option value="Preferred">Preferred</option>
                                         <option value="Backup 1">Backup 1</option>
                                         <option value="Backup 3">Backup 3</option>

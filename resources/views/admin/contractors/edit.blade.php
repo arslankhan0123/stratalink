@@ -99,9 +99,42 @@
                                     <label class="form-label" for="formrow-category-input">Category</label>
                                     <select class="form-select" aria-label="Default select example" name="category">
                                         <option disabled>Select a Category</option>
-                                        <option value="Preferred" {{ $contractor->category == 'Preferred' ? 'selected' : '' }}>Preferred</option>
-                                        <option value="Backup 1" {{ $contractor->category == 'Backup 1' ? 'selected' : '' }}>Backup 1</option>
-                                        <option value="Backup 3" {{ $contractor->category == 'Backup 3' ? 'selected' : '' }}>Backup 3</option>
+                                        <option value="Plumber" {{ $contractor->category == 'Plumber' ? 'selected' : '' }}>Plumber</option>
+                                        <option value="Electrician" {{ $contractor->category == 'Electrician' ? 'selected' : '' }}>Electrician</option>
+                                        <option value="HVAC Technician" {{ $contractor->category == 'HVAC Technician' ? 'selected' : '' }}>HVAC Technician</option>
+                                        <option value="Carpenter" {{ $contractor->category == 'Carpenter' ? 'selected' : '' }}>Carpenter</option>
+                                        <option value="Mason" {{ $contractor->category == 'Mason' ? 'selected' : '' }}>Mason</option>
+                                        <option value="Painter" {{ $contractor->category == 'Painter' ? 'selected' : '' }}>Painter</option>
+                                        <option value="Roofer" {{ $contractor->category == 'Roofer' ? 'selected' : '' }}>Roofer</option>
+                                        <option value="Welder/Fabricator" {{ $contractor->category == 'Welder/Fabricator' ? 'selected' : '' }}>Welder/Fabricator</option>
+                                        <option value="Pest Control Specialist" {{ $contractor->category == 'Pest Control Specialist' ? 'selected' : '' }}>Pest Control Specialist</option>
+                                        <option value="General Handyman" {{ $contractor->category == 'General Handyman' ? 'selected' : '' }}>General Handyman</option>
+                                        <option value="Elevator Technician" {{ $contractor->category == 'Elevator Technician' ? 'selected' : '' }}>Elevator Technician</option>
+                                        <option value="Fire Safety Technician" {{ $contractor->category == 'Fire Safety Technician' ? 'selected' : '' }}>Fire Safety Technician</option>
+                                        <option value="Security System Installer" {{ $contractor->category == 'Security System Installer' ? 'selected' : '' }}>Security System Installer</option>
+                                        <option value="Flooring Specialist" {{ $contractor->category == 'Flooring Specialist' ? 'selected' : '' }}>Flooring Specialist</option>
+                                        <option value="Glass & Window Installer" {{ $contractor->category == 'Glass & Window Installer' ? 'selected' : '' }}>Glass & Window Installer</option>
+                                        <option value="Waterproofing Specialist" {{ $contractor->category == 'Waterproofing Specialist' ? 'selected' : '' }}>Waterproofing Specialist</option>
+                                        <option value="Landscaper/Gardener" {{ $contractor->category == 'Landscaper/Gardener' ? 'selected' : '' }}>Landscaper/Gardener</option>
+                                        <option value="Cleaning & Janitorial Services" {{ $contractor->category == 'Cleaning & Janitorial Services' ? 'selected' : '' }}>Cleaning & Janitorial Services</option>
+                                    </select>
+                                    <!-- <input type="text"
+                                            class="form-control @error('category') is-invalid @enderror"
+                                            name="category" value="{{ $contractor->category }}"
+                                            id="formrow-category-input"> -->
+                                    @error('category')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-assign-input">Assign</label>
+                                    <select class="form-select" aria-label="Default select example" name="assign">
+                                        <option disabled>Select a Assign</option>
+                                        <option value="Preferred" {{ $contractor->assign == 'Preferred' ? 'selected' : '' }}>Preferred</option>
+                                        <option value="Backup 1" {{ $contractor->assign == 'Backup 1' ? 'selected' : '' }}>Backup 1</option>
+                                        <option value="Backup 3" {{ $contractor->assign == 'Backup 3' ? 'selected' : '' }}>Backup 3</option>
                                     </select>
                                     <!-- <input type="text"
                                             class="form-control @error('category') is-invalid @enderror"

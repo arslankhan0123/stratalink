@@ -13,6 +13,7 @@ class Contractor extends Model
         'phone',
         'email',
         'category',
+        'assign',
         'building_id',
         'created_by',
     ];

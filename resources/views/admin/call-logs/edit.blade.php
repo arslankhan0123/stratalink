@@ -166,13 +166,14 @@
                                     @enderror
                                 </div>
                             </div>
-                            <!-- <div class="col-md-6">
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-company-input">Select Status</label>
                                     <select class="form-select mb-3" name="status"
                                         @error('status') is-invalid @enderror aria-label="Default select example"
                                         id="statusSelect" required>
                                         <option disabled>Select a Status</option>
+                                        <option value="Pending" {{ $call_log->status == 'Pending' ? 'selected' : '' }}>Pending</option>
                                         <option value="Contractor Engaged" {{ $call_log->status == 'Contractor Engaged' ? 'selected' : '' }}>Contractor Engaged</option>
                                         <option value="Non emergency" {{ $call_log->status == 'Non emergency' ? 'selected' : '' }}>Non emergency</option>
                                         <option value="Completed" {{ $call_log->status == 'Completed' ? 'selected' : '' }}>Completed</option>
@@ -182,7 +183,7 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="audio_attachment">Upload Audio</label>

@@ -29,6 +29,7 @@
                                 </span>
                             </th> -->
                             <th>ID</th>
+                            <th>Created</th>
                             <th>Name</th>
                             <th>Building Name</th>
                             <th>SP-NO</th>
@@ -55,6 +56,7 @@
                                 </span>
                             </td> -->
                             <td>{{ $call_log->id }}</td>
+                            <td>{{ $call_log->createdBy->name }}</td>
                             <td>{{ $call_log->name }}</td>
                             <td>{{ $call_log->building->name }}</td>
                             <td>{{ $call_log->building->sp_no }}</td>

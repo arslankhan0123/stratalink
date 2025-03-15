@@ -51,6 +51,11 @@ class CallLog extends Model
         return $this->hasOne(Building::class, 'id', 'building_id');
     }
 
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
     public function contractor()
     {
         return $this->belongsTo(Contractor::class);
