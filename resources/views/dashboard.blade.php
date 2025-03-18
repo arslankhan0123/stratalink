@@ -12,7 +12,17 @@
 <li class="breadcrumb-item active">Home</li>
 @endsection
 @section('content')
-
+<style>
+    body {
+        background: url("{{ asset('images/B3.jpg') }}") no-repeat center center/cover;
+        /* display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0; */
+    }
+</style>
 <div class="row">
     <div class="d-flex justify-content-end">
         <select class="form-select mb-3" aria-label="Default select example" id="buildingSelect">

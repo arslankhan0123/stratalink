@@ -29,6 +29,7 @@ class CallLog extends Model
         'strata_manager_id',
         'call_time',
         'call_date',
+        'category',
     ];
 
     protected static function boot()

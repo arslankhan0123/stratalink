@@ -53,6 +53,35 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
+                                    <label class="form-label" for="formrow-category-input">Category</label>
+                                    <select class="form-select" aria-label="Default select example" name="category">
+                                        <option disabled>Select a Category</option>
+                                        <option value="Plumber" {{ $call_log->category == 'Plumber' ? 'selected' : '' }}>Plumber</option>
+                                        <option value="Electrician" {{ $call_log->category == 'Electrician' ? 'selected' : '' }}>Electrician</option>
+                                        <option value="HVAC Technician" {{ $call_log->category == 'HVAC Technician' ? 'selected' : '' }}>HVAC Technician</option>
+                                        <option value="Carpenter" {{ $call_log->category == 'Carpenter' ? 'selected' : '' }}>Carpenter</option>
+                                        <option value="Mason" {{ $call_log->category == 'Mason' ? 'selected' : '' }}>Mason</option>
+                                        <option value="Painter" {{ $call_log->category == 'Painter' ? 'selected' : '' }}>Painter</option>
+                                        <option value="Roofer" {{ $call_log->category == 'Roofer' ? 'selected' : '' }}>Roofer</option>
+                                        <option value="Welder/Fabricator" {{ $call_log->category == 'Welder/Fabricator' ? 'selected' : '' }}>Welder/Fabricator</option>
+                                        <option value="Pest Control Specialist" {{ $call_log->category == 'Pest Control Specialist' ? 'selected' : '' }}>Pest Control Specialist</option>
+                                        <option value="General Handyman" {{ $call_log->category == 'General Handyman' ? 'selected' : '' }}>General Handyman</option>
+                                        <option value="Elevator Technician" {{ $call_log->category == 'Elevator Technician' ? 'selected' : '' }}>Elevator Technician</option>
+                                        <option value="Fire Safety Technician" {{ $call_log->category == 'Fire Safety Technician' ? 'selected' : '' }}>Fire Safety Technician</option>
+                                        <option value="Security System Installer" {{ $call_log->category == 'Security System Installer' ? 'selected' : '' }}>Security System Installer</option>
+                                        <option value="Flooring Specialist" {{ $call_log->category == 'Flooring Specialist' ? 'selected' : '' }}>Flooring Specialist</option>
+                                        <option value="Glass & Window Installer" {{ $call_log->category == 'Glass & Window Installer' ? 'selected' : '' }}>Glass & Window Installer</option>
+                                        <option value="Waterproofing Specialist" {{ $call_log->category == 'Waterproofing Specialist' ? 'selected' : '' }}>Waterproofing Specialist</option>
+                                        <option value="Landscaper/Gardener" {{ $call_log->category == 'Landscaper/Gardener' ? 'selected' : '' }}>Landscaper/Gardener</option>
+                                        <option value="Cleaning & Janitorial Services" {{ $call_log->category == 'Cleaning & Janitorial Services' ? 'selected' : '' }}>Cleaning & Janitorial Services</option>
+                                    </select>
+                                    @error('category')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
                                     <label class="form-label" for="formrow-company-input">Select Building</label>
                                     <select class="form-select mb-3" name="building_id"
                                         @error('building_id') is-invalid @enderror aria-label="Default select example"

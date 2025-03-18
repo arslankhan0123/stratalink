@@ -75,7 +75,7 @@
     }
 
     .bg_image {
-        background-image: url('https://images.pexels.com/photos/235986/pexels-photo-235986.jpeg?auto=compress&cs=tinysrgb&w=600');
+        background: url("{{ asset('images/B2.jpg') }}") no-repeat center center/cover;
         height: 100vh;
     }
 </style>
