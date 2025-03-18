@@ -51,7 +51,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-category-input">Category</label>
                                     <select class="form-select" aria-label="Default select example" name="category">
@@ -263,7 +263,7 @@
                     if (response.contractors.length > 0) {
                         $.each(response.contractors, function(index, contractor) {
                             $('#contractorSelect').append(
-                                `<option value="${contractor.id}" ${contractor.id == selectedContractorId ? 'selected' : ''}>${contractor.name}</option>`
+                                `<option value="${contractor.id}" ${contractor.id == selectedContractorId ? 'selected' : ''}>${contractor.name} (${contractor.phone})</option>`
                             );
                         });
                     } else {
@@ -320,7 +320,7 @@
                             $.each(response, function(index, contractor) {
 
                                 $('#contractorSelect').append(
-                                    `<option value="${contractor.contractor_id}" ${contractor.contractor_id == selectedContractorId ? 'selected' : ''}>${contractor.contractor.name}</option>`
+                                    `<option value="${contractor.contractor_id}" ${contractor.contractor_id == selectedContractorId ? 'selected' : ''}>${contractor.contractor.name} (${contractor.phone})</option>`
                                 );
                             });
                         } else {

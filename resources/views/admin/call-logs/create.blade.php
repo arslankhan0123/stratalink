@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label" for="formrow-category-input">Category</label>
                                 <!-- <input type="text" class="form-control @error('category') is-invalid @enderror"
@@ -280,7 +280,7 @@
                         if (response.contractors.length > 0) {
                             $.each(response.contractors, function(index, contractor) {
                                 $('#contractorSelect').append(
-                                    `<option value="${contractor.id}">${contractor.name}</option>`
+                                    `<option value="${contractor.id}">${contractor.name} (${contractor.phone})</option>`
                                 );
                             });
                         } else {
