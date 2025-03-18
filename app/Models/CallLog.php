@@ -30,6 +30,9 @@ class CallLog extends Model
         'call_time',
         'call_date',
         'category',
+        'email_agent_name',
+        'email_aprtment_no',
+        'email_lot_no',
     ];
 
     protected static function boot()

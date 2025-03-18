@@ -222,27 +222,33 @@
                                 </div>
                             </div>
                             <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_concent_email" value="yes">
+                                <label class="form-check-label" for="sendEmailCheckbox">
+                                    Send Consent form
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_email" value="yes">
                                 <label class="form-check-label" for="sendEmailCheckbox">
-                                    Send email notification
+                                    Details to customer
                                 </label>
                             </div>
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_building_manager_email" value="yes">
                                 <label class="form-check-label" for="sendEmailCheckbox">
-                                    Send email notification to Building Manager
+                                    Details to building manager
                                 </label>
                             </div>
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_strata_manager_email" value="yes">
                                 <label class="form-check-label" for="sendEmailCheckbox">
-                                    Send email notification to Strata Manager
+                                    Details to strata manager
                                 </label>
                             </div>
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_contractor_email" value="yes">
                                 <label class="form-check-label" for="sendEmailCheckbox">
-                                    Send email notification to Contractor
+                                    Details to contractor
                                 </label>
                             </div>
                         </div>

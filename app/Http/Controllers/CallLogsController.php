@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CallLogConsentMail;
 use App\Mail\CallLogContractorMail;
 use App\Models\CallLog;
 use App\Models\Manager;
@@ -91,11 +92,11 @@ class CallLogsController extends Controller
                 $buildingManager = Manager::where('id', $data['building_manager_id'])->first();
                 $token = Str::uuid()->toString();
                 $id_token = $data['id'] . '_' . $token;
-                $data['token'] = $id_token;
-                DB::table('call_logs')->where('id', $data['id'])->update([
-                    'token' => $id_token,
-                    'updated_at' => now(),
-                ]);
+                // $data['token'] = $id_token;
+                // DB::table('call_logs')->where('id', $data['id'])->update([
+                //     'token' => $id_token,
+                //     'updated_at' => now(),
+                // ]);
                 Mail::to($buildingManager->email)->send(new CallLogMail($data));
             }
 
@@ -103,15 +104,27 @@ class CallLogsController extends Controller
                 $buildingManager = Manager::where('id', $data['strata_manager_id'])->first();
                 $token = Str::uuid()->toString();
                 $id_token = $data['id'] . '_' . $token;
-                $data['token'] = $id_token;
-                DB::table('call_logs')->where('id', $data['id'])->update([
-                    'token' => $id_token,
-                    'updated_at' => now(),
-                ]);
+                // $data['token'] = $id_token;
+                // DB::table('call_logs')->where('id', $data['id'])->update([
+                //     'token' => $id_token,
+                //     'updated_at' => now(),
+                // ]);
                 Mail::to($buildingManager->email)->send(new CallLogMail($data));
             }
 
             if ($request->send_contractor_email == 'yes') {
+                $contractor = Contractor::where('id', $data['contractor_id'])->first();
+                $token = Str::uuid()->toString();
+                $id_token = $data['id'] . '_' . $token;
+                // $data['token'] = $id_token;
+                // DB::table('call_logs')->where('id', $data['id'])->update([
+                //     'token' => $id_token,
+                //     'updated_at' => now(),
+                // ]);
+                Mail::to($contractor->email)->send(new CallLogMail($data));
+            }
+
+            if ($request->send_concent_email == 'yes') {
                 $contractor = Contractor::where('id', $data['contractor_id'])->first();
                 $token = Str::uuid()->toString();
                 $id_token = $data['id'] . '_' . $token;
@@ -120,7 +133,7 @@ class CallLogsController extends Controller
                     'token' => $id_token,
                     'updated_at' => now(),
                 ]);
-                Mail::to($contractor->email)->send(new CallLogMail($data));
+                Mail::to($data['email'])->send(new CallLogConsentMail($data));
             }
 
             return redirect()->route('call-logs.index')->with('success', 'Call log created successfully');
@@ -201,6 +214,9 @@ class CallLogsController extends Controller
         // dd($request->signature, $data, $request->signature_token);
         try {
             $data->signature = $request->signature;
+            $data->email_lot_no = $request->email_lot_no;
+            $data->email_aprtment_no = $request->email_aprtment_no;
+            $data->email_agent_name = $request->email_agent_name;
             $data->save();
             $html = view('admin.pdf.signature', compact('data'))->render();
 
@@ -231,7 +247,7 @@ class CallLogsController extends Controller
             // Save filename in the database
             if (Auth::user()->role_id == 3) {
                 $data->contractor_email_file = $filename;
-                $data->contractor_email_status = 'Accepted';
+                // $data->contractor_email_status = 'Accepted';
                 // Mail::to($data->email)->send(new CallLogContractorMail());
             } else {
                 $data->email_file = $filename;

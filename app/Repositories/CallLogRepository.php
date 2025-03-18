@@ -166,11 +166,11 @@ class CallLogRepository
         $email = $data['email'];
         $token = Str::uuid()->toString();
         $id_token = $data->id . '_' . $token;
-        $data['token'] = $id_token;
-        DB::table('call_logs')->where('id', $data->id)->update([
-            'token' => $id_token,
-            'updated_at' => now(),
-        ]);
+        // $data['token'] = $id_token;
+        // DB::table('call_logs')->where('id', $data->id)->update([
+        //     'token' => $id_token,
+        //     'updated_at' => now(),
+        // ]);
         Mail::to($email)->send(new CallLogMail($data));
     }
 }

@@ -45,6 +45,9 @@ return new class extends Migration
             $table->string('contractor_email_status')->nullable();
             $table->string('contractor_email_file')->nullable();
             $table->string('category')->nullable();
+            $table->string('email_agent_name')->nullable();
+            $table->string('email_aprtment_no')->nullable();
+            $table->string('email_lot_no')->nullable();
             $table->string('status')->nullable()->default('Pending');
             $table->timestamps();
         });

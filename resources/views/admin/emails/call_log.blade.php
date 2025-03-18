@@ -73,11 +73,11 @@
             </div>
 
             <!-- Button -->
-            <div style="text-align: center; margin-top: 20px;">
+            <!-- <div style="text-align: center; margin-top: 20px;">
                 <a href="{{ route('call-logs.signature', ['token' => $data['token']]) }}" style="display: inline-block; background: #007BFF; color: #ffffff; text-decoration: none; padding: 12px 20px; font-size: 16px; border-radius: 5px; font-weight: bold;">
                     View Details
                 </a>
-            </div>
+            </div> -->
 
         </div>
 
