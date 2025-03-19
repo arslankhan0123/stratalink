@@ -16,17 +16,33 @@
 @section('content')
 @if (Auth::user()->role_id == 1)
 <!-- Dropdown Section -->
-<div class="d-flex justify-content-between align-items-center my-3">
-    <!-- <label for="report-type" class="me-2 fw-bold">Select Report Type:</label> -->
-    <select id="report-type" class="form-select" onchange="window.location.href=this.value">
-        <option selected disabled>Select Client</option>
-        @foreach ($clients as $client)
-        <option value="{{ route('reports.index', ['client_id' => $client->id]) }}">
-            {{ $client->name }}
-        </option>
-        @endforeach
-    </select>
-</div>
+<form action="{{ route('reports.index') }}" method="GET">
+    <div class="d-flex justify-content-between align-items-center my-3">
+        <!-- Client Selection Dropdown -->
+        <select id="client-select" name="client_id" class="form-select me-2" required>
+            <option disabled {{ request('client_id') ? '' : 'selected' }}>Select Client</option>
+            @foreach ($clients as $client)
+                <option value="{{ $client->id }}" {{ request('client_id') == $client->id ? 'selected' : '' }}>
+                    {{ $client->name }}
+                </option>
+            @endforeach
+        </select>
+
+        <!-- Date Filter Dropdown -->
+        <select id="date-filter" name="date_filter" class="form-select me-2" required>
+            <option disabled {{ request('date_filter') ? '' : 'selected' }}>Select Date Range</option>
+            <option value="today" {{ request('date_filter') == 'today' ? 'selected' : '' }}>Today</option>
+            <option value="this_week" {{ request('date_filter') == 'this_week' ? 'selected' : '' }}>This Week</option>
+            <option value="this_month" {{ request('date_filter') == 'this_month' ? 'selected' : '' }}>This Month</option>
+            <option value="this_year" {{ request('date_filter') == 'this_year' ? 'selected' : '' }}>This Year</option>
+        </select>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+
 @endif
 <!-- <div class="d-flex justify-content-between align-items-center my-3">
     <label for="report-type" class="me-2 fw-bold">Select Report Type:</label>
@@ -128,7 +144,7 @@
                                     </span>
                                 </td>
                                 <td>{{ $call_log->name }}</td>
-                                <td>{{ $call_log->building->name }}</td>
+                                <td>{{ $call_log->building ? $call_log->building->name : 'N/A' }}</td>
                                 <td>{{ $call_log->number }}</td>
                                 <td>{{ $call_log->building_manager }}</td>
                                 <td>{{ $call_log->strata_manager }}</td>

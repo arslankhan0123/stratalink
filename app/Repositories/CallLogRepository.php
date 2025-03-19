@@ -23,6 +23,8 @@ class CallLogRepository
         if (Auth::user()->role_id == 3) {
             $buildingIds = Building::where('user_id', Auth::user()->id)->pluck('id');
             $data = CallLog::whereIn('building_id', $buildingIds)->get();
+        } elseif (Auth::user()->role_id == 2) {
+            $data = CallLog::where('created_by', Auth::user()->id)->get();
         } else {
             $data = CallLog::all();
         }
@@ -134,8 +136,8 @@ class CallLogRepository
                 'call_date' => $request->input('call_date'),
                 'category' => $request->input('category'),
             ]);
-
-            return response()->json(['message' => 'Call log updated successfully']);
+            return $call_log;
+            // return response()->json(['message' => 'Call log updated successfully']);
         } else {
             return response()->json(['error' => 'Call log not found'], 404);
         }

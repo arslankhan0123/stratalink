@@ -54,7 +54,7 @@
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-category-input">Category</label>
-                                    <select class="form-select" aria-label="Default select example" name="category">
+                                    <select class="form-select" aria-label="Default select example" name="category" id="categorySelect">
                                         <option disabled>Select a Category</option>
                                         <option value="Plumber" {{ $call_log->category == 'Plumber' ? 'selected' : '' }}>Plumber</option>
                                         <option value="Electrician" {{ $call_log->category == 'Electrician' ? 'selected' : '' }}>Electrician</option>
@@ -226,7 +226,36 @@
                                     <textarea name="summary" id="summary" class="form-control" rows="4" placeholder="Enter summary or description">{{ $call_log->summary}}</textarea>
                                 </div>
                             </div>
-
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_concent_email" value="yes">
+                                <label class="form-check-label" for="sendEmailCheckbox">
+                                    Send Consent form
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_email" value="yes">
+                                <label class="form-check-label" for="sendEmailCheckbox">
+                                    Details to customer
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_building_manager_email" value="yes">
+                                <label class="form-check-label" for="sendEmailCheckbox">
+                                    Details to building manager
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_strata_manager_email" value="yes">
+                                <label class="form-check-label" for="sendEmailCheckbox">
+                                    Details to strata manager
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_contractor_email" value="yes">
+                                <label class="form-check-label" for="sendEmailCheckbox">
+                                    Details to contractor
+                                </label>
+                            </div>
                         </div>
 
                 </div>
@@ -235,6 +264,23 @@
                     <button type="submit" class="btn btn-primary w-md">Submit</button>
                 </div>
                 </form>
+                <div class="mt-4">
+                    <h4>Pending Calls</h4>
+                    <table class="table table-bordered" id="pendingCallsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Call Name</th>
+                                <th>Building Name</th>
+                                <th>Building Email</th>
+                                <th>Building Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be inserted dynamically -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -248,6 +294,7 @@
         var selectedContractorId = $('#selectedContractorId').val();
         var selectedBuildingManagerId = $('#selectedBuildingManagerId').val();
         var selectedStrataManagerId = $('#selectedStrataManagerId').val();
+        var categoryValue = $('#categorySelect').val();
 
 
         $('#contractorSelect').html('<option selected disabled>Select a contractor</option>');
@@ -257,7 +304,8 @@
                 url: '/buildings/get-contractors',
                 type: 'GET',
                 data: {
-                    building_id: buildingId
+                    building_id: buildingId,
+                    categoryValue: categoryValue
                 },
                 success: function(response) {
                     if (response.contractors.length > 0) {
@@ -304,6 +352,7 @@
         $('#buildingSelect').on('change', function() {
             var buildingId = $(this).val();
             var selectedContractorId = $('#selectedContractorId').val();
+            var categoryValue = $('#categorySelect').val();
             console.log('here');
 
             $('#contractorSelect').html('<option selected disabled>Select a contractor</option>');
@@ -313,14 +362,14 @@
                     url: '/buildings/get-contractors',
                     type: 'GET',
                     data: {
-                        building_id: buildingId
+                        building_id: buildingId,
+                        categoryValue: categoryValue
                     },
                     success: function(response) {
-                        if (response.length > 0) {
-                            $.each(response, function(index, contractor) {
-
+                        if (response.contractors.length > 0) {
+                            $.each(response.contractors, function(index, contractor) {
                                 $('#contractorSelect').append(
-                                    `<option value="${contractor.contractor_id}" ${contractor.contractor_id == selectedContractorId ? 'selected' : ''}>${contractor.contractor.name} (${contractor.phone})</option>`
+                                    `<option value="${contractor.id}">${contractor.name} (${contractor.phone})</option>`
                                 );
                             });
                         } else {
@@ -351,6 +400,25 @@
                         } else {
                             $('#strataManagerSelect').append(
                                 `<option disabled>No strata managers found</option>`
+                            );
+                        }
+
+                        // Populate pendingCalls table
+                        if (response.pendingCalls.length > 0) {
+                            $.each(response.pendingCalls, function(index, pendingCall) {
+                                $('#pendingCallsTable tbody').append(
+                                    `<tr>
+                                        <td>${pendingCall?.id || 'N/A'}</td>
+                                        <td>${pendingCall?.name || 'N/A'}</td>
+                                        <td>${pendingCall?.building?.name || 'N/A'}</td>
+                                        <td>${pendingCall?.building?.email || 'N/A'}</td>
+                                        <td>${pendingCall?.building?.address || 'N/A'}</td>
+                                    </tr>`
+                                );
+                            });
+                        } else {
+                            $('#pendingCallsTable tbody').append(
+                                `<tr><td colspan="6" class="text-center">No pending calls found</td></tr>`
                             );
                         }
 

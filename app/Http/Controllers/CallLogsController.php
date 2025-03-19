@@ -171,7 +171,58 @@ class CallLogsController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $this->callLogRepo->update($request, $id);
+            $data = $this->callLogRepo->update($request, $id);
+            if ($request->send_email == 'yes') {
+                $this->callLogRepo->sendEmail($data);
+            }
+
+            if ($request->send_building_manager_email == 'yes') {
+                $buildingManager = Manager::where('id', $data['building_manager_id'])->first();
+                $token = Str::uuid()->toString();
+                $id_token = $data['id'] . '_' . $token;
+                // $data['token'] = $id_token;
+                // DB::table('call_logs')->where('id', $data['id'])->update([
+                //     'token' => $id_token,
+                //     'updated_at' => now(),
+                // ]);
+                Mail::to($buildingManager->email)->send(new CallLogMail($data));
+            }
+
+            if ($request->send_strata_manager_email == 'yes') {
+                $buildingManager = Manager::where('id', $data['strata_manager_id'])->first();
+                $token = Str::uuid()->toString();
+                $id_token = $data['id'] . '_' . $token;
+                // $data['token'] = $id_token;
+                // DB::table('call_logs')->where('id', $data['id'])->update([
+                //     'token' => $id_token,
+                //     'updated_at' => now(),
+                // ]);
+                Mail::to($buildingManager->email)->send(new CallLogMail($data));
+            }
+
+            if ($request->send_contractor_email == 'yes') {
+                $contractor = Contractor::where('id', $data['contractor_id'])->first();
+                $token = Str::uuid()->toString();
+                $id_token = $data['id'] . '_' . $token;
+                // $data['token'] = $id_token;
+                // DB::table('call_logs')->where('id', $data['id'])->update([
+                //     'token' => $id_token,
+                //     'updated_at' => now(),
+                // ]);
+                Mail::to($contractor->email)->send(new CallLogMail($data));
+            }
+
+            if ($request->send_concent_email == 'yes') {
+                $contractor = Contractor::where('id', $data['contractor_id'])->first();
+                $token = Str::uuid()->toString();
+                $id_token = $data['id'] . '_' . $token;
+                $data['token'] = $id_token;
+                DB::table('call_logs')->where('id', $data['id'])->update([
+                    'token' => $id_token,
+                    'updated_at' => now(),
+                ]);
+                Mail::to($data['email'])->send(new CallLogConsentMail($data));
+            }
             return redirect()->route('call-logs.index')->with('success', 'Call log updated successfully');
         } catch (Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());

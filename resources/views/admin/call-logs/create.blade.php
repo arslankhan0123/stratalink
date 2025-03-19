@@ -53,7 +53,7 @@
                                 <!-- <input type="text" class="form-control @error('category') is-invalid @enderror"
                                             name="category" id="formrow-category-input"> -->
                                 <select class="form-select" aria-label="Default select example"
-                                    name="category">
+                                    name="category" id="categorySelect">
                                     <option value="" selected>Select a Category</option>
                                     <option value="Plumber">Plumber</option>
                                     <option value="Electrician">Electrician</option>
@@ -169,10 +169,14 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
+                                @php
+                                $today = \Carbon\Carbon::today()->format('Y-m-d');
+                                @endphp
+
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-mobile-input">Call Date</label>
                                     <input type="date" class="form-control @error('call_date') is-invalid @enderror"
-                                        name="call_date" id="formrow-mobile-input" required>
+                                        name="call_date" id="formrow-mobile-input" required value="{{ old('call_date', $today) }}">
                                     @error('call_date')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -256,6 +260,23 @@
                             <button type="submit" class="btn btn-primary w-md">Submit</button>
                         </div>
                     </form>
+                    <div class="mt-4">
+                        <h4>Pending Calls</h4>
+                        <table class="table table-bordered" id="pendingCallsTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Call Name</th>
+                                    <th>Building Name</th>
+                                    <th>Building Email</th>
+                                    <th>Building Address</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be inserted dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -268,6 +289,11 @@
     $(document).ready(function() {
         $('#buildingSelect').on('change', function() {
             var buildingId = $(this).val();
+            var categoryValue = $('#categorySelect').val();
+
+            console.log("Building ID: ", buildingId);
+            console.log("categoryValue ID: ", categoryValue);
+
 
             $('#contractorSelect').html('<option selected disabled>Select a contractor</option>');
 
@@ -276,7 +302,8 @@
                     url: '/buildings/get-contractors',
                     type: 'GET',
                     data: {
-                        building_id: buildingId
+                        building_id: buildingId,
+                        categoryValue: categoryValue
                     },
                     success: function(response) {
                         $('#contractorSelect').empty();
@@ -317,6 +344,25 @@
                         } else {
                             $('#strataManagerSelect').append(
                                 `<option disabled>No strata managers found</option>`
+                            );
+                        }
+
+                        // Populate pendingCalls table
+                        if (response.pendingCalls.length > 0) {
+                            $.each(response.pendingCalls, function(index, pendingCall) {
+                                $('#pendingCallsTable tbody').append(
+                                    `<tr>
+                                        <td>${pendingCall?.id || 'N/A'}</td>
+                                        <td>${pendingCall?.name || 'N/A'}</td>
+                                        <td>${pendingCall?.building?.name || 'N/A'}</td>
+                                        <td>${pendingCall?.building?.email || 'N/A'}</td>
+                                        <td>${pendingCall?.building?.address || 'N/A'}</td>
+                                    </tr>`
+                                );
+                            });
+                        } else {
+                            $('#pendingCallsTable tbody').append(
+                                `<tr><td colspan="6" class="text-center">No pending calls found</td></tr>`
                             );
                         }
                         // if (response.length > 0) {

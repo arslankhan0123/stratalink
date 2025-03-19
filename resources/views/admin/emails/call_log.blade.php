@@ -48,6 +48,16 @@
             </div>
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
+                <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Contractor Phone:</strong>
+                {{ $data->contractor->phone }}
+            </div>
+
+            <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
+                <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Caller Phone:</strong>
+                {{ $data->number }}
+            </div>
+
+            <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
                 <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Building Manager:</strong>
                 {{ $data['building_manager'] }}
             </div>
@@ -72,12 +82,6 @@
                 {{ \Carbon\Carbon::parse($data['created_at'])->format('F d, Y h:i A') }}
             </div>
 
-            <!-- Button -->
-            <!-- <div style="text-align: center; margin-top: 20px;">
-                <a href="{{ route('call-logs.signature', ['token' => $data['token']]) }}" style="display: inline-block; background: #007BFF; color: #ffffff; text-decoration: none; padding: 12px 20px; font-size: 16px; border-radius: 5px; font-weight: bold;">
-                    View Details
-                </a>
-            </div> -->
 
         </div>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Building;
+use App\Models\CallLog;
 use App\Models\Contractor;
 use App\Models\Manager;
 use App\Models\User;
@@ -101,17 +102,19 @@ class BuildingController extends Controller
     {
         try {
             $buildingId = $request->input('building_id');
+            $categoryValue = $request->input('categoryValue');
 
             // $contractors = Building::with('contractor:id,name')->where('id', $buildingId)->get();
-            $contractors = Contractor::with('building:id,name')->where('building_id', $buildingId)->get();
+            $contractors = Contractor::with('building:id,name')->where('building_id', $buildingId)->where('category', $categoryValue)->get();
             $building = Building::where('id', $buildingId)->first();
             $managers = Manager::where('id', $building->manager_id)->get();
             $buildingManagers = Manager::where('id', $building->building_manager_id)->get();
             $strataManagers = Manager::where('id', $building->strata_manager_id)->get();
             // $managers = Manager::with('building:id,name')->where('building_id', $buildingId)->get();
-
+            $pendingCalls = CallLog::where('building_id', $buildingId)->where('status', 'Pending')->with('building', 'contractor')->get();
             return response()->json([
                 'contractors' => $contractors,
+                'pendingCalls' => $pendingCalls,
                 'managers' => $managers,
                 'buildingManagers' => $buildingManagers,
                 'strataManagers' => $strataManagers,

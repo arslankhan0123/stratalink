@@ -125,8 +125,8 @@
 
 
 
-
     <div class="header">Call Logs Report</div>
+    <div class="header">Client Name: {{ optional($callLogs->first())->building->user->name }}</div>
 
     @foreach ($callLogs as $log)
     <div class="call-log-container">
@@ -137,6 +137,7 @@
                 <tr>
                     <th>Date</th>
                     <th>Building Name</th>
+                    <th>Client Name</th>
                     <th>Contact Person</th>
                     <th>Contact Email</th>
                     <th>Status</th>
@@ -145,7 +146,8 @@
                 </tr>
                 <tr>
                     <td>{{ \Carbon\Carbon::parse($log->created_at)->format('d M Y') }}</td>
-                    <td>{{ $log->building->name }}</td>
+                    <td>{{ $log->building ? $log->building->name : 'N/A' }}</td>
+                    <td>{{ $log->building ? $log->building->user->name : 'N/A' }}</td>
                     <td>{{ $log->name }}</td>
                     <td>{{ $log->email }}</td>
                     <td>{{ $log->status }}</td>

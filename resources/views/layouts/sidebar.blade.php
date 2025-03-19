@@ -8,7 +8,7 @@
                 <img src="{{ asset('tmp/logo.jpg') }}" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <img src="{{ asset('tmp/logo.jpg') }}" alt="" height="60">
+                <img src="{{ asset('tmp/logo.jpg') }}" alt="" height="60" style="width: 125px;">
 
             </span>
         </a>

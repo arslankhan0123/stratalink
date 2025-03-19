@@ -472,6 +472,27 @@
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
     <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+    <!-- ✅ DataTables CSS (Load First) -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
+<!-- ✅ jQuery (Load Before DataTables JS) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- ✅ DataTables JS (Load After jQuery) -->
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#custom-table').DataTable({
+            "pagingType": "simple_numbers",
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": false
+        });
+    });
+</script>
+
     <!-- Include jQuery -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <!-- Include Select2 CSS & JS -->
