@@ -40,8 +40,10 @@ class DashboardController extends Controller
                 $data = $this->buildingRepo->all($request);
                 return view('sec_dashboard', compact('data'));
             } else if (Auth::user()->role()->first()->name == 'staff') {
-                $data = $this->buildingRepo->all($request);
-                return view('sec_dashboard', compact('data'));
+                // $data = $this->buildingRepo->all($request);
+                $data = $this->dashboardRepo->getData($request);
+                return view('dashboard', compact('data'));
+                // return view('sec_dashboard', compact('data'));
             }
         } catch (Exception $exception) {
             return redirect()->back()->with('error', 'Failed.' . $exception->getMessage());
