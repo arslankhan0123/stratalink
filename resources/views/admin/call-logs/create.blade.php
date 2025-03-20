@@ -210,7 +210,7 @@
                                             <option value="Pending">Pending</option>
                                             <option value="Contractor Engaged">Contractor Engaged</option>
                                             <option value="Non emergency">Non emergency</option>
-                                            <option value="Complete">Complete</option>
+                                            <option value="Complete" id="completeOption" disabled>Complete</option> 
                                             <option value="Contractor already engaged">Contractor already engaged</option>
                                         </select>
                                         @error('status')
@@ -387,6 +387,16 @@
                 });
             }
         });
+    });
+</script>
+<script>
+    document.getElementById('audio_attachment').addEventListener('change', function () {
+        let completeOption = document.getElementById('completeOption');
+        if (this.files.length > 0) {
+            completeOption.removeAttribute('disabled');
+        } else {
+            completeOption.setAttribute('disabled', 'disabled');
+        }
     });
 </script>
 @endsection

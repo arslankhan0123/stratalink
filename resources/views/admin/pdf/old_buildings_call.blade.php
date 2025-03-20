@@ -47,9 +47,9 @@
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr style="background: #343a40; color: white;">
-                        <th style="padding: 8px;">Name</th>
+                        <th style="padding: 8px;">Caller Name</th>
                         <th style="padding: 8px;">Building Name</th>
-                        <th style="padding: 8px;">Number</th>
+                        <th style="padding: 8px;">Caller Number</th>
                         <th style="padding: 8px;">Building Manager</th>
                         <th style="padding: 8px;">Strata Manager</th>
                         <th style="padding: 8px;">Contractor</th>

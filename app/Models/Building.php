@@ -112,4 +112,14 @@ class Building extends Model
     {
         return $this->belongsTo(Manager::class, 'manager_id');
     }
+
+    public function buildingManager()
+    {
+        return $this->belongsTo(Manager::class, 'building_manager_id');
+    }
+
+    public function strataManager()
+    {
+        return $this->belongsTo(Manager::class, 'strata_manager_id');
+    }
 }

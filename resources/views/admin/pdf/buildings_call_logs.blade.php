@@ -169,10 +169,10 @@
             {{ $log->summary }}
         </div>
 
-        <div class="contractor-section">Contractor Name: Chrome Plumbing</div>
+        <div class="contractor-section">Contractor Name: {{$log->contractor->name ?? ''}}</div>
 
         <div class="strata-manager">Strata Manager</div>
-        <div class="manager-name">John XYZ</div>
+        <div class="manager-name">{{$log->building->strataManager->name}}</div>
     </div>
     @endforeach
 

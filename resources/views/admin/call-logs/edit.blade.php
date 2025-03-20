@@ -195,6 +195,23 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="audio_attachment">Upload Audio</label>
+                                    <input type="file" name="audio_attachment" id="audio_attachment" class="form-control">
+                                </div>
+                            </div>
+
+                            <script>
+                                document.getElementById('audio_attachment').addEventListener('change', function () {
+                                    let completeOption = document.getElementById('completeOption');
+                                    if (this.files.length > 0) {
+                                        completeOption.removeAttribute('disabled');
+                                    } else {
+                                        completeOption.setAttribute('disabled', 'disabled');
+                                    }
+                                });
+                            </script>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-company-input">Select Status</label>
@@ -205,7 +222,11 @@
                                         <option value="Pending" {{ $call_log->status == 'Pending' ? 'selected' : '' }}>Pending</option>
                                         <option value="Contractor Engaged" {{ $call_log->status == 'Contractor Engaged' ? 'selected' : '' }}>Contractor Engaged</option>
                                         <option value="Non emergency" {{ $call_log->status == 'Non emergency' ? 'selected' : '' }}>Non emergency</option>
-                                        <option value="Completed" {{ $call_log->status == 'Completed' ? 'selected' : '' }}>Completed</option>
+                                        <!-- <option value="Completed" {{ $call_log->status == 'Completed' ? 'selected' : '' }}>Completed</option> -->
+                                        <option value="Completed" id="completeOption" 
+                                            {{ $call_log->status == 'Completed' ? 'selected' : '' }} 
+                                            {{ $call_log->audio_attachment ? '' : 'disabled' }}>Completed
+                                        </option>
                                         <option value="Contractor already engaged" {{ $call_log->status == 'Contractor already engaged' ? 'selected' : '' }}>Contractor already engaged</option>
                                     </select>
                                     @error('status')
@@ -213,13 +234,13 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <!-- <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="audio_attachment">Upload Audio</label>
                                     <input type="file" name="audio_attachment" id="audio_attachment"
                                         class="form-control">
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="summary">Summary</label>

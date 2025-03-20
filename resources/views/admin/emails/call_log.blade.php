@@ -18,12 +18,12 @@
         <div style="padding: 20px 10px;">
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
-                <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Name:</strong>
+                <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Caller Name:</strong>
                 {{ $data['name'] }}
             </div>
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
-                <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Email:</strong>
+                <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Caller Email:</strong>
                 {{ $data['email'] }}
             </div>
 

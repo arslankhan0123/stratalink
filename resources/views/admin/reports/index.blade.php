@@ -148,8 +148,8 @@
                                 <td>{{ $call_log->building ? $call_log->building->name : 'N/A' }}</td>
                                 <td>{{ $call_log->building ? $call_log->building->sp_no : 'N/A' }}</td>
                                 <td>{{ $call_log->number }}</td>
-                                <td>{{ $call_log->building_manager }}</td>
-                                <td>{{ $call_log->strata_manager }}</td>
+                                <td>{{ $call_log->building->buildingManager->name }}</td>
+                                <td>{{ $call_log->building->strataManager->name }}</td>
                                 <td>{{ $call_log->contractor->name ?? '' }}</td>
                                 <td>
                                     @if ($call_log->email_file)
