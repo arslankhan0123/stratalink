@@ -7,11 +7,11 @@
     <div style="max-width: 550px; background: #fff; padding: 25px; margin: auto; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); font-size: 16px;">
         <p style="margin-bottom: 15px;">
             I 
-            <input type="text" style="border: none; border-bottom: 2px solid #000; padding: 5px; width: 180px; outline: none; font-size: 15px; font-family: 'Arial', sans-serif;" placeholder="Your Name">, 
+            <input type="text" disabled readonly style="border: none; border-bottom: 2px solid #000; padding: 5px; width: 180px; outline: none; font-size: 15px; font-family: 'Arial', sans-serif;" placeholder="Your Name">, 
             the Real estate agent/Owner of apartment 
-            <input type="text" style="border: none; border-bottom: 2px solid #000; padding: 5px; width: 180px; outline: none; font-size: 15px; font-family: 'Arial', sans-serif;" placeholder="Apartment No">, 
+            <input type="text" disabled readonly style="border: none; border-bottom: 2px solid #000; padding: 5px; width: 180px; outline: none; font-size: 15px; font-family: 'Arial', sans-serif;" placeholder="Apartment No">, 
             Lot no 
-            <input type="text" style="border: none; border-bottom: 2px solid #000; padding: 5px; width: 80px; outline: none; font-size: 15px; font-family: 'Arial', sans-serif;" placeholder="Lot No"> 
+            <input type="text" disabled readonly style="border: none; border-bottom: 2px solid #000; padding: 5px; width: 80px; outline: none; font-size: 15px; font-family: 'Arial', sans-serif;" placeholder="Lot No"> 
             authorise the building manager to organise the contractor for us to investigate the reported issue from us. 
         </p>
         <p style="margin-bottom: 15px;">
@@ -25,7 +25,7 @@
 
         <div style="text-align: center; margin-top: 20px;">
             <a href="{{ route('call-logs.signature', ['token' => $data['token']]) }}" style="display: inline-block; background: #007BFF; color: #ffffff; text-decoration: none; padding: 12px 20px; font-size: 16px; border-radius: 5px; font-weight: bold;">
-                View Details
+                Click to View Details and Signature
             </a>
         </div>
     </div>

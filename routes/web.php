@@ -18,6 +18,8 @@ Route::get('/', function () {
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/signature/{token}', [CallLogsController::class, 'signature'])->name('call-logs.signature');
+Route::post('/signature/store/token', [CallLogsController::class, 'signatureUpdate'])->name('signature.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -60,8 +62,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/{id}', [CallLogsController::class, 'edit'])->name('call-logs.edit');
         Route::post('/update/{id}', [CallLogsController::class, 'update'])->name('call-logs.update');
         Route::get('/destroy/{id}', [CallLogsController::class, 'destroy'])->name('call-logs.delete');
-        Route::get('/signature/{token}', [CallLogsController::class, 'signature'])->name('call-logs.signature');
-        Route::post('/signature/store/token', [CallLogsController::class, 'signatureUpdate'])->name('signature.store');
     });
 
     Route::group(['prefix' => '/user'], function () {

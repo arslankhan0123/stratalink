@@ -3,6 +3,8 @@
 
 <head>
     <title>Authorization Email</title>
+    <!-- Toaster Link -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body style="font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; background-color: #f8f8f8; padding: 40px 10px 20px 10px; margin: 0;">
@@ -37,5 +39,28 @@
         </form>
     </div>
 </body>
+<!-- ✅ jQuery (Load Before DataTables JS) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Toaster script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+@if (Session::has('success'))
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true
+    }
+    toastr.success("{{ session('success') }}")
+</script>
+@endif
+
+@if (Session::has('error'))
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true
+    }
+    toastr.error("{{ session('error') }}")
+</script>
+@endif
 
 </html>
