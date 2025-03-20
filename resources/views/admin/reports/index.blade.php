@@ -123,8 +123,9 @@
                                         <label for="selectAll"></label>
                                     </span>
                                 </th>
-                                <th>Name</th>
+                                <th>Caller Name</th>
                                 <th>Building Name</th>
+                                <th>Building SP No.</th>
                                 <th>Number</th>
                                 <th>Building Manager</th>
                                 <th>Strata Manager</th>
@@ -145,6 +146,7 @@
                                 </td>
                                 <td>{{ $call_log->name }}</td>
                                 <td>{{ $call_log->building ? $call_log->building->name : 'N/A' }}</td>
+                                <td>{{ $call_log->building ? $call_log->building->sp_no : 'N/A' }}</td>
                                 <td>{{ $call_log->number }}</td>
                                 <td>{{ $call_log->building_manager }}</td>
                                 <td>{{ $call_log->strata_manager }}</td>

@@ -137,9 +137,10 @@
                 <tr>
                     <th>Date</th>
                     <th>Building Name</th>
+                    <th>Building SP No.</th>
                     <th>Client Name</th>
-                    <th>Contact Person</th>
-                    <th>Contact Email</th>
+                    <th>Caller Name</th>
+                    <th>Caller Email</th>
                     <th>Status</th>
                     <th>Numbers</th>
                     <th>Building Address</th>
@@ -147,6 +148,7 @@
                 <tr>
                     <td>{{ \Carbon\Carbon::parse($log->created_at)->format('d M Y') }}</td>
                     <td>{{ $log->building ? $log->building->name : 'N/A' }}</td>
+                    <td>{{ $log->building ? $log->building->sp_no : 'N/A' }}</td>
                     <td>{{ $log->building ? $log->building->user->name : 'N/A' }}</td>
                     <td>{{ $log->name }}</td>
                     <td>{{ $log->email }}</td>
@@ -162,7 +164,7 @@
             ✅ {{ $log->status }}
         </div> -->
 
-        <div class="status-section">Call Notes:</div>
+        <div class="status-section">Summary:</div>
         <div class="status-box">
             {{ $log->summary }}
         </div>

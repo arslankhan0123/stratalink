@@ -49,6 +49,13 @@ return new class extends Migration
             $table->string('email_aprtment_no')->nullable();
             $table->string('email_lot_no')->nullable();
             $table->string('status')->nullable()->default('Pending');
+
+            $table->string('consent_form_email_sent')->nullable();
+            $table->string('customer_details_email_sent')->nullable();
+            $table->string('building_manager_email_sent')->nullable();
+            $table->string('strata_manager_email_sent')->nullable();
+            $table->string('contractor_details_email_sent')->nullable();
+
             $table->timestamps();
         });
     }

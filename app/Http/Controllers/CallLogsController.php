@@ -85,6 +85,10 @@ class CallLogsController extends Controller
             ]);
             $data = $this->callLogRepo->store($request);
             if ($request->send_email == 'yes') {
+                DB::table('call_logs')->where('id', $data['id'])->update([
+                    'customer_details_email_sent' => 'yes',
+                    'updated_at' => now(),
+                ]);
                 $this->callLogRepo->sendEmail($data);
             }
 
@@ -97,6 +101,10 @@ class CallLogsController extends Controller
                 //     'token' => $id_token,
                 //     'updated_at' => now(),
                 // ]);
+                DB::table('call_logs')->where('id', $data['id'])->update([
+                    'building_manager_email_sent' => 'yes',
+                    'updated_at' => now(),
+                ]);
                 Mail::to($buildingManager->email)->send(new CallLogMail($data));
             }
 
@@ -109,6 +117,11 @@ class CallLogsController extends Controller
                 //     'token' => $id_token,
                 //     'updated_at' => now(),
                 // ]);
+                
+                DB::table('call_logs')->where('id', $data['id'])->update([
+                    'strata_manager_email_sent' => 'yes',
+                    'updated_at' => now(),
+                ]);
                 Mail::to($buildingManager->email)->send(new CallLogMail($data));
             }
 
@@ -121,6 +134,11 @@ class CallLogsController extends Controller
                 //     'token' => $id_token,
                 //     'updated_at' => now(),
                 // ]);
+                
+                DB::table('call_logs')->where('id', $data['id'])->update([
+                    'contractor_details_email_sent' => 'yes',
+                    'updated_at' => now(),
+                ]);
                 Mail::to($contractor->email)->send(new CallLogMail($data));
             }
 
@@ -131,6 +149,10 @@ class CallLogsController extends Controller
                 $data['token'] = $id_token;
                 DB::table('call_logs')->where('id', $data['id'])->update([
                     'token' => $id_token,
+                    'updated_at' => now(),
+                ]);
+                DB::table('call_logs')->where('id', $data['id'])->update([
+                    'consent_form_email_sent' => 'yes',
                     'updated_at' => now(),
                 ]);
                 Mail::to($data['email'])->send(new CallLogConsentMail($data));
@@ -173,6 +195,10 @@ class CallLogsController extends Controller
         try {
             $data = $this->callLogRepo->update($request, $id);
             if ($request->send_email == 'yes') {
+                DB::table('call_logs')->where('id', $data['id'])->update([
+                    'customer_details_email_sent' => 'yes',
+                    'updated_at' => now(),
+                ]);
                 $this->callLogRepo->sendEmail($data);
             }
 
@@ -185,6 +211,10 @@ class CallLogsController extends Controller
                 //     'token' => $id_token,
                 //     'updated_at' => now(),
                 // ]);
+                DB::table('call_logs')->where('id', $data['id'])->update([
+                    'building_manager_email_sent' => 'yes',
+                    'updated_at' => now(),
+                ]);
                 Mail::to($buildingManager->email)->send(new CallLogMail($data));
             }
 
@@ -197,6 +227,10 @@ class CallLogsController extends Controller
                 //     'token' => $id_token,
                 //     'updated_at' => now(),
                 // ]);
+                DB::table('call_logs')->where('id', $data['id'])->update([
+                    'strata_manager_email_sent' => 'yes',
+                    'updated_at' => now(),
+                ]);
                 Mail::to($buildingManager->email)->send(new CallLogMail($data));
             }
 
@@ -209,6 +243,10 @@ class CallLogsController extends Controller
                 //     'token' => $id_token,
                 //     'updated_at' => now(),
                 // ]);
+                DB::table('call_logs')->where('id', $data['id'])->update([
+                    'contractor_details_email_sent' => 'yes',
+                    'updated_at' => now(),
+                ]);
                 Mail::to($contractor->email)->send(new CallLogMail($data));
             }
 
@@ -219,6 +257,10 @@ class CallLogsController extends Controller
                 $data['token'] = $id_token;
                 DB::table('call_logs')->where('id', $data['id'])->update([
                     'token' => $id_token,
+                    'updated_at' => now(),
+                ]);
+                DB::table('call_logs')->where('id', $data['id'])->update([
+                    'consent_form_email_sent' => 'yes',
                     'updated_at' => now(),
                 ]);
                 Mail::to($data['email'])->send(new CallLogConsentMail($data));

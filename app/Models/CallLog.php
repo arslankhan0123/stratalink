@@ -33,6 +33,11 @@ class CallLog extends Model
         'email_agent_name',
         'email_aprtment_no',
         'email_lot_no',
+        'consent_form_email_sent',
+        'customer_details_email_sent',
+        'building_manager_email_sent',
+        'strata_manager_email_sent',
+        'contractor_details_email_sent',
     ];
 
     protected static function boot()

@@ -28,7 +28,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-name-input">Name</label>
+                                    <label class="form-label" for="formrow-name-input">Caller Name</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
                                         name="name" id="formrow-name-input" required>
                                     @error('name')
@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-email-input">Email</label>
+                                    <label class="form-label" for="formrow-email-input">Caller Email</label>
                                     <input type="text" class="form-control @error('email') is-invalid @enderror"
                                         name="email" id="formrow-email-input" required>
                                     @error('email')
@@ -86,7 +86,7 @@
                                     <select class="form-select mb-3" name="building_id" id="buildingSelect" required>
                                         <option selected disabled>Select a building</option>
                                         @foreach ($buildings as $building)
-                                        <option value="{{ $building->id }}">{{ $building->name }}</option>
+                                        <option value="{{ $building->id }}">{{ $building->address }}</option>
                                         @endforeach
                                     </select>
                                     @error('building_id')
@@ -160,7 +160,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-mobile-input">Number</label>
+                                    <label class="form-label" for="formrow-mobile-input">Caller Number</label>
                                     <input type="number" class="form-control @error('number') is-invalid @enderror"
                                         name="number" id="formrow-mobile-input" required>
                                     @error('number')
@@ -262,20 +262,23 @@
                     </form>
                     <div class="mt-4">
                         <h4>Pending Calls</h4>
-                        <table class="table table-bordered" id="pendingCallsTable">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Call Name</th>
-                                    <th>Building Name</th>
-                                    <th>Building Email</th>
-                                    <th>Building Address</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Data will be inserted dynamically -->
-                            </tbody>
-                        </table>
+                        <!-- <table class="table table-bordered" id="pendingCallsTable"> -->
+                        <div class="table-responsive">
+                            <table id="pendingCallsTable" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Call Name</th>
+                                        <th>Building Name</th>
+                                        <th>Building Email</th>
+                                        <th>Building Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Data will be inserted dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

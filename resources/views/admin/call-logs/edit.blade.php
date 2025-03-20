@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-name-input">Name</label>
+                                    <label class="form-label" for="formrow-name-input">Caller Name</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
                                         name="name" value="{{ $call_log->name }}" id="formrow-name-input" required>
                                     @error('name')
@@ -43,7 +43,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-email-input">Email</label>
+                                    <label class="form-label" for="formrow-email-input">Caller Email</label>
                                     <input type="text" class="form-control @error('email') is-invalid @enderror"
                                         name="email" value="{{ $call_log->email ?? '' }}" id="formrow-email-input" required>
                                     @error('email')
@@ -90,7 +90,7 @@
                                         @foreach ($buildings as $building)
                                         <option value="{{ $building->id }}"
                                             {{ $call_log->building_id == $building->id ? 'selected' : '' }}>
-                                            {{ $building->name }}
+                                            {{ $building->address }}
                                         </option>
                                         @endforeach
                                     </select>
@@ -167,7 +167,7 @@
                             </div> -->
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-mobile-input">Number</label>
+                                    <label class="form-label" for="formrow-mobile-input">Caller Number</label>
                                     <input type="number" class="form-control @error('number') is-invalid @enderror"
                                         name="number" value="{{ $call_log->number }}" id="formrow-mobile-input" required>
                                     @error('number')
@@ -227,31 +227,32 @@
                                 </div>
                             </div>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_concent_email" value="yes">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_concent_email" value="yes"
+                                    {{ $call_log->consent_form_email_sent ? 'checked' : '' }}>
                                 <label class="form-check-label" for="sendEmailCheckbox">
                                     Send Consent form
                                 </label>
                             </div>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_email" value="yes">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_email" value="yes" {{ $call_log->customer_details_email_sent ? 'checked' : '' }}>
                                 <label class="form-check-label" for="sendEmailCheckbox">
                                     Details to customer
                                 </label>
                             </div>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_building_manager_email" value="yes">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_building_manager_email" value="yes" {{ $call_log->building_manager_email_sent ? 'checked' : '' }}>
                                 <label class="form-check-label" for="sendEmailCheckbox">
                                     Details to building manager
                                 </label>
                             </div>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_strata_manager_email" value="yes">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_strata_manager_email" value="yes" {{ $call_log->strata_manager_email_sent ? 'checked' : '' }}>
                                 <label class="form-check-label" for="sendEmailCheckbox">
                                     Details to strata manager
                                 </label>
                             </div>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_contractor_email" value="yes">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_contractor_email" value="yes" {{ $call_log->contractor_details_email_sent ? 'checked' : '' }}>
                                 <label class="form-check-label" for="sendEmailCheckbox">
                                     Details to contractor
                                 </label>
@@ -266,20 +267,22 @@
                 </form>
                 <div class="mt-4">
                     <h4>Pending Calls</h4>
-                    <table class="table table-bordered" id="pendingCallsTable">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Call Name</th>
-                                <th>Building Name</th>
-                                <th>Building Email</th>
-                                <th>Building Address</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Data will be inserted dynamically -->
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table id="pendingCallsTable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Call Name</th>
+                                    <th>Building Name</th>
+                                    <th>Building Email</th>
+                                    <th>Building Address</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be inserted dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
