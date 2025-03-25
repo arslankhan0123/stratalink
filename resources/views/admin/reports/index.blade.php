@@ -22,20 +22,30 @@
         <select id="client-select" name="client_id" class="form-select me-2" required>
             <option disabled {{ request('client_id') ? '' : 'selected' }}>Select Client</option>
             @foreach ($clients as $client)
-                <option value="{{ $client->id }}" {{ request('client_id') == $client->id ? 'selected' : '' }}>
-                    {{ $client->name }}
-                </option>
+            <option value="{{ $client->id }}" {{ request('client_id') == $client->id ? 'selected' : '' }}>
+                {{ $client->name }}
+            </option>
             @endforeach
         </select>
 
+        <!-- From Date -->
+        <input type="date" id="from-date" name="from_date" class="form-control me-2"
+            value="{{ request('from_date') }}" required
+            onfocus="this.showPicker()" placeholder="Select From Date">
+
+        <!-- To Date -->
+        <input type="date" id="to-date" name="to_date" class="form-control me-2"
+            value="{{ request('to_date') }}" required
+            onfocus="this.showPicker()" placeholder="Select To Date">
+
         <!-- Date Filter Dropdown -->
-        <select id="date-filter" name="date_filter" class="form-select me-2" required>
+        <!-- <select id="date-filter" name="date_filter" class="form-select me-2" required>
             <option disabled {{ request('date_filter') ? '' : 'selected' }}>Select Date Range</option>
             <option value="today" {{ request('date_filter') == 'today' ? 'selected' : '' }}>Today</option>
             <option value="this_week" {{ request('date_filter') == 'this_week' ? 'selected' : '' }}>This Week</option>
             <option value="this_month" {{ request('date_filter') == 'this_month' ? 'selected' : '' }}>This Month</option>
             <option value="this_year" {{ request('date_filter') == 'this_year' ? 'selected' : '' }}>This Year</option>
-        </select>
+        </select> -->
 
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary">Submit</button>

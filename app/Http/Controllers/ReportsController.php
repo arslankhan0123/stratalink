@@ -34,23 +34,28 @@ class ReportsController extends Controller
             }
         }
 
-        // Apply Date Filtering
-        if ($request->date_filter) {
-            switch ($request->date_filter) {
-                case 'today':
-                    $callLogQuery->whereDate('created_at', today());
-                    break;
-                case 'this_week':
-                    $callLogQuery->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
-                    break;
-                case 'this_month':
-                    $callLogQuery->whereMonth('created_at', now()->month)->whereYear('created_at', now()->year);
-                    break;
-                case 'this_year':
-                    $callLogQuery->whereYear('created_at', now()->year);
-                    break;
-            }
+        if ($request->from_date && $request->to_date) {
+            $buildingQuery->whereBetween('created_at', [$request->from_date, $request->to_date]);
+            $callLogQuery->whereBetween('created_at', [$request->from_date, $request->to_date]);
         }
+
+        // Apply Date Filtering
+        // if ($request->date_filter) {
+        //     switch ($request->date_filter) {
+        //         case 'today':
+        //             $callLogQuery->whereDate('created_at', today());
+        //             break;
+        //         case 'this_week':
+        //             $callLogQuery->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
+        //             break;
+        //         case 'this_month':
+        //             $callLogQuery->whereMonth('created_at', now()->month)->whereYear('created_at', now()->year);
+        //             break;
+        //         case 'this_year':
+        //             $callLogQuery->whereYear('created_at', now()->year);
+        //             break;
+        //     }
+        // }
 
         $buildings = $buildingQuery->get();
         $call_logs = $callLogQuery->get();

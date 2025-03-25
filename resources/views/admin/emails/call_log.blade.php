@@ -59,22 +59,17 @@
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
                 <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Building Manager:</strong>
-                {{ $data['building_manager'] }}
+                {{ optional($data->building->buildingManager)->name ?? 'N/A' }}
             </div>
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
                 <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Strata Manager:</strong>
-                {{ $data['strata_manager'] }}
+                {{ optional($data->building->strataManager)->name ?? 'N/A' }}
             </div>
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
                 <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Number:</strong>
                 {{ $data['number'] }}
-            </div>
-
-            <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
-                <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Send Email:</strong>
-                {{ $data['send_email'] }}
             </div>
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">

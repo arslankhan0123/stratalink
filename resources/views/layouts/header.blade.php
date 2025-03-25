@@ -36,7 +36,7 @@
             </div>
 
         </div>
-        <p style="text-align: center;"><b>Current Time in Australia:</b> <span id="australia-time"></span></p>
+        <p style="text-align: center;"><b>New south wales:</b> <span id="australia-time"></span></p>
 
         <script>
             function updateAustraliaTime() {
