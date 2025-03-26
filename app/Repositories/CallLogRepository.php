@@ -103,16 +103,6 @@ class CallLogRepository
      */
     public function update($request, $id)
     {
-        if ($request->file('audio_attachment')) {
-            // $audioPath = $request->file('audio_attachment')->store('public/audio');
-            $audioFile = $request->file('audio_attachment');
-
-            $audioName = time() . '_' . $audioFile->getClientOriginalName();
-            $audioPath = 'audio/' . $audioName; // Path relative to public
-
-            // Move the file to the public/audio directory
-            $audioFile->move(public_path('audio'), $audioName);
-        }
         // Find the call log
         $call_log = CallLog::find($id);
 
@@ -131,11 +121,23 @@ class CallLogRepository
                 'status' => $request->status,
                 'strata_manager_id' => $request->input('strata_manager_id'),
                 'building_manager_id' => $request->input('building_manager_id'),
-                'audio_attachment' => $audioPath ?? null,
+                // 'audio_attachment' => $audioPath ?? $request->audio_attachment,
                 'call_time' => $request->input('call_time'),
                 'call_date' => $request->input('call_date'),
                 'category' => $request->input('category'),
             ]);
+            if ($request->file('audio_attachment')) {
+                // $audioPath = $request->file('audio_attachment')->store('public/audio');
+                $audioFile = $request->file('audio_attachment');
+    
+                $audioName = time() . '_' . $audioFile->getClientOriginalName();
+                $audioPath = 'audio/' . $audioName; // Path relative to public
+    
+                // Move the file to the public/audio directory
+                $audioFile->move(public_path('audio'), $audioName);
+                $call_log->audio_attachment = $audioPath;
+                $call_log->save();
+            }
             return $call_log;
             // return response()->json(['message' => 'Call log updated successfully']);
         } else {
