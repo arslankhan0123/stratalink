@@ -294,6 +294,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Call Name</th>
+                                    <th>Call Summary</th>
                                     <th>Building Name</th>
                                     <th>Building Email</th>
                                     <th>Building Address</th>
@@ -434,6 +435,7 @@
                                     `<tr>
                                         <td>${pendingCall?.id || 'N/A'}</td>
                                         <td>${pendingCall?.name || 'N/A'}</td>
+                                        <td>${pendingCall?.summary || 'N/A'}</td>
                                         <td>${pendingCall?.building?.name || 'N/A'}</td>
                                         <td>${pendingCall?.building?.email || 'N/A'}</td>
                                         <td>${pendingCall?.building?.address || 'N/A'}</td>

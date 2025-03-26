@@ -41,6 +41,7 @@
                             <th>Address</th>
                             <th>Mobile</th>
                             <th>Email</th>
+                            <th>SP No</th>
                             <th>Category</th>
                             @if (Auth::check() && in_array(Auth::user()?->role()?->first()?->name, ['admin']))
                             <th>Actions</th>
@@ -62,6 +63,7 @@
                             <td>{{$building->address}}</td>
                             <td>{{$building->mobile}}</td>
                             <td>{{$building->email}}</td>
+                            <td>{{$building->sp_no}}</td>
                             <td>{{$building->category}}</td>
                             @if (Auth::check() && in_array(Auth::user()?->role()?->first()?->name, ['admin']))
                             <td>
