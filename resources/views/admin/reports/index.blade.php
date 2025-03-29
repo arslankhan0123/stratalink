@@ -84,7 +84,7 @@
                                 </th>
                                 <th>Client Name</th>
                                 <th>Building Name</th>
-                                <th>Company</th>
+                                <!-- <th>Company</th> -->
                                 <th>Mobile</th>
                                 <th>Email</th>
                                 <th>Category</th>
@@ -101,7 +101,7 @@
                                 </td>
                                 <td>{{$building->user->name}}</td>
                                 <td>{{$building->name}}</td>
-                                <td>{{$building->company}}</td>
+                                <!-- <td>{{$building->company}}</td> -->
                                 <td>{{$building->mobile}}</td>
                                 <td>{{$building->email}}</td>
                                 <td>{{$building->category}}</td>

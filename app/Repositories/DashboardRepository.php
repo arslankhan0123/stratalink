@@ -11,33 +11,55 @@ class DashboardRepository
 {
     public function getData($request)
     {
-        $building_id = $request->query('building_id');
-        $today = Carbon::today();
+        if (Auth::user()->role_id == 3) {
+            $today = Carbon::today();
+            $buildings = Building::where('user_id', Auth::user()->id)->get();
+            $buildingIds = Building::where('user_id', Auth::user()->id)->pluck('id');
+            $total_call_logs = CallLog::whereIn('building_id', $buildingIds)->count();
+            $today_call_log_count = CallLog::whereIn('building_id', $buildingIds)->whereDate('created_at', $today)->count();
+            $graph_buildings = Building::where('user_id', Auth::user()->id)->withCount('callLogs')->get();
+            $chartData = [
+                'names' => $graph_buildings->pluck('name')->toArray(),
+                'callLogs' => $graph_buildings->pluck('call_logs_count')->toArray(),
+            ];
 
-        $buildings = $this->fetchBuildings();
+            $data = [
+                'buildings' => $buildings,
+                'total_call_logs_count' => $total_call_logs,
+                'today_call_log_count' => $today_call_log_count,
+                'chartData' =>  $chartData,
+            ];
 
-        $total_call_logs = CallLog::when($building_id, function ($query) use ($building_id) {
-            return $query->where('building_id', $building_id);
-        })->count();
+            return $data;
+        } else {
+            $building_id = $request->query('building_id');
+            $today = Carbon::today();
 
-        $today_call_log_count = CallLog::when($building_id, function ($query) use ($building_id) {
-            return $query->where('building_id', $building_id);
-        })->whereDate('created_at', $today)->count();
+            $buildings = $this->fetchBuildings();
 
-        $graph_buildings = Building::withCount('callLogs')->get();
-        $chartData = [
-            'names' => $graph_buildings->pluck('name')->toArray(),
-            'callLogs' => $graph_buildings->pluck('call_logs_count')->toArray(),
-        ];
+            $total_call_logs = CallLog::when($building_id, function ($query) use ($building_id) {
+                return $query->where('building_id', $building_id);
+            })->count();
 
-        $data = [
-            'buildings' => $buildings,
-            'total_call_logs_count' => $total_call_logs,
-            'today_call_log_count' => $today_call_log_count,
-            'chartData' =>  $chartData,
-        ];
+            $today_call_log_count = CallLog::when($building_id, function ($query) use ($building_id) {
+                return $query->where('building_id', $building_id);
+            })->whereDate('created_at', $today)->count();
 
-        return $data;
+            $graph_buildings = Building::withCount('callLogs')->get();
+            $chartData = [
+                'names' => $graph_buildings->pluck('name')->toArray(),
+                'callLogs' => $graph_buildings->pluck('call_logs_count')->toArray(),
+            ];
+
+            $data = [
+                'buildings' => $buildings,
+                'total_call_logs_count' => $total_call_logs,
+                'today_call_log_count' => $today_call_log_count,
+                'chartData' =>  $chartData,
+            ];
+
+            return $data;
+        }
     }
 
     public function fetchBuildings()
@@ -78,7 +100,7 @@ class DashboardRepository
         // } else {
         //     $graph_buildings = Building::withCount('callLogs')->get();
         // }
-        
+
         $chartData = [
             'names' => $graph_buildings->pluck('name')->toArray(),
             'callLogs' => $graph_buildings->pluck('call_logs_count')->toArray(),

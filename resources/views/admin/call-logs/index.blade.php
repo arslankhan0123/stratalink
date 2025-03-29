@@ -11,6 +11,23 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
+            <form id="status-form" action="{{route('call-logs.index')}}" method="GET">
+                <select id="status-select" name="status" class="form-select me-2" required>
+                    <option disabled>Select Status</option>
+                    <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }}>Pending</option>
+                    <option value="Contractor Engaged" {{ request('status') == 'Contractor Engaged' ? 'selected' : '' }}>Contractor Engaged</option>
+                    <option value="Non emergency" {{ request('status') == 'Non emergency' ? 'selected' : '' }}>Non emergency</option>
+                    <option value="Complete" id="completeOption" {{ request('status') == 'Complete' ? 'selected' : '' }}>Complete</option>
+                    <option value="Contractor already engaged" {{ request('status') == 'Contractor already engaged' ? 'selected' : '' }}>Contractor already engaged</option>
+                </select>
+            </form>
+
+            <script>
+                document.getElementById("status-select").addEventListener("change", function() {
+                    document.getElementById("status-form").submit(); // Submit form when an option is selected
+                });
+            </script>
+
             <div class="card-header justify-content-between d-flex align-items-center">
                 <h4 class="card-title shine">Call Logs Table</h4>
                 @if (Auth::check() && in_array(Auth::user()?->role()?->first()?->name, ['admin', 'staff']))

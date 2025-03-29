@@ -2,7 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Models\Building;
 use App\Models\Contractor;
+use Illuminate\Support\Facades\Auth;
 
 class ContractorRepository
 {
@@ -13,7 +15,13 @@ class ContractorRepository
      */
     public function all()
     {
-        return Contractor::all();
+        if (Auth::user()->role_id == 3) {
+            $buildings = Building::where('user_id', Auth::user()->id)->get();
+            $buildingIds = Building::where('user_id', Auth::user()->id)->pluck('id');
+            return Contractor::whereIn('building_id', $buildingIds)->get();
+        } else {
+            return Contractor::all();
+        }
     }
 
     /**
@@ -40,7 +48,7 @@ class ContractorRepository
         return Contractor::find($id);
     }
 
-     /**
+    /**
      * Method update
      *
      * @param $request $request [explicite description]
@@ -54,7 +62,7 @@ class ContractorRepository
         return $contractor->update($request->all());
     }
 
-     /**
+    /**
      * Method destroy
      *
      * @param $id $id [explicite description]
@@ -65,5 +73,4 @@ class ContractorRepository
     {
         Contractor::destroy($id);
     }
-
 }

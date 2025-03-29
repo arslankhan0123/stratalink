@@ -24,7 +24,7 @@
     }
 </style>
 <div class="row">
-    <div class="d-flex justify-content-end">
+    <!-- <div class="d-flex justify-content-end">
         <select class="form-select mb-3" aria-label="Default select example" id="buildingSelect">
             <option selected disabled>Select a building</option>
             @foreach ($data['buildings'] as $building)
@@ -33,7 +33,7 @@
             </option>
             @endforeach
         </select>
-    </div>
+    </div> -->
     <div class="col-6">
         <!-- Card -->
         <div class="card">

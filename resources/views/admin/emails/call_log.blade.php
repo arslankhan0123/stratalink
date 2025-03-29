@@ -28,6 +28,11 @@
             </div>
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
+                <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Summary:</strong>
+                {{ $data->summary }}
+            </div>
+
+            <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
                 <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Building Name:</strong>
                 {{ $data->building->name }}
             </div>
@@ -63,13 +68,18 @@
             </div>
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
+                <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Building Manager Number:</strong>
+                {{ optional($data->building->strataManager)->phone_number ?? 'N/A' }}
+            </div>
+
+            <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
                 <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Strata Manager:</strong>
                 {{ optional($data->building->strataManager)->name ?? 'N/A' }}
             </div>
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
-                <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Number:</strong>
-                {{ $data['number'] }}
+                <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Strata Manager Number:</strong>
+                {{ optional($data->building->strataManager)->phone_number ?? 'N/A' }}
             </div>
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">

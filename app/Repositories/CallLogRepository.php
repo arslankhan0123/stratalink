@@ -22,11 +22,30 @@ class CallLogRepository
     {
         if (Auth::user()->role_id == 3) {
             $buildingIds = Building::where('user_id', Auth::user()->id)->pluck('id');
-            $data = CallLog::whereIn('building_id', $buildingIds)->get();
+            // $data = CallLog::whereIn('building_id', $buildingIds)->get();
+            $query = CallLog::whereIn('building_id', $buildingIds);
+
+            if (request()->has('status')) {
+                $query->where('status', $request->status);
+            }
+
+            $data = $query->get();
         } elseif (Auth::user()->role_id == 2) {
-            $data = CallLog::where('created_by', Auth::user()->id)->get();
+            // $data = CallLog::where('created_by', Auth::user()->id)->get();
+            $query = CallLog::where('created_by', Auth::id());
+            if (request()->has('status')) {
+                $query->where('status', $request->status);
+            }
+
+            $data = $query->get();
         } else {
-            $data = CallLog::all();
+            $query = CallLog::query();
+            if (request()->has('status')) {
+                $query->where('status', $request->status);
+            }
+            
+            $data = $query->get();
+            // $data = CallLog::all();
         }
         return $data;
         // return CallLog::with('contractor:id,name')->ApplyFilter(

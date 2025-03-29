@@ -268,11 +268,14 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Call Name</th>
-                                        <th>Call Summary</th>
+                                        <th>Caller Name</th>
+                                        <th>Caller Summary</th>
+                                        <th>Category</th>
                                         <th>Building Name</th>
                                         <th>Building Email</th>
                                         <th>Building Address</th>
+                                        <th>Contractor Name</th>
+                                        <th>Contractor Phone</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -359,9 +362,12 @@
                                         <td>${pendingCall?.id || 'N/A'}</td>
                                         <td>${pendingCall?.name || 'N/A'}</td>
                                         <td>${pendingCall?.summary || 'N/A'}</td>
+                                        <td>${pendingCall?.category || 'N/A'}</td>
                                         <td>${pendingCall?.building?.name || 'N/A'}</td>
                                         <td>${pendingCall?.building?.email || 'N/A'}</td>
                                         <td>${pendingCall?.building?.address || 'N/A'}</td>
+                                        <td>${pendingCall?.contractor?.name || 'N/A'}</td>
+                                        <td>${pendingCall?.contractor?.phone || 'N/A'}</td>
                                     </tr>`
                                 );
                             });

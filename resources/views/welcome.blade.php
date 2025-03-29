@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-          body {
+    body {
             margin: 0;
             font-family: Arial, sans-serif;
             display: flex;
@@ -18,256 +18,144 @@
             animation: bgAnimation 10s infinite alternate;
         }
 
-        /* Background Animation */
         @keyframes bgAnimation {
             0% { background: linear-gradient(45deg, #2196F3, #E91E63); }
             100% { background: linear-gradient(45deg, #E91E63, #2196F3); }
         }
-       
-            .header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 120px;
-    background-color: transparent;
-    
-}
 
-        .logo-title {
+        .header {
+            width: 88%;
             display: flex;
+            justify-content: space-between;
             align-items: center;
+            padding: 20px 60px;
+            background-color: transparent;
         }
+
         .logo img {
-            height: 60px;
+            height: 50px;
             margin-right: 10px;
         }
+
         .title {
-            font-size: 34px;
+            font-size: 28px;
             font-weight: bold;
         }
+
         .login-button {
+            font-size: 16px;
+            background-color: white;
+            color: black;
+            border: 2px solid black;
             padding: 10px 20px;
-            background-color:rgb(15, 1, 1);
-            color: white;
-            text-decoration: none;
             border-radius: 5px;
-            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s, color 0.3s;
+            margin-top: 20px;
+
         }
-        .login-button:hover {
-            background-color: #0056b3;
-        }
+
         .main-content {
-    display: flex;
-    width: 80%;
-    max-width: 1200px;
-    margin-top: 0px;
-    align-items: center;
-}
-
-.left-image {
-    flex: 1;
-    text-align: start;
-}
-
-.left-image img {
-    width: 100%;
-    max-width: 500px;
-    border-radius: 0px;
-}
-
-.right-text {
-    flex: 1;
-    padding: 20px;
-    text-align: left; /* Centers the content horizontally */
-    display: flex;
-    flex-direction: column; /* Align text vertically */
-    align-items: left; /* Centers text vertically */
-}
-
-.right-text h1 {
-    font-size: 18px;
-    color: #333;
-}
-
-.right-text p {
-    font-size: 38px;
-    color: White;
-    line-height: 1.5;
-}
-
-.book-call-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px; /* Padding on top/bottom and left/right */
-    background-color:rgb(0, 3, 7);
-    color: white;
-    font-size: 18px;
-    text-decoration: none;
-    border-radius: 5px;
-    white-space: nowrap; /* Prevents text from wrapping */
-    text-align: center;
-}
-
-.book-call-button:hover {
-    background-color: #0056b3; /* Darker blue when hovering */
-}
-
-:root {
-    --clr: rgb(36, 21, 16);
-}
-               /* About Section */
-.about-section {
-    width: 80%;
-    max-width: 1200px;
-    margin: 40px auto 10px auto; /* Adds a top margin of 40px */
-    text-align: center;
-    padding: 30px;
-    background-color: var(--clr);
-    border-radius: 0px;
-}
-
-        .about-section h2 {
-        color: White;
-    font-size: 32px;
-    margin-bottom: 20px;
-    padding-bottom: 5px; /* Adds some spacing between text and underline */
-    border-bottom: 2px solid white; /* White underline */
-    display: inline-block; /* Ensures underline width matches text */
-
-          
+            display: flex;
+            flex-wrap: wrap;
+            width: 90%;
+            max-width: 1200px;
+            margin-top: 20px;
+            align-items: center;
         }
-        .about-section p {
+
+        .left-image, .right-text {
+            flex: 1;
+            text-align: start;
+            margin-bottom: 20px;
+        }
+
+        .left-image img {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .right-text h1 {
             font-size: 16px;
-            color: white;
-            line-height: 1.6;
-            text-align: justify;
+            
         }
-        .expertise-section {
-    display: flex;
-    width: 80%;
-    max-width: 1200px;
-    margin: 50px auto;
-}
 
-.expertise-text {
-    flex: 6; /* This takes 6 parts of the available space */
-    background-color: var(--clr);
-    padding: 30px;
-    color: white;
-    font-size: 18px;
-}
-.expertise-text h2 {
-    font-size: 32px;
+        .right-text p {
+            font-size: 28px;
+        }
+
+        .book-call-button {
+            font-size: 16px;
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        h2 {
+            border-bottom: 2px solid white;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .about-section, .expertise-section, .why-choose-us, .contact-section {
+            width: 90%;
+            max-width: 1200px;
+           
     margin-bottom: 20px;
-    padding-bottom: 5px; /* Adds some spacing between text and underline */
-    border-bottom: 2px solid white; /* White underline */
-    display: inline-block; /* Ensures underline width matches text */
-}
-.expertise-image {
-    flex: 4; /* This takes 4 parts of the available space */
-    display: flex;
-    align-items: center; /* Vertically center the image */
-    justify-content: flex-end; /* Align the image to the right */
-    background-color: #d0d0d0;
-    padding-right: 0; /* Ensures no padding on the right */
-}
+            text-align: center;
+            background-color:rgb(14, 1, 1);        }
 
-.expertise-image img {
-    width: 100%;
-    max-width: 100%; /* Allow the image to fully expand */
-    height: 100%; /* Ensure the image takes up the full container height */
-    object-fit: cover; /* Ensure the image maintains its aspect ratio */
-}
+        .expertise-section, .contact-section {
+            display: flex;
+            flex-wrap: wrap;
+        }
 
-.why-choose-us {
-    background-color:var(--clr);
-    color: white;
-    padding: 30px;
-    width: 80%;
-    max-width: 1200px;
-    margin: 0px auto;
-    border-radius: 0px;
-    text-align: left;
-}
+        .expertise-text, .expertise-image, .contact-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
 
-.why-choose-us h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-    padding-bottom: 5px; /* Adds some spacing between text and underline */
-    border-bottom: 2px solid white; /* White underline */
-    display: inline-block; /* Ensures underline width matches text */
-}
+        .expertise-image img {
+            width: 100%;
+            object-fit: cover;
+        }
 
-.why-choose-us p {
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.contact-section {
-    padding-top: 50px; /* Sets padding only on the top */
-    display: flex;
-    width: 80%;
-    max-width: 1200px;
-}
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 15px;
+                text-align: center;
+            }
 
-.contact-info {
-    width: 50%; /* Ensures the contact info takes up 50% */
-    height: 100%;
-    background-color: var(--clr); /* Green Background */
-    color: white;
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
+            .main-content {
+                flex-direction: column;
+                text-align: center;
+            }
 
-.contact-info h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-    padding-bottom: 5px; /* Adds some spacing between text and underline */
-    border-bottom: 2px solid white; /* White underline */
-    display: inline-block; /* Ensures underline width matches text */
-}
+            .left-image img {
+                max-width: 300px;
+            }
 
+            .right-text p {
+                font-size: 24px;
+            }
 
-.contact-info p {
-    font-size: 15px;
-    /* line-height: 1.6; */
-    margin-bottom: 15px;
-}
+            .about-section, .why-choose-us {
+                text-align: center;
+            }
 
-.contact-info a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.contact-info a:hover {
-    text-decoration: underline;
-}
-
-/* Social Media Icons */
-.social-icons a {
-    color: white; /* Adjust for visibility */
-    font-size: 24px;
-    margin-right: 15px;
-    text-decoration: none;
-}
-
-.social-icons a:hover {
-    color: White; /* Change to your preferred hover color */
-}
-
-
-
-
+            .expertise-section, .contact-section {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>

@@ -203,7 +203,7 @@
                             </div>
 
                             <script>
-                                document.getElementById('audio_attachment').addEventListener('change', function () {
+                                document.getElementById('audio_attachment').addEventListener('change', function() {
                                     let completeOption = document.getElementById('completeOption');
                                     if (this.files.length > 0) {
                                         completeOption.removeAttribute('disabled');
@@ -223,8 +223,8 @@
                                         <option value="Contractor Engaged" {{ $call_log->status == 'Contractor Engaged' ? 'selected' : '' }}>Contractor Engaged</option>
                                         <option value="Non emergency" {{ $call_log->status == 'Non emergency' ? 'selected' : '' }}>Non emergency</option>
                                         <!-- <option value="Completed" {{ $call_log->status == 'Completed' ? 'selected' : '' }}>Completed</option> -->
-                                        <option value="Completed" id="completeOption" 
-                                            {{ $call_log->status == 'Completed' ? 'selected' : '' }} 
+                                        <option value="Completed" id="completeOption"
+                                            {{ $call_log->status == 'Completed' ? 'selected' : '' }}
                                             {{ $call_log->audio_attachment ? '' : 'disabled' }}>Completed
                                         </option>
                                         <option value="Contractor already engaged" {{ $call_log->status == 'Contractor already engaged' ? 'selected' : '' }}>Contractor already engaged</option>
@@ -248,6 +248,36 @@
                                 </div>
                             </div>
                             <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_concent_email" value="yes">
+                                <label class="form-check-label" for="sendEmailCheckbox">
+                                    Send Consent form @if ($call_log->consent_form_email_sent) <span style="color: green;">(Already Sent)</span> @endif
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_email" value="yes">
+                                <label class="form-check-label" for="sendEmailCheckbox">
+                                    Details to customer @if ($call_log->customer_details_email_sent) <span style="color: green;">(Already Sent)</span> @endif
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_building_manager_email" value="yes">
+                                <label class="form-check-label" for="sendEmailCheckbox">
+                                    Details to building manager @if ($call_log->building_manager_email_sent) <span style="color: green;">(Already Sent)</span> @endif
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_strata_manager_email" value="yes">
+                                <label class="form-check-label" for="sendEmailCheckbox">
+                                    Details to strata manager @if ($call_log->strata_manager_email_sent) <span style="color: green;">(Already Sent)</span> @endif
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_contractor_email" value="yes">
+                                <label class="form-check-label" for="sendEmailCheckbox">
+                                    Details to contractor @if ($call_log->contractor_details_email_sent) <span style="color: green;">(Already Sent)</span> @endif
+                                </label>
+                            </div>
+                            <!-- <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_concent_email" value="yes"
                                     {{ $call_log->consent_form_email_sent ? 'checked' : '' }}>
                                 <label class="form-check-label" for="sendEmailCheckbox">
@@ -277,7 +307,7 @@
                                 <label class="form-check-label" for="sendEmailCheckbox">
                                     Details to contractor
                                 </label>
-                            </div>
+                            </div> -->
                         </div>
 
                 </div>
@@ -293,11 +323,14 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Call Name</th>
-                                    <th>Call Summary</th>
+                                    <th>Caller Name</th>
+                                    <th>Caller Summary</th>
+                                    <th>Category</th>
                                     <th>Building Name</th>
                                     <th>Building Email</th>
                                     <th>Building Address</th>
+                                    <th>Contractor Name</th>
+                                    <th>Contractor Phone</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -436,9 +469,12 @@
                                         <td>${pendingCall?.id || 'N/A'}</td>
                                         <td>${pendingCall?.name || 'N/A'}</td>
                                         <td>${pendingCall?.summary || 'N/A'}</td>
+                                        <td>${pendingCall?.category || 'N/A'}</td>
                                         <td>${pendingCall?.building?.name || 'N/A'}</td>
                                         <td>${pendingCall?.building?.email || 'N/A'}</td>
                                         <td>${pendingCall?.building?.address || 'N/A'}</td>
+                                        <td>${pendingCall?.contractor?.name || 'N/A'}</td>
+                                        <td>${pendingCall?.contractor?.phone || 'N/A'}</td>
                                     </tr>`
                                 );
                             });

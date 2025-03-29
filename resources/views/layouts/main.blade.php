@@ -462,7 +462,7 @@
             </div>
             <!-- End Page-content -->
 
-            @include('layouts.footer')
+            <!-- @include('layouts.footer') -->
         </div>
     </div>
     <!-- END layout-wrapper -->
