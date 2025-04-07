@@ -531,6 +531,110 @@
                 });
             }
         });
+
+        $('#categorySelect').on('change', function() {
+            var categoryValue = $(this).val();
+            var buildingId = $('#buildingSelect').val();
+
+            console.log("Building ID: ", buildingId);
+            console.log("categoryValue ID: ", categoryValue);
+
+
+            $('#contractorSelect').html('<option selected disabled>Select a contractor</option>');
+
+            if (buildingId) {
+                $.ajax({
+                    url: '/buildings/get-contractors',
+                    type: 'GET',
+                    data: {
+                        building_id: buildingId,
+                        categoryValue: categoryValue
+                    },
+                    success: function(response) {
+                        $('#contractorSelect').empty();
+                        $('#buildingManagerSelect').empty();
+                        $('#strataManagerSelect').empty();
+
+                        if (response.contractors.length > 0) {
+                            $.each(response.contractors, function(index, contractor) {
+                                $('#contractorSelect').append(
+                                    `<option value="${contractor.id}">${contractor.name} (${contractor.phone})</option>`
+                                );
+                            });
+                        } else {
+                            $('#contractorSelect').append(
+                                `<option disabled>No contractors found</option>`
+                            );
+                        }
+
+                        if (response.buildingManagers.length > 0) {
+                            $.each(response.buildingManagers, function(index, buildingManager) {
+                                $('#buildingManagerSelect').append(
+                                    `<option value="${buildingManager.id}">${buildingManager.name}</option>`
+                                );
+                            });
+                        } else {
+                            $('#buildingManagerSelect').append(
+                                `<option disabled>No building managers found</option>`
+                            );
+                        }
+
+
+                        if (response.strataManagers.length > 0) {
+                            $.each(response.strataManagers, function(index, strataManager) {
+                                $('#strataManagerSelect').append(
+                                    `<option value="${strataManager.id}">${strataManager.name}</option>`
+                                );
+                            });
+                        } else {
+                            $('#strataManagerSelect').append(
+                                `<option disabled>No strata managers found</option>`
+                            );
+                        }
+
+                        // Populate pendingCalls table
+                        if (response.pendingCalls.length > 0) {
+                            $.each(response.pendingCalls, function(index, pendingCall) {
+                                $('#pendingCallsTable tbody').append(
+                                    `<tr>
+                                        <td>${pendingCall?.id || 'N/A'}</td>
+                                        <td>${pendingCall?.name || 'N/A'}</td>
+                                        <td style="white-space: pre-wrap; max-width: 300px;">${pendingCall?.summary || 'N/A'}</td>
+                                        <td>${pendingCall?.category || 'N/A'}</td>
+                                        <td>${pendingCall?.building?.name || 'N/A'}</td>
+                                        <td>${pendingCall?.building?.address || 'N/A'}</td>
+                                        <td>${pendingCall?.contractor?.name || 'N/A'}</td>
+                                        <td>${pendingCall?.contractor?.phone || 'N/A'}</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm viewCallBtn" data-id="${pendingCall?.id}">View</button>
+                                        </td>
+                                    </tr>`
+                                );
+                            });
+                        } else {
+                            $('#pendingCallsTable tbody').append(
+                                `<tr><td colspan="6" class="text-center">No pending calls found</td></tr>`
+                            );
+                        }
+                        // if (response.length > 0) {
+                        //     $.each(response, function(index, contractor) {
+
+                        //         $('#contractorSelect').append(
+                        //             `<option value="${contractor.contractor_id}">${contractor.contractor.name}</option>`
+                        //         );
+                        //     });
+                        // } else {
+                        //     $('#contractorSelect').append(
+                        //         `<option disabled>No contractors found</option>`
+                        //     );
+                        // }
+                    },
+                    error: function(xhr) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+        });
     });
     $(document).on('click', '.viewCallBtn', function () {
         const callId = $(this).data('id');
