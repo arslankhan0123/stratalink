@@ -119,9 +119,9 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-email-input">Email</label>
+                                    <label class="form-label" for="formrow-email-input">Client Email Address</label>
                                     <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" id="formrow-email-input">
+                                        name="email" id="formrow-email-input" required>
                                     @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

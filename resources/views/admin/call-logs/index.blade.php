@@ -13,12 +13,15 @@
         <div class="card">
             <form id="status-form" action="{{route('call-logs.index')}}" method="GET">
                 <select id="status-select" name="status" class="form-select me-2" required>
-                    <option disabled>Select Status</option>
-                    <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }}>Pending</option>
-                    <option value="Contractor Engaged" {{ request('status') == 'Contractor Engaged' ? 'selected' : '' }}>Contractor Engaged</option>
-                    <option value="Non emergency" {{ request('status') == 'Non emergency' ? 'selected' : '' }}>Non emergency</option>
-                    <option value="Complete" id="completeOption" {{ request('status') == 'Complete' ? 'selected' : '' }}>Complete</option>
-                    <option value="Contractor already engaged" {{ request('status') == 'Contractor already engaged' ? 'selected' : '' }}>Contractor already engaged</option>
+                    <option disabled selected>Select Status</option>
+                    <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>None</option>
+                    <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Non-Emergency Calls + Completed Cases</option>
+                    <option value="2" {{ request('status') == '2' ? 'selected' : '' }}>Pending + Contractor Engaged + Contractor Already Engaged</option>
+                    <!-- <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }}>Pending</option> -->
+                    <!-- <option value="Contractor Engaged" {{ request('status') == 'Contractor Engaged' ? 'selected' : '' }}>Contractor Engaged</option> -->
+                    <!-- <option value="Non emergency" {{ request('status') == 'Non emergency' ? 'selected' : '' }}>Non emergency</option> -->
+                    <!-- <option value="Complete" id="completeOption" {{ request('status') == 'Complete' ? 'selected' : '' }}>Complete</option> -->
+                    <!-- <option value="Contractor already engaged" {{ request('status') == 'Contractor already engaged' ? 'selected' : '' }}>Contractor already engaged</option> -->
                 </select>
             </form>
 

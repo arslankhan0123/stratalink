@@ -40,7 +40,7 @@
                             <th>Building Name</th>
                             <th>Address</th>
                             <th>Mobile</th>
-                            <th>Email</th>
+                            <th>Client Email Address</th>
                             <th>SP No</th>
                             <th>Category</th>
                             @if (Auth::check() && in_array(Auth::user()?->role()?->first()?->name, ['admin']))
