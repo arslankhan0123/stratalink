@@ -41,6 +41,7 @@ return new class extends Migration
             $table->string('email_file')->nullable();
             $table->string('token')->nullable();
             $table->string('call_time')->nullable();
+            $table->string('total_time_spent_on_call')->nullable();
             $table->string('call_date')->nullable();
             $table->string('contractor_email_status')->nullable();
             $table->string('contractor_email_file')->nullable();

@@ -28,6 +28,7 @@ class CallLog extends Model
         'building_manager_id',
         'strata_manager_id',
         'call_time',
+        'total_time_spent_on_call',
         'call_date',
         'category',
         'email_agent_name',

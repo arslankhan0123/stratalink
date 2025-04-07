@@ -142,7 +142,8 @@
                     <th>Caller Name</th>
                     <th>Caller Email</th>
                     <th>Status</th>
-                    <th>Numbers</th>
+                    <th>Caller Number</th>
+                    <th>Total Time Spent</th>
                     <th>Building Address</th>
                 </tr>
                 <tr>
@@ -154,6 +155,7 @@
                     <td>{{ $log->email }}</td>
                     <td>{{ $log->status }}</td>
                     <td>{{ $log->number }}</td>
+                    <td>{{ $log->total_time_spent_on_call }}</td>
                     <td>{{ $log->building->address }}</td>
                 </tr>
             </table>

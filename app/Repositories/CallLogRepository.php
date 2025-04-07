@@ -91,6 +91,7 @@ class CallLogRepository
             'status' => $request->input('status'),
             'strata_manager_id' => $request->input('strata_manager_id'),
             'call_time' => $request->input('call_time'),
+            'total_time_spent_on_call' => $request->input('total_time_spent_on_call'),
             'building_manager_id' => $request->input('building_manager_id'),
             'audio_attachment' => $audioPath ?? null, // Store the path in the database
             'call_date' => $request->input('call_date'),
@@ -142,6 +143,7 @@ class CallLogRepository
                 'building_manager_id' => $request->input('building_manager_id'),
                 // 'audio_attachment' => $audioPath ?? $request->audio_attachment,
                 'call_time' => $request->input('call_time'),
+                'total_time_spent_on_call' => $request->input('total_time_spent_on_call'),
                 'call_date' => $request->input('call_date'),
                 'category' => $request->input('category'),
             ]);

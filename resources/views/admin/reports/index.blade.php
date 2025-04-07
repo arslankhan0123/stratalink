@@ -136,7 +136,7 @@
                                 <th>Caller Name</th>
                                 <th>Building Name</th>
                                 <th>Building SP No.</th>
-                                <th>Number</th>
+                                <th>Caller Number</th>
                                 <th>Building Manager</th>
                                 <th>Strata Manager</th>
                                 <th>Contractor</th>

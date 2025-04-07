@@ -195,11 +195,29 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-mobile-input">Total Time Spent on Call</label>
+                                    <input type="text" class="form-control @error('total_time_spent_on_call') is-invalid @enderror"
+                                        name="total_time_spent_on_call" value="{{ $call_log->total_time_spent_on_call }}" id="formrow-mobile-input" value="{{ \Carbon\Carbon::now('Australia/Sydney')->format('H:i') }}" required>
+                                    @error('total_time_spent_on_call')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="audio_attachment">Upload Audio</label>
                                     <input type="file" name="audio_attachment" id="audio_attachment" class="form-control">
                                 </div>
+                                @if ($call_log->audio_attachment)
+                                <audio controls>
+                                    <source src="{{ asset($call_log->audio_attachment) }}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                                @else
+                                <p>No audio attachment found.</p>
+                                @endif
                             </div>
 
                             <script>
@@ -212,7 +230,7 @@
                                     }
                                 });
                             </script>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-company-input">Select Status</label>
                                     <select class="form-select mb-3" name="status"
@@ -248,33 +266,52 @@
                                 </div>
                             </div>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_concent_email" value="yes">
-                                <label class="form-check-label" for="sendEmailCheckbox">
-                                    Send Consent form @if ($call_log->consent_form_email_sent) <span style="color: green;">(Already Sent)</span> @endif
+                                <input class="form-check-input" type="checkbox" id="send_concent_email" name="send_concent_email" value="yes">
+                                <label class="form-check-label" for="send_concent_email">
+                                    Send Consent Form to Caller
+                                    @if ($call_log->consent_form_email_sent)
+                                    <span style="color: green;">(Already Sent)</span>
+                                    @endif
                                 </label>
                             </div>
+
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_email" value="yes">
-                                <label class="form-check-label" for="sendEmailCheckbox">
-                                    Details to customer @if ($call_log->customer_details_email_sent) <span style="color: green;">(Already Sent)</span> @endif
+                                <input class="form-check-input" type="checkbox" id="send_customer_email" name="send_email" value="yes">
+                                <label class="form-check-label" for="send_customer_email">
+                                    Details to Caller
+                                    @if ($call_log->customer_details_email_sent)
+                                    <span style="color: green;">(Already Sent)</span>
+                                    @endif
                                 </label>
                             </div>
+
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_building_manager_email" value="yes">
-                                <label class="form-check-label" for="sendEmailCheckbox">
-                                    Details to building manager @if ($call_log->building_manager_email_sent) <span style="color: green;">(Already Sent)</span> @endif
+                                <input class="form-check-input" type="checkbox" id="send_building_manager_email" name="send_building_manager_email" value="yes">
+                                <label class="form-check-label" for="send_building_manager_email">
+                                    Details to building manager
+                                    @if ($call_log->building_manager_email_sent)
+                                    <span style="color: green;">(Already Sent)</span>
+                                    @endif
                                 </label>
                             </div>
+
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_strata_manager_email" value="yes">
-                                <label class="form-check-label" for="sendEmailCheckbox">
-                                    Details to strata manager @if ($call_log->strata_manager_email_sent) <span style="color: green;">(Already Sent)</span> @endif
+                                <input class="form-check-input" type="checkbox" id="send_strata_manager_email" name="send_strata_manager_email" value="yes">
+                                <label class="form-check-label" for="send_strata_manager_email">
+                                    Details to strata manager
+                                    @if ($call_log->strata_manager_email_sent)
+                                    <span style="color: green;">(Already Sent)</span>
+                                    @endif
                                 </label>
                             </div>
+
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_contractor_email" value="yes">
-                                <label class="form-check-label" for="sendEmailCheckbox">
-                                    Details to contractor @if ($call_log->contractor_details_email_sent) <span style="color: green;">(Already Sent)</span> @endif
+                                <input class="form-check-input" type="checkbox" id="send_contractor_email" name="send_contractor_email" value="yes">
+                                <label class="form-check-label" for="send_contractor_email">
+                                    Details to contractor
+                                    @if ($call_log->contractor_details_email_sent)
+                                    <span style="color: green;">(Already Sent)</span>
+                                    @endif
                                 </label>
                             </div>
                             <!-- <div class="form-check mb-3">
@@ -287,7 +324,7 @@
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" id="sendEmailCheckbox" name="send_email" value="yes" {{ $call_log->customer_details_email_sent ? 'checked' : '' }}>
                                 <label class="form-check-label" for="sendEmailCheckbox">
-                                    Details to customer
+                                    Details to Caller
                                 </label>
                             </div>
                             <div class="form-check mb-3">
@@ -324,13 +361,14 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Caller Name</th>
-                                    <th>Caller Summary</th>
+                                    <th style="width: 300px;">Caller Summary</th>
                                     <th>Category</th>
                                     <th>Building Name</th>
-                                    <th>Building Email</th>
+                                    <!-- <th>Building Email</th> -->
                                     <th>Building Address</th>
                                     <th>Contractor Name</th>
                                     <th>Contractor Phone</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -468,13 +506,15 @@
                                     `<tr>
                                         <td>${pendingCall?.id || 'N/A'}</td>
                                         <td>${pendingCall?.name || 'N/A'}</td>
-                                        <td>${pendingCall?.summary || 'N/A'}</td>
+                                        <td style="white-space: pre-wrap; max-width: 300px;">${pendingCall?.summary || 'N/A'}</td>
                                         <td>${pendingCall?.category || 'N/A'}</td>
                                         <td>${pendingCall?.building?.name || 'N/A'}</td>
-                                        <td>${pendingCall?.building?.email || 'N/A'}</td>
                                         <td>${pendingCall?.building?.address || 'N/A'}</td>
                                         <td>${pendingCall?.contractor?.name || 'N/A'}</td>
                                         <td>${pendingCall?.contractor?.phone || 'N/A'}</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm viewCallBtn" data-id="${pendingCall?.id}">View</button>
+                                        </td>
                                     </tr>`
                                 );
                             });
@@ -491,6 +531,16 @@
                 });
             }
         });
+    });
+    $(document).on('click', '.viewCallBtn', function () {
+        const callId = $(this).data('id');
+        
+        // Option 1: Redirect to a detailed view page
+        window.location.href = `/call-logs/view/${callId}`;
+
+        // OR Option 2: Open a modal (if you have one)
+        // $('#callDetailsModal').modal('show');
+        // fetchCallDetails(callId);
     });
 </script>
 @endsection

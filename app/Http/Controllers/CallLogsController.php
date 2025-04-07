@@ -354,4 +354,15 @@ class CallLogsController extends Controller
             return redirect()->back()->with('error', 'Failed to update signature.' . $exception->getMessage());
         }
     }
+
+    public function view($id)
+    {
+        try {
+            $buildings = $this->dashboardRepo->fetchBuildings();
+            $call_log = $this->callLogRepo->show($id);
+            return view('admin.call-logs.view', compact('call_log', 'buildings'));
+        } catch (Exception $exception) {
+            return redirect()->back()->with('error', 'Failed to execute the cron job.' . $exception->getMessage());
+        }
+    }
 }
