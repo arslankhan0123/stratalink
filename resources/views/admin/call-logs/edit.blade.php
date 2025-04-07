@@ -58,6 +58,14 @@
                                         <option disabled>Select a Category</option>
                                         <option value="Plumber" {{ $call_log->category == 'Plumber' ? 'selected' : '' }}>Plumber</option>
                                         <option value="Electrician" {{ $call_log->category == 'Electrician' ? 'selected' : '' }}>Electrician</option>
+                                        <option value="Lift Company" {{ $call_log->category == 'Lift Company' ? 'selected' : '' }}>Lift Company</option>
+                                        <option value="Garage Door Company" {{ $call_log->category == 'Garage Door Company' ? 'selected' : '' }}>Garage Door Company</option>
+                                        <option value="Access Control System" {{ $call_log->category == 'Access Control System' ? 'selected' : '' }}>Access Control System</option>
+                                        <option value="Fire Contractor" {{ $call_log->category == 'Fire Contractor' ? 'selected' : '' }}>Fire Contractor</option>
+                                        <option value="Cleaning Company" {{ $call_log->category == 'Cleaning Company' ? 'selected' : '' }}>Cleaning Company</option>
+                                        <!-- <option disabled>Select a Category</option>
+                                        <option value="Plumber" {{ $call_log->category == 'Plumber' ? 'selected' : '' }}>Plumber</option>
+                                        <option value="Electrician" {{ $call_log->category == 'Electrician' ? 'selected' : '' }}>Electrician</option>
                                         <option value="HVAC Technician" {{ $call_log->category == 'HVAC Technician' ? 'selected' : '' }}>HVAC Technician</option>
                                         <option value="Carpenter" {{ $call_log->category == 'Carpenter' ? 'selected' : '' }}>Carpenter</option>
                                         <option value="Mason" {{ $call_log->category == 'Mason' ? 'selected' : '' }}>Mason</option>
@@ -73,7 +81,7 @@
                                         <option value="Glass & Window Installer" {{ $call_log->category == 'Glass & Window Installer' ? 'selected' : '' }}>Glass & Window Installer</option>
                                         <option value="Waterproofing Specialist" {{ $call_log->category == 'Waterproofing Specialist' ? 'selected' : '' }}>Waterproofing Specialist</option>
                                         <option value="Landscaper/Gardener" {{ $call_log->category == 'Landscaper/Gardener' ? 'selected' : '' }}>Landscaper/Gardener</option>
-                                        <option value="Cleaning & Janitorial Services" {{ $call_log->category == 'Cleaning & Janitorial Services' ? 'selected' : '' }}>Cleaning & Janitorial Services</option>
+                                        <option value="Cleaning & Janitorial Services" {{ $call_log->category == 'Cleaning & Janitorial Services' ? 'selected' : '' }}>Cleaning & Janitorial Services</option> -->
                                     </select>
                                     @error('category')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -636,9 +644,9 @@
             }
         });
     });
-    $(document).on('click', '.viewCallBtn', function () {
+    $(document).on('click', '.viewCallBtn', function() {
         const callId = $(this).data('id');
-        
+
         // Option 1: Redirect to a detailed view page
         window.location.href = `/call-logs/view/${callId}`;
 

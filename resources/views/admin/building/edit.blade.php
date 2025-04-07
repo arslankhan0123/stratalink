@@ -391,7 +391,7 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-committee_member1-input">Committee Member1</label>
+                                    <label class="form-label" for="formrow-committee_member1-input">Committee Member 1 Name and Mobile Number</label>
                                     <input type="text" class="form-control @error('committee_member1') is-invalid @enderror"
                                         name="committee_member1" value="{{ $building->committee_member1 }}" id="formrow-committee_member1-input">
                                     @error('committee_member1')
@@ -401,7 +401,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-committee_member2-input">Committee Member 2</label>
+                                    <label class="form-label" for="formrow-committee_member2-input">Committee Member 2 Name and Mobile Number</label>
                                     <input type="text" class="form-control @error('committee_member2') is-invalid @enderror"
                                         name="committee_member2" value="{{ $building->committee_member2 }}" id="formrow-committee_member2-input">
                                     @error('committee_member2')
@@ -411,7 +411,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-committee_member3-input">Committee Member 3</label>
+                                    <label class="form-label" for="formrow-committee_member3-input">Committee Member 3 Name and Mobile Number</label>
                                     <input type="text" class="form-control @error('committee_member3') is-invalid @enderror"
                                         name="committee_member3" value="{{ $building->committee_member3 }}" id="formrow-committee_member3-input">
                                     @error('committee_member3')
@@ -421,7 +421,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-committee_member4-input">Committee Member 4</label>
+                                    <label class="form-label" for="formrow-committee_member4-input">Committee Member 4 Name and Mobile Number</label>
                                     <input type="text" class="form-control @error('committee_member4') is-invalid @enderror"
                                         name="committee_member4" value="{{ $building->committee_member4 }}" id="formrow-committee_member4-input">
                                     @error('committee_member4')
