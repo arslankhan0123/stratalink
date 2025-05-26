@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
 class ReportsController extends Controller
 {
@@ -65,8 +66,11 @@ class ReportsController extends Controller
             'building_ids' => $buildings->pluck('id')->toArray(),
             'call_log_ids' => $call_logs->pluck('id')->toArray(),
         ]);
-
-        return view('admin.reports.index', compact('buildings', 'call_logs', 'clients'));
+        $statusCounts = $callLogQuery
+            ->select('status', DB::raw('count(*) as total'))
+            ->groupBy('status')
+            ->pluck('total', 'status');
+        return view('admin.reports.index', compact('buildings', 'call_logs', 'clients', 'statusCounts'));
     }
 
 

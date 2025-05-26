@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{{ asset('tmp/css/materialdesignicons.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('tmp/css/mermaid.min.css') }}" /> --}}
 {{-- <script src="{{ asset('tmp/js/3.7.1-jquery.min.js') }}"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 @section('title', 'Reports')
 @section('breadcrumbTitle', 'Reports')
@@ -207,6 +208,46 @@
         </div>
     </div>
 </div>
+<!-- Chart container wrapper -->
+<div style="display: flex; justify-content: center; align-items: center; height: 80vh;">
+    <div style="width: 400px; height: 400px;">
+        <canvas id="callLogStatusChart"></canvas>
+    </div>
+</div>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('callLogStatusChart').getContext('2d');
+    const statusData = {
+        labels: {!! json_encode($statusCounts->keys()) !!},
+        datasets: [{
+            label: 'Call Log Status',
+            data: {!! json_encode($statusCounts->values()) !!},
+            backgroundColor: [
+                '#f39c12', '#00c0ef', '#dd4b39', '#00a65a', '#3c8dbc'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    const config = {
+        type: 'pie',
+        data: statusData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                }
+            }
+        }
+    };
+
+    new Chart(ctx, config);
+</script>
+
 
 @endsection
 @section('scripts')
