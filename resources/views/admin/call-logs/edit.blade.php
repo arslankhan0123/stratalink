@@ -242,9 +242,8 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-company-input">Select Status</label>
                                     <select class="form-select mb-3" name="status"
-                                        @error('status') is-invalid @enderror aria-label="Default select example"
-                                        id="statusSelect" required>
-                                        <option disabled>Select a Status</option>
+                                        @error('status') is-invalid @enderror aria-label="Default select example" id="statusSelect" required>
+                                        <!-- <option disabled>Select a Status</option> -->
                                         <option value="Pending" {{ $call_log->status == 'Pending' ? 'selected' : '' }}>Pending</option>
                                         <option value="Contractor Engaged" {{ $call_log->status == 'Contractor Engaged' ? 'selected' : '' }}>Contractor Engaged</option>
                                         <option value="Non emergency" {{ $call_log->status == 'Non emergency' ? 'selected' : '' }}>Non emergency</option>

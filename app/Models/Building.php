@@ -59,6 +59,7 @@ class Building extends Model
         'committee_member2',
         'committee_member3',
         'committee_member4',
+        'building_notes',
     ];    
 
     protected static function boot()

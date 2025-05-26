@@ -429,6 +429,16 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-building_notes-input">Building Notes</label>
+                                    <input type="text" class="form-control @error('building_notes') is-invalid @enderror"
+                                        name="building_notes" value="{{ $building->building_notes }}" id="formrow-building_notes-input">
+                                    @error('building_notes')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
                 </div>
 

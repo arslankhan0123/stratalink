@@ -94,7 +94,7 @@
                                     <select class="form-select mb-3" name="building_id" id="buildingSelect" required>
                                         <option selected disabled>Select a building</option>
                                         @foreach ($buildings as $building)
-                                        <option value="{{ $building->id }}">{{ $building->address }}</option>
+                                        <option value="{{ $building->id }}">{{ $building->address }} ({{ $building->building_notes }})</option>
                                         @endforeach
                                     </select>
                                     @error('building_id')
@@ -224,7 +224,7 @@
                                         <select class="form-select mb-3" name="status"
                                             @error('status') is-invalid @enderror aria-label="Default select example"
                                             id="statusSelect">
-                                            <option selected disabled>Select a Status</option>
+                                            <!-- <option selected disabled>Select a Status</option> -->
                                             <option value="Pending">Pending</option>
                                             <option value="Contractor Engaged">Contractor Engaged</option>
                                             <option value="Non emergency">Non emergency</option>

@@ -57,6 +57,7 @@ return new class extends Migration
             $table->string('committee_member2')->nullable();
             $table->string('committee_member3')->nullable();
             $table->string('committee_member4')->nullable();
+            $table->longText('building_notes')->nullable();
 
 
             $table->string('company')->nullable();

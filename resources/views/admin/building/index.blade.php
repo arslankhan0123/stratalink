@@ -39,7 +39,7 @@
                             <!-- <th>Contractor Name</th> -->
                             <th>Building Name</th>
                             <th>Address</th>
-                            <th>Mobile</th>
+                            <th>Building Notes</th>
                             <th>Client Email Address</th>
                             <th>SP No</th>
                             <th>Category</th>
@@ -61,7 +61,7 @@
                             <!-- <td>{{$building->contractor->name ?? ''}}</td> -->
                             <td>{{$building->name}}</td>
                             <td>{{$building->address}}</td>
-                            <td>{{$building->mobile}}</td>
+                            <td>{{$building->building_notes}}</td>
                             <td>{{$building->email}}</td>
                             <td>{{$building->sp_no}}</td>
                             <td>{{$building->category}}</td>

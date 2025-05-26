@@ -65,9 +65,9 @@ class DashboardRepository
     public function fetchBuildings()
     {
         if (Auth::user()->role_id == 3) {
-            return Building::where('user_id', Auth::user()->id)->select('id', 'name', 'address')->get();
+            return Building::where('user_id', Auth::user()->id)->select('id', 'name', 'address', 'building_notes')->get();
         } else {
-            return Building::select('id', 'name', 'address')->get();
+            return Building::select('id', 'name', 'address', 'building_notes')->get();
         }
     }
 
