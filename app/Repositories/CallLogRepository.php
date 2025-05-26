@@ -26,18 +26,17 @@ class CallLogRepository
             $query = CallLog::whereIn('building_id', $buildingIds);
 
             if (request()->has('status')) {
-                if ($request->status == '0') {
-                    $query->whereIn('status', ['Non emergency', 'Completed', 'Pending', 'Contractor Engaged', 'Contractor already engaged']);
-                }
 
                 if ($request->status == '1') {
                     $query->whereIn('status', ['Non emergency', 'Completed']);
-                }
-
-                if ($request->status == '2') {
+                } else if ($request->status == '2') {
+                    $query->whereIn('status', ['Non emergency', 'Completed', 'Pending', 'Contractor Engaged', 'Contractor already engaged']);
+                } else {
                     $query->whereIn('status', ['Pending', 'Contractor Engaged', 'Contractor already engaged']);
                 }
                 // $query->where('status', $request->status);
+            } else {
+                $query->whereIn('status', ['Pending', 'Contractor Engaged', 'Contractor already engaged']);
             }
 
             $data = $query->get();
@@ -45,18 +44,17 @@ class CallLogRepository
             // $data = CallLog::where('created_by', Auth::user()->id)->get();
             $query = CallLog::where('created_by', Auth::id());
             if (request()->has('status')) {
-                if ($request->status == '0') {
-                    $query->whereIn('status', ['Non emergency', 'Completed', 'Pending', 'Contractor Engaged', 'Contractor already engaged']);
-                }
 
                 if ($request->status == '1') {
                     $query->whereIn('status', ['Non emergency', 'Completed']);
-                }
-
-                if ($request->status == '2') {
+                } else if ($request->status == '2') {
+                    $query->whereIn('status', ['Non emergency', 'Completed', 'Pending', 'Contractor Engaged', 'Contractor already engaged']);
+                } else {
                     $query->whereIn('status', ['Pending', 'Contractor Engaged', 'Contractor already engaged']);
                 }
                 // $query->where('status', $request->status);
+            } else {
+                $query->whereIn('status', ['Pending', 'Contractor Engaged', 'Contractor already engaged']);
             }
 
             $data = $query->get();
@@ -64,18 +62,16 @@ class CallLogRepository
             $query = CallLog::query();
             if (request()->has('status')) {
 
-                if ($request->status == '0') {
-                    $query->whereIn('status', ['Non emergency', 'Completed', 'Pending', 'Contractor Engaged', 'Contractor already engaged']);
-                }
-
                 if ($request->status == '1') {
                     $query->whereIn('status', ['Non emergency', 'Completed']);
-                }
-
-                if ($request->status == '2') {
+                } else if ($request->status == '2') {
+                    $query->whereIn('status', ['Non emergency', 'Completed', 'Pending', 'Contractor Engaged', 'Contractor already engaged']);
+                } else {
                     $query->whereIn('status', ['Pending', 'Contractor Engaged', 'Contractor already engaged']);
                 }
                 // $query->where('status', $request->status);
+            } else {
+                $query->whereIn('status', ['Pending', 'Contractor Engaged', 'Contractor already engaged']);
             }
             
             $data = $query->get();

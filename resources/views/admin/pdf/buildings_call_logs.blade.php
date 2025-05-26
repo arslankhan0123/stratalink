@@ -143,7 +143,7 @@
                     <th>Caller Email</th>
                     <th>Status</th>
                     <th>Caller Number</th>
-                    <th>Total Time Spent</th>
+                    <th>Call Time Spent</th>
                     <th>Building Address</th>
                 </tr>
                 <tr>

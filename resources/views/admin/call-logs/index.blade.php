@@ -14,9 +14,9 @@
             <form id="status-form" action="{{route('call-logs.index')}}" method="GET">
                 <select id="status-select" name="status" class="form-select me-2" required>
                     <option disabled selected>Select Status</option>
-                    <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>None</option>
+                    <option value="2" {{ request('status') == '2' ? 'selected' : '' }}>All</option>
                     <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Non-Emergency Calls + Completed Cases</option>
-                    <option value="2" {{ request('status') == '2' ? 'selected' : '' }}>Pending + Contractor Engaged + Contractor Already Engaged</option>
+                    <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Pending + Contractor Engaged + Contractor Already Engaged</option>
                     <!-- <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }}>Pending</option> -->
                     <!-- <option value="Contractor Engaged" {{ request('status') == 'Contractor Engaged' ? 'selected' : '' }}>Contractor Engaged</option> -->
                     <!-- <option value="Non emergency" {{ request('status') == 'Non emergency' ? 'selected' : '' }}>Non emergency</option> -->

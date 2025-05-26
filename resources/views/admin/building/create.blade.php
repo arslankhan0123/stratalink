@@ -319,7 +319,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-email-input">Electricity Meter Location</label>
+                                    <label class="form-label" for="formrow-email-input">Electricity Meter Location for Units</label>
                                     <input type="text" class="form-control @error('electricity_meter_location') is-invalid @enderror"
                                         name="electricity_meter_location" id="formrow-electricity_meter_location-input">
                                     @error('electricity_meter_location')
