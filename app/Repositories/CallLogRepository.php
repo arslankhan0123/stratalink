@@ -29,6 +29,8 @@ class CallLogRepository
 
                 if ($request->status == '1') {
                     $query->whereIn('status', ['Non emergency', 'Completed']);
+                } else if ($request->status == '3') {
+                    $query->where('status', 'Non emergency');
                 } else if ($request->status == '2') {
                     $query->whereIn('status', ['Non emergency', 'Completed', 'Pending', 'Contractor Engaged', 'Contractor already engaged']);
                 } else {
@@ -47,6 +49,8 @@ class CallLogRepository
 
                 if ($request->status == '1') {
                     $query->whereIn('status', ['Non emergency', 'Completed']);
+                } else if ($request->status == '3') {
+                    $query->where('status', 'Non emergency');
                 } else if ($request->status == '2') {
                     $query->whereIn('status', ['Non emergency', 'Completed', 'Pending', 'Contractor Engaged', 'Contractor already engaged']);
                 } else {
@@ -64,6 +68,8 @@ class CallLogRepository
 
                 if ($request->status == '1') {
                     $query->whereIn('status', ['Non emergency', 'Completed']);
+                } else if ($request->status == '3') {
+                    $query->where('status', 'Non emergency');
                 } else if ($request->status == '2') {
                     $query->whereIn('status', ['Non emergency', 'Completed', 'Pending', 'Contractor Engaged', 'Contractor already engaged']);
                 } else {

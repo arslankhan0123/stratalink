@@ -484,11 +484,10 @@
 <script>
     $(document).ready(function() {
         $('#custom-table').DataTable({
-            "pagingType": "simple_numbers",
-            "lengthChange": false,
-            "searching": true,
+            "pageLength": 10, // Show 10 records per page
+            "lengthMenu": [5, 10, 25, 50, 100], // Dropdown options
             "ordering": true,
-            "info": false
+            "searching": true
         });
     });
 </script>

@@ -15,6 +15,7 @@
                 <select id="status-select" name="status" class="form-select me-2" required>
                     <option disabled selected>Select Status</option>
                     <option value="2" {{ request('status') == '2' ? 'selected' : '' }}>All</option>
+                    <option value="3" {{ request('status') == '3' ? 'selected' : '' }}>Non-Emergency Calls</option>
                     <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Non-Emergency Calls + Completed Cases</option>
                     <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Pending + Contractor Engaged + Contractor Already Engaged</option>
                     <!-- <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }}>Pending</option> -->
