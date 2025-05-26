@@ -67,20 +67,20 @@
                 {{ optional($data->building->buildingManager)->name ?? 'N/A' }}
             </div>
 
-            <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
+            <!-- <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
                 <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Building Manager Number:</strong>
                 {{ optional($data->building->strataManager)->phone_number ?? 'N/A' }}
-            </div>
+            </div> -->
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
                 <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Strata Manager:</strong>
                 {{ optional($data->building->strataManager)->name ?? 'N/A' }}
             </div>
 
-            <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
+            <!-- <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
                 <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Strata Manager Number:</strong>
                 {{ optional($data->building->strataManager)->phone_number ?? 'N/A' }}
-            </div>
+            </div> -->
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
                 <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Created At:</strong>

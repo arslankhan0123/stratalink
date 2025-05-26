@@ -94,7 +94,7 @@
                                     <select class="form-select mb-3" name="building_id" id="buildingSelect" required>
                                         <option selected disabled>Select a building</option>
                                         @foreach ($buildings as $building)
-                                        <option value="{{ $building->id }}">{{ $building->address }} ({{ $building->building_notes }})</option>
+                                        <option value="{{ $building->id }}">{{ $building->name }} (Address: {{ $building->address }}) (Notes: {{ $building->building_notes }})</option>
                                         @endforeach
                                     </select>
                                     @error('building_id')
@@ -339,7 +339,7 @@
                         if (response.contractors.length > 0) {
                             $.each(response.contractors, function(index, contractor) {
                                 $('#contractorSelect').append(
-                                    `<option value="${contractor.id}">${contractor.name} (${contractor.phone})</option>`
+                                    `<option value="${contractor.id}">${contractor.name} (${contractor.phone}) (${contractor.assign})</option>`
                                 );
                             });
                         } else {

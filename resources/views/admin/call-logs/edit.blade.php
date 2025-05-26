@@ -98,7 +98,7 @@
                                         @foreach ($buildings as $building)
                                         <option value="{{ $building->id }}"
                                             {{ $call_log->building_id == $building->id ? 'selected' : '' }}>
-                                            {{ $building->address }}
+                                            {{ $building->name }} (Address: {{ $building->address }}) (Notes: {{ $building->building_notes }})
                                         </option>
                                         @endforeach
                                     </select>
@@ -425,7 +425,7 @@
                     if (response.contractors.length > 0) {
                         $.each(response.contractors, function(index, contractor) {
                             $('#contractorSelect').append(
-                                `<option value="${contractor.id}" ${contractor.id == selectedContractorId ? 'selected' : ''}>${contractor.name} (${contractor.phone})</option>`
+                                `<option value="${contractor.id}" ${contractor.id == selectedContractorId ? 'selected' : ''}>${contractor.name} (${contractor.phone}) (${contractor.assign})</option>`
                             );
                         });
                     } else {
@@ -483,7 +483,7 @@
                         if (response.contractors.length > 0) {
                             $.each(response.contractors, function(index, contractor) {
                                 $('#contractorSelect').append(
-                                    `<option value="${contractor.id}">${contractor.name} (${contractor.phone})</option>`
+                                    `<option value="${contractor.id}">${contractor.name} (${contractor.phone}) (${contractor.assign})</option>`
                                 );
                             });
                         } else {
