@@ -81,7 +81,8 @@ class CallLogsController extends Controller
     {
         try {
             $request->validate([
-                'audio_attachment' => 'nullable|file|mimes:mp3,wav|max:10240',
+                'audio_attachments' => 'nullable|array',
+                'audio_attachments.*' => 'file|mimes:mp3,wav|max:10240', // Each file must meet the rules
             ]);
             $data = $this->callLogRepo->store($request);
             if ($request->send_email == 'yes') {
@@ -117,7 +118,7 @@ class CallLogsController extends Controller
                 //     'token' => $id_token,
                 //     'updated_at' => now(),
                 // ]);
-                
+
                 DB::table('call_logs')->where('id', $data['id'])->update([
                     'strata_manager_email_sent' => 'yes',
                     'updated_at' => now(),
@@ -134,7 +135,7 @@ class CallLogsController extends Controller
                 //     'token' => $id_token,
                 //     'updated_at' => now(),
                 // ]);
-                
+
                 DB::table('call_logs')->where('id', $data['id'])->update([
                     'contractor_details_email_sent' => 'yes',
                     'updated_at' => now(),

@@ -216,13 +216,24 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="audio_attachment">Upload Audio</label>
-                                    <input type="file" name="audio_attachment" id="audio_attachment" class="form-control">
+                                    <input type="file" name="audio_attachment[]" id="audio_attachment" class="form-control" multiple>
                                 </div>
-                                @if ($call_log->audio_attachment)
-                                <audio controls>
-                                    <source src="{{ asset($call_log->audio_attachment) }}" type="audio/mpeg">
+
+                                @if (!empty($call_log->audio_attachment))
+                                @php
+                                $audioFiles = json_decode($call_log->audio_attachment, true);
+                                @endphp
+
+                                @if (is_array($audioFiles))
+                                @foreach ($audioFiles as $file)
+                                <audio controls style="display: block; margin-bottom: 8px;">
+                                    <source src="{{ asset($file) }}" type="audio/mpeg">
                                     Your browser does not support the audio element.
                                 </audio>
+                                @endforeach
+                                @else
+                                <p>Invalid audio data format.</p>
+                                @endif
                                 @else
                                 <p>No audio attachment found.</p>
                                 @endif

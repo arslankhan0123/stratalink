@@ -213,8 +213,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="audio_attachment">Upload Audio</label>
-                                    <input type="file" name="audio_attachment" id="audio_attachment"
-                                        class="form-control">
+                                    <input type="file" name="audio_attachment[]" id="audio_attachment"
+                                        class="form-control" multiple>
                                 </div>
                             </div>
                             <div class="row">

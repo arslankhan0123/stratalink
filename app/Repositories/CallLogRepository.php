@@ -73,7 +73,7 @@ class CallLogRepository
             } else {
                 $query->whereIn('status', ['Pending', 'Contractor Engaged', 'Contractor already engaged']);
             }
-            
+
             $data = $query->get();
             // $data = CallLog::all();
         }
@@ -99,15 +99,21 @@ class CallLogRepository
         // // Move the file to the public/audio directory
         // $audioFile->move(public_path('audio'), $audioName);
 
-        if ($request->file('audio_attachment')) {
-            $audioFile = $request->file('audio_attachment');
-            $audioName = time() . '_' . $audioFile->getClientOriginalName();
-            $audioPath = 'audio/' . $audioName; // Path relative to public
+        $audioPaths = [];
+        if ($request->hasFile('audio_attachment')) {
+            foreach ($request->file('audio_attachment') as $audioFile) {
+                $audioName = time() . '_' . $audioFile->getClientOriginalName();
+                $audioPath = 'audio/' . $audioName;
 
-            // Move the file to the public/audio directory
-            $audioFile->move(public_path('audio'), $audioName);
+                // Move file to public/audio
+                $audioFile->move(public_path('audio'), $audioName);
+
+                // Collect file path
+                $audioPaths[] = $audioPath;
+            }
         }
 
+        // Store as JSON in DB or handle differently
         $data = CallLog::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -123,12 +129,43 @@ class CallLogRepository
             'call_time' => $request->input('call_time'),
             'total_time_spent_on_call' => $request->input('total_time_spent_on_call'),
             'building_manager_id' => $request->input('building_manager_id'),
-            'audio_attachment' => $audioPath ?? null, // Store the path in the database
+            'audio_attachment' => json_encode($audioPaths), // Store paths as JSON array
             'call_date' => $request->input('call_date'),
             'category' => $request->input('category'),
         ]);
 
         return $data;
+
+        // if ($request->file('audio_attachment')) {
+        //     $audioFile = $request->file('audio_attachment');
+        //     $audioName = time() . '_' . $audioFile->getClientOriginalName();
+        //     $audioPath = 'audio/' . $audioName; // Path relative to public
+
+        //     // Move the file to the public/audio directory
+        //     $audioFile->move(public_path('audio'), $audioName);
+        // }
+
+        // $data = CallLog::create([
+        //     'name' => $request->input('name'),
+        //     'email' => $request->input('email'),
+        //     'manager_id' => $request->input('manager_id'),
+        //     'building_id' => $request->input('building_id'),
+        //     'number' => $request->input('number'),
+        //     'building_manager' => $request->input('building_manager'),
+        //     'strata_manager' => $request->input('strata_manager'),
+        //     'contractor_id' => $request->input('contractor_id'),
+        //     'summary' => $request->input('summary'),
+        //     'status' => $request->input('status'),
+        //     'strata_manager_id' => $request->input('strata_manager_id'),
+        //     'call_time' => $request->input('call_time'),
+        //     'total_time_spent_on_call' => $request->input('total_time_spent_on_call'),
+        //     'building_manager_id' => $request->input('building_manager_id'),
+        //     'audio_attachment' => $audioPath ?? null, // Store the path in the database
+        //     'call_date' => $request->input('call_date'),
+        //     'category' => $request->input('category'),
+        // ]);
+
+        // return $data;
     }
 
     /**
@@ -156,52 +193,103 @@ class CallLogRepository
         // Find the call log
         $call_log = CallLog::find($id);
 
-        if ($call_log) {
-            // Update the existing call log
-            $call_log->update([
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
-                'manager_id' => $request->input('manager_id'),
-                'building_id' => $request->input('building_id'),
-                'number' => $request->input('number'),
-                'building_manager' => $request->input('building_manager'),
-                'strata_manager' => $request->input('strata_manager'),
-                'contractor_id' => $request->input('contractor_id'),
-                'summary' => $request->input('summary'),
-                'status' => $request->status,
-                'strata_manager_id' => $request->input('strata_manager_id'),
-                'building_manager_id' => $request->input('building_manager_id'),
-                // 'audio_attachment' => $audioPath ?? $request->audio_attachment,
-                'call_time' => $request->input('call_time'),
-                'total_time_spent_on_call' => $request->input('total_time_spent_on_call'),
-                'call_date' => $request->input('call_date'),
-                'category' => $request->input('category'),
-            ]);
-            if ($request->file('audio_attachment')) {
-                // $audioPath = $request->file('audio_attachment')->store('public/audio');
-                $audioFile = $request->file('audio_attachment');
-    
-                $audioName = time() . '_' . $audioFile->getClientOriginalName();
-                $audioPath = 'audio/' . $audioName; // Path relative to public
-    
-                // Move the file to the public/audio directory
-                $audioFile->move(public_path('audio'), $audioName);
-                $call_log->audio_attachment = $audioPath;
-                $call_log->save();
-            }
-            return $call_log;
-            // return response()->json(['message' => 'Call log updated successfully']);
-        } else {
+        if (!$call_log) {
             return response()->json(['error' => 'Call log not found'], 404);
         }
 
-        // $call_log->update([
-        //     'audio_attachment' => $audioPath, // Storing relative path
-        //     'summary' => $request->input('summary'),
-        // ]);
+        // Update the base fields
+        $call_log->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'manager_id' => $request->input('manager_id'),
+            'building_id' => $request->input('building_id'),
+            'number' => $request->input('number'),
+            'building_manager' => $request->input('building_manager'),
+            'strata_manager' => $request->input('strata_manager'),
+            'contractor_id' => $request->input('contractor_id'),
+            'summary' => $request->input('summary'),
+            'status' => $request->status,
+            'strata_manager_id' => $request->input('strata_manager_id'),
+            'building_manager_id' => $request->input('building_manager_id'),
+            'call_time' => $request->input('call_time'),
+            'total_time_spent_on_call' => $request->input('total_time_spent_on_call'),
+            'call_date' => $request->input('call_date'),
+            'category' => $request->input('category'),
+        ]);
 
-        return response()->json(['message' => 'Call log updated successfully!']);
+        // Handle multiple audio attachments
+        if ($request->hasFile('audio_attachment')) {
+            $call_log->audio_attachment = NULL;
+            $call_log->save();
+            $newAudioPaths = [];
+            foreach ($request->file('audio_attachment') as $audioFile) {
+                $audioName = time() . '_' . $audioFile->getClientOriginalName();
+                $audioFile->move(public_path('audio'), $audioName);
+                $newAudioPaths[] = 'audio/' . $audioName;
+            }
+
+            // Merge with existing attachments (if any)
+            $existingAudioPaths = $call_log->audio_attachment ? json_decode($call_log->audio_attachment, true) : [];
+            $mergedAudioPaths = array_merge($existingAudioPaths ?: [], $newAudioPaths);
+
+            // Update field and save
+            $call_log->audio_attachment = json_encode($mergedAudioPaths);
+            $call_log->save();
+        }
+
+        return $call_log;
     }
+    // public function update($request, $id)
+    // {
+    //     // Find the call log
+    //     $call_log = CallLog::find($id);
+
+    //     if ($call_log) {
+    //         // Update the existing call log
+    //         $call_log->update([
+    //             'name' => $request->input('name'),
+    //             'email' => $request->input('email'),
+    //             'manager_id' => $request->input('manager_id'),
+    //             'building_id' => $request->input('building_id'),
+    //             'number' => $request->input('number'),
+    //             'building_manager' => $request->input('building_manager'),
+    //             'strata_manager' => $request->input('strata_manager'),
+    //             'contractor_id' => $request->input('contractor_id'),
+    //             'summary' => $request->input('summary'),
+    //             'status' => $request->status,
+    //             'strata_manager_id' => $request->input('strata_manager_id'),
+    //             'building_manager_id' => $request->input('building_manager_id'),
+    //             // 'audio_attachment' => $audioPath ?? $request->audio_attachment,
+    //             'call_time' => $request->input('call_time'),
+    //             'total_time_spent_on_call' => $request->input('total_time_spent_on_call'),
+    //             'call_date' => $request->input('call_date'),
+    //             'category' => $request->input('category'),
+    //         ]);
+    //         if ($request->file('audio_attachment')) {
+    //             // $audioPath = $request->file('audio_attachment')->store('public/audio');
+    //             $audioFile = $request->file('audio_attachment');
+
+    //             $audioName = time() . '_' . $audioFile->getClientOriginalName();
+    //             $audioPath = 'audio/' . $audioName; // Path relative to public
+
+    //             // Move the file to the public/audio directory
+    //             $audioFile->move(public_path('audio'), $audioName);
+    //             $call_log->audio_attachment = $audioPath;
+    //             $call_log->save();
+    //         }
+    //         return $call_log;
+    //         // return response()->json(['message' => 'Call log updated successfully']);
+    //     } else {
+    //         return response()->json(['error' => 'Call log not found'], 404);
+    //     }
+
+    //     // $call_log->update([
+    //     //     'audio_attachment' => $audioPath, // Storing relative path
+    //     //     'summary' => $request->input('summary'),
+    //     // ]);
+
+    //     return response()->json(['message' => 'Call log updated successfully!']);
+    // }
 
 
     /**

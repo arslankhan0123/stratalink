@@ -29,12 +29,12 @@
                 <table id="custom-table" class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th>
+                            <!-- <th>
                                 <span class="custom-checkbox">
                                     <input type="checkbox" id="selectAll">
                                     <label for="selectAll"></label>
                                 </span>
-                            </th>
+                            </th> -->
                             <th>Client Name</th>
                             <!-- <th>Contractor Name</th> -->
                             <th>Building Name</th>
@@ -51,12 +51,12 @@
                     <tbody>
                         @foreach($buildings as $building)
                         <tr>
-                            <td>
+                            <!-- <td>
                                 <span class="custom-checkbox">
                                     <input type="checkbox" id="checkbox1" name="options[]" value="1">
                                     <label for="checkbox1"></label>
                                 </span>
-                            </td>
+                            </td> -->
                             <td>{{$building->user->name}}</td>
                             <!-- <td>{{$building->contractor->name ?? ''}}</td> -->
                             <td>{{$building->name}}</td>

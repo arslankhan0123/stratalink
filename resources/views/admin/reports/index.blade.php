@@ -14,7 +14,7 @@
 <li class="breadcrumb-item active">Reports</li>
 @endsection
 @section('content')
-@if (Auth::user()->role_id == 1)
+@if (Auth::user()->role_id == 1 || Auth::user()->role_id == 3)
 <!-- Dropdown Section -->
 <form action="{{ route('reports.index') }}" method="GET">
     <div class="d-flex justify-content-between align-items-center my-3">
@@ -158,8 +158,8 @@
                                 <td>{{ $call_log->building ? $call_log->building->name : 'N/A' }}</td>
                                 <td>{{ $call_log->building ? $call_log->building->sp_no : 'N/A' }}</td>
                                 <td>{{ $call_log->number }}</td>
-                                <td>{{ $call_log->building->buildingManager->name }}</td>
-                                <td>{{ $call_log->building->strataManager->name }}</td>
+                                <td>{{ optional(optional($call_log->building)->buildingManager)->name ?? 'N/A' }}</td>
+                                <td>{{ optional(optional($call_log->building)->strataManager)->name ?? 'N/A' }}</td>
                                 <td>{{ $call_log->contractor->name ?? '' }}</td>
                                 <td>
                                     @if ($call_log->email_file)
@@ -170,6 +170,26 @@
                                 </td>
                                 <td>{{ $call_log->summary ?? '' }}</td>
                                 <td>
+                                    @if (!empty($call_log->audio_attachment))
+                                    @php
+                                    $audioFiles = json_decode($call_log->audio_attachment, true);
+                                    @endphp
+
+                                    @if (is_array($audioFiles))
+                                    @foreach ($audioFiles as $file)
+                                    <audio controls style="display: block; margin-bottom: 8px;">
+                                        <source src="{{ asset($file) }}" type="audio/mpeg">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                    @endforeach
+                                    @else
+                                    <p>Invalid audio data format.</p>
+                                    @endif
+                                    @else
+                                    <p>No audio attachment found.</p>
+                                    @endif
+                                </td>
+                                <!-- <td>
                                     @if ($call_log->audio_attachment)
                                     <audio controls>
                                         <source src="{{ asset('attachments/' . $call_log->audio_attachment) }}" type="audio/mpeg">
@@ -177,7 +197,7 @@
                                     @else
                                     No attachment
                                     @endif
-                                </td>
+                                </td> -->
                             </tr>
                             @endforeach
                         </tbody>
