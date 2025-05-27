@@ -24,6 +24,16 @@
                 <a href="{{route('buildings.create')}}" class="btn btn-sm btn-info">Create <i class="mdi mdi-arrow-right align-middle"></i></a>
                 @endif
             </div>
+            <div class="card-header justify-content-between d-flex align-items-center">
+                <a href="{{ route('buildings.export') }}" class="btn btn-success">
+                    Export Buildings to Excel
+                </a>
+                <form action="{{ route('buildings.import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="file" required>
+                    <button type="submit" class="btn btn-primary">Import Buildings</button>
+                </form>
+            </div>
             <div class="card-body">
                 <!-- Table -->
                 <table id="custom-table" class="table table-striped table-bordered">

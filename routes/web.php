@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BuildingController;
+use App\Http\Controllers\BuildingExportController;
 use App\Http\Controllers\CallLogsController;
 use App\Http\Controllers\ContractorController;
 use App\Http\Controllers\DashboardController;
@@ -92,6 +93,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [ReportsController::class, 'index'])->name('reports.index');
         Route::get('/export/pdf', [ReportsController::class, 'exportPDF'])->name('reports.export.pdf');
     });
+
+    Route::get('/export-buildings', [BuildingExportController::class, 'export'])->name('buildings.export');
+    Route::post('/import-buildings', [BuildingExportController::class, 'import'])->name('buildings.import');
 });
 
 require __DIR__ . '/auth.php';
