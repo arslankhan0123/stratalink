@@ -210,7 +210,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="audio_attachment">Upload Audio</label>
                                     <input type="file" name="audio_attachment[]" id="audio_attachment"
@@ -218,7 +218,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label" for="formrow-company-input">Select Status</label>
                                         <select class="form-select mb-3" name="status"
