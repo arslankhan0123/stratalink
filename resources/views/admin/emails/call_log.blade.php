@@ -49,12 +49,12 @@
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
                 <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Contractor:</strong>
-                {{ $data->contractor->name }}
+                {{ $data->contractor->name ?? 'No name found' }}
             </div>
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
                 <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Contractor Phone:</strong>
-                {{ $data->contractor->phone }}
+                {{ $data->contractor->phone ?? 'No phone found' }}
             </div>
 
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">

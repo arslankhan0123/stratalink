@@ -27,6 +27,12 @@ class CallLogMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('New Call Log Entry')->view('admin.emails.call_log')->with('data', $this->data);
+        $spNumber = $this->data->building->sp_no ?? 'SPXXXXX';
+        $buildingAddress = $this->data->building->address ?? 'Unknown Address';
+        $siteHours = $this->data->building->site_hours ?? 'After Hours Call';
+        $status = $this->data->status ?? 'No Status';
+
+        $subject = "{$spNumber} – {$buildingAddress} – {$siteHours} – {$status}";
+        return $this->subject($subject)->view('admin.emails.call_log')->with('data', $this->data);
     }
 }
