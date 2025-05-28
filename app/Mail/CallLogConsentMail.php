@@ -28,10 +28,10 @@ class CallLogConsentMail extends Mailable
      */
     public function build()
     {
-        $spNumber = $data->building->sp_no ?? 'SPXXXXX';
-        $buildingAddress = $data->building->address ?? 'Unknown Address';
-        $siteHours = $data->building->site_hours ?? 'After Hours Call';
-        $status = $data->status ?? 'No Status';
+        $spNumber = $this->data->building->sp_no ?? 'SPXXXXX';
+        $buildingAddress = $this->data->building->address ?? 'Unknown Address';
+        $siteHours = $this->data->building->site_hours ?? 'After Hours Call';
+        $status = $this->data->status ?? 'No Status';
 
         $subject = "{$spNumber} – {$buildingAddress} – {$siteHours} – {$status}";
         return $this->subject($subject)->view('admin.emails.call_log_concent_email')->with('data', $this->data);
