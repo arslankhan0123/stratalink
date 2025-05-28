@@ -11,13 +11,15 @@ class CallLogMail extends Mailable
     use Queueable, SerializesModels;
 
     public $data;
+    public $concentForm;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($data)
+    public function __construct($data, $concentForm)
     {
         $this->data = $data;
+        $this->concentForm = $concentForm;
     }
 
     /**

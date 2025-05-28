@@ -77,6 +77,15 @@
                 {{ optional($data->building->strataManager)->name ?? 'N/A' }}
             </div>
 
+            @if ($concentForm == 'yes')
+                @if ($data['email_file'])
+                    <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
+                        <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Signed Consent Form:</strong>
+                        <a href="{{ asset('pdfs/' . $data['email_file']) }}" target="_blank">View Signed Consent Form</a>
+                    </div>
+                @endif
+            @endif
+
             <!-- <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 4px solid #007BFF;">
                 <strong style="color: #333; display: block; margin-bottom: 5px; font-size: 14px;">Strata Manager Number:</strong>
                 {{ optional($data->building->strataManager)->phone_number ?? 'N/A' }}

@@ -310,7 +310,7 @@ class CallLogRepository
         CallLog::destroy($id);
     }
 
-    public function sendEmail($data)
+    public function sendEmail($data, $concentForm)
     {
         $email = $data['email'];
         $token = Str::uuid()->toString();
@@ -320,6 +320,6 @@ class CallLogRepository
         //     'token' => $id_token,
         //     'updated_at' => now(),
         // ]);
-        Mail::to($email)->send(new CallLogMail($data));
+        Mail::to($email)->send(new CallLogMail($data, $concentForm));
     }
 }

@@ -90,7 +90,7 @@ class CallLogsController extends Controller
                     'customer_details_email_sent' => 'yes',
                     'updated_at' => now(),
                 ]);
-                $this->callLogRepo->sendEmail($data);
+                $this->callLogRepo->sendEmail($data, $concentForm = 'no');
             }
 
             if ($request->send_building_manager_email == 'yes') {
@@ -106,7 +106,7 @@ class CallLogsController extends Controller
                     'building_manager_email_sent' => 'yes',
                     'updated_at' => now(),
                 ]);
-                Mail::to($buildingManager->email)->send(new CallLogMail($data));
+                Mail::to($buildingManager->email)->send(new CallLogMail($data, $concentForm = 'no'));
             }
 
             if ($request->send_strata_manager_email == 'yes') {
@@ -123,7 +123,7 @@ class CallLogsController extends Controller
                     'strata_manager_email_sent' => 'yes',
                     'updated_at' => now(),
                 ]);
-                Mail::to($buildingManager->email)->send(new CallLogMail($data));
+                Mail::to($buildingManager->email)->send(new CallLogMail($data, $concentForm = 'yes'));
             }
 
             if ($request->send_contractor_email == 'yes') {
@@ -140,7 +140,7 @@ class CallLogsController extends Controller
                     'contractor_details_email_sent' => 'yes',
                     'updated_at' => now(),
                 ]);
-                Mail::to($contractor->email)->send(new CallLogMail($data));
+                Mail::to($contractor->email)->send(new CallLogMail($data, $concentForm = 'no'));
             }
 
             if ($request->send_concent_email == 'yes') {
@@ -200,7 +200,7 @@ class CallLogsController extends Controller
                     'customer_details_email_sent' => 'yes',
                     'updated_at' => now(),
                 ]);
-                $this->callLogRepo->sendEmail($data);
+                $this->callLogRepo->sendEmail($data, $concentForm = 'no');
             }
 
             if ($request->send_building_manager_email == 'yes') {
@@ -216,7 +216,7 @@ class CallLogsController extends Controller
                     'building_manager_email_sent' => 'yes',
                     'updated_at' => now(),
                 ]);
-                Mail::to($buildingManager->email)->send(new CallLogMail($data));
+                Mail::to($buildingManager->email)->send(new CallLogMail($data, $concentForm = 'no'));
             }
 
             if ($request->send_strata_manager_email == 'yes') {
@@ -232,7 +232,7 @@ class CallLogsController extends Controller
                     'strata_manager_email_sent' => 'yes',
                     'updated_at' => now(),
                 ]);
-                Mail::to($buildingManager->email)->send(new CallLogMail($data));
+                Mail::to($buildingManager->email)->send(new CallLogMail($data, $concentForm = 'yes'));
             }
 
             if ($request->send_contractor_email == 'yes') {
@@ -248,7 +248,7 @@ class CallLogsController extends Controller
                     'contractor_details_email_sent' => 'yes',
                     'updated_at' => now(),
                 ]);
-                Mail::to($contractor->email)->send(new CallLogMail($data));
+                Mail::to($contractor->email)->send(new CallLogMail($data, $concentForm = 'no'));
             }
 
             if ($request->send_concent_email == 'yes') {
