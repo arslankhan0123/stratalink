@@ -33,6 +33,6 @@ class CallLogMail extends Mailable
         $status = $this->data->status ?? 'No Status';
 
         $subject = "{$spNumber} – {$buildingAddress} – {$siteHours} – {$status}";
-        return $this->subject($subject)->view('admin.emails.call_log')->with('data', $this->data);
+        return $this->subject($subject)->replyTo('no-reply@stratalink.com.au')->view('admin.emails.call_log')->with('data', $this->data);
     }
 }
