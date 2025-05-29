@@ -115,14 +115,32 @@ class ReportsController extends Controller
         $building_ids = session('building_ids', []);
         $call_log_ids = session('call_log_ids', []);
 
-        // Fetch the data
         $buildings = Building::whereIn('id', $building_ids)->get();
         $callLogs = CallLog::whereIn('id', $call_log_ids)->get();
 
-        // Load the view and pass data
-        $pdf = Pdf::loadView('admin.pdf.buildings_call_logs', compact('buildings', 'callLogs'));
+        // Group by status for pie chart
+        $statusCounts = $callLogs->groupBy('status')->map->count();
 
-        // Download PDF
+        // Generate pie chart image using quickchart.io
+        $chartData = [
+            'type' => 'pie',
+            'data' => [
+                'labels' => $statusCounts->keys()->toArray(),
+                'datasets' => [
+                    [
+                        'data' => $statusCounts->values()->toArray(),
+                        'backgroundColor' => ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50', '#F44336']
+                    ]
+                ]
+            ]
+        ];
+
+        $chartUrl = 'https://quickchart.io/chart?c=' . urlencode(json_encode($chartData));
+
+        // Embed chart image as base64
+        $chartImage = 'data:image/png;base64,' . base64_encode(file_get_contents($chartUrl));
+
+        $pdf = Pdf::loadView('admin.pdf.buildings_call_logs', compact('buildings', 'callLogs', 'chartImage'));
         return $pdf->download('buildings_call_logs.pdf');
     }
 }

@@ -178,6 +178,12 @@
     </div>
     @endforeach
 
+    @if (!empty($chartImage))
+        <div class="header">Call Status Pie Chart</div>
+        <div style="text-align: center; margin-bottom: 20px;">
+            <img src="{{ $chartImage }}" alt="Pie Chart" style="width: 300px;">
+        </div>
+    @endif
 </body>
 
 </html>
