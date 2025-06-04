@@ -12,14 +12,11 @@
         /* General Body Styles */
         body {
             font-family: 'Roboto', sans-serif;
-            /* A clean, modern sans-serif font */
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             background-color: #f8f9fa;
-            /* Lighter background for a cleaner look */
             color: #343a40;
-            /* Darker text for better readability */
             line-height: 1.6;
         }
 
@@ -27,13 +24,11 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 25px;
-            /* Slightly more padding for better spacing */
         }
 
         /* --- Header Styles --- */
         header {
             background-color: rgba(33, 37, 41, 0.9);
-            /* Darker, sleek transparent header */
             color: #fff;
             padding: 15px 0;
             position: fixed;
@@ -59,7 +54,6 @@
             margin-right: 12px;
             border-radius: 50%;
             width: 50px;
-            /* Larger logo */
             height: 50px;
             object-fit: cover;
         }
@@ -67,7 +61,6 @@
         .logo h1 {
             margin: 0;
             font-size: 2em;
-            /* Slightly larger logo text */
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
         }
@@ -82,7 +75,10 @@
 
         header nav ul li {
             margin-right: 30px;
-            /* More spacing between nav items */
+        }
+
+        header nav ul li:last-child {
+            margin-right: 0;
         }
 
         header nav ul li a {
@@ -96,17 +92,14 @@
 
         header nav ul li a:hover {
             color: #66b3ff;
-            /* Lighter blue on hover */
         }
 
         .login-button {
             background-color: rgba(108, 117, 125, 0.7);
-            /* Muted gray for transparent look */
             color: #fff;
             border: 2px solid #fff;
             padding: 10px 22px;
             border-radius: 50px;
-            /* More rounded button */
             cursor: pointer;
             font-size: 1em;
             font-weight: 600;
@@ -120,17 +113,23 @@
             color: #fff;
         }
 
+        /* Mobile Navigation Toggle */
+        .menu-toggle {
+            display: none; /* Hidden by default */
+            font-size: 1.8em;
+            color: #fff;
+            cursor: pointer;
+        }
+
         /* --- Hero Section Styles --- */
         .hero-section {
             background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-            url("{{ asset('images/landing2.jpeg') }}");
-            /* Gradient overlay + new image */
+                url("{{ asset('images/landing2.jpeg') }}");
             background-size: cover;
             background-position: center;
             color: #fff;
             text-align: center;
             padding: 180px 20px 120px;
-            /* More padding for a grander feel */
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -147,7 +146,6 @@
 
         .hero-content h1 {
             font-size: 4.5em;
-            /* Larger, bolder headline */
             margin-bottom: 25px;
             font-weight: 700;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
@@ -156,7 +154,6 @@
 
         .hero-content p {
             font-size: 1.8em;
-            /* Larger sub-headline */
             margin-bottom: 40px;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
             font-weight: 300;
@@ -164,51 +161,40 @@
 
         .cta-button {
             background-color: #007bff;
-            /* Primary blue color */
             color: #fff;
             padding: 18px 40px;
             text-decoration: none;
             border-radius: 50px;
-            /* Very rounded button */
             font-size: 1.3em;
             font-weight: 600;
             transition: background-color 0.3s ease, transform 0.2s ease;
             border: none;
             display: inline-block;
-            /* To allow padding/margin */
             font-family: 'Montserrat', sans-serif;
         }
 
         .cta-button:hover {
             background-color: #0056b3;
-            /* Darker blue on hover */
             transform: translateY(-3px);
         }
 
         /* --- Services Section Styles --- */
         .services-section {
             padding: 100px 0;
-            /* More vertical padding */
             background-color: #ffffff;
-            /* Solid white background */
             position: relative;
             z-index: 3;
             margin-top: -80px;
-            /* Less overlap */
             border-top-left-radius: 30px;
-            /* More rounded top corners */
             border-top-right-radius: 30px;
             box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.08);
-            /* Softer, wider shadow */
         }
 
         .services-section h2 {
             text-align: center;
             font-size: 3.2em;
-            /* Larger heading */
             margin-bottom: 70px;
             color: #212529;
-            /* Darker black for headings */
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             position: relative;
@@ -224,30 +210,35 @@
             width: 80px;
             height: 4px;
             background-color: #007bff;
-            /* Primary color underline */
             border-radius: 2px;
         }
+
+        .section-intro {
+            text-align: center;
+            font-size: 1.25em;
+            color: #6c757d;
+            margin-bottom: 60px;
+            font-weight: 300;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
 
         .service-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            /* Slightly wider min width */
             gap: 35px;
-            /* More gap */
         }
 
         .service-card {
             background-color: #fff;
             border-radius: 15px;
-            /* More rounded corners */
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            /* Softer shadow */
             padding: 40px;
-            /* More padding */
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #e9ecef;
-            /* Subtle border */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -255,22 +246,17 @@
 
         .service-card:hover {
             transform: translateY(-15px);
-            /* More pronounced lift */
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-            /* Stronger shadow on hover */
         }
 
         .service-card .icon-primary {
             font-size: 3.5em;
-            /* Larger icons */
             color: #007bff;
-            /* Primary blue icon color */
             margin-bottom: 25px;
         }
 
         .service-card h3 {
             font-size: 24px;
-            /* Larger heading */
             margin-bottom: 15px;
             color: #212529;
             font-family: 'Montserrat', sans-serif;
@@ -281,15 +267,12 @@
             font-size: 1.05em;
             line-height: 1.7;
             color: #6c757d;
-            /* Muted gray for body text */
             margin-bottom: 30px;
             flex-grow: 1;
-            /* Allows text to grow and push button down */
         }
 
         .learn-more-button {
             background-color: #28a745;
-            /* Green for secondary action */
             color: #fff;
             padding: 12px 25px;
             text-decoration: none;
@@ -304,7 +287,6 @@
 
         .learn-more-button:hover {
             background-color: #218838;
-            /* Darker green on hover */
             transform: translateY(-2px);
         }
 
@@ -312,28 +294,23 @@
         .about-section {
             padding: 100px 0;
             background-color: #f8f9fa;
-            /* Light background for contrast */
         }
 
         .about-content {
             display: flex;
             align-items: center;
             gap: 60px;
-            /* More space between image and text */
         }
 
         .about-image {
             flex: 1;
             min-width: 400px;
-            /* Ensure image isn't too small */
         }
 
         .about-image img {
             max-width: 100%;
             border-radius: 15px;
-            /* Rounded corners for image */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            /* Soft shadow */
         }
 
         .about-text {
@@ -370,7 +347,6 @@
 
         .cta-button-secondary {
             background-color: #6c757d;
-            /* Muted gray for secondary CTA */
             color: #fff;
             padding: 15px 30px;
             text-decoration: none;
@@ -392,7 +368,6 @@
         .contact-section {
             padding: 100px 0;
             background-color: #e9ecef;
-            /* Light gray background */
         }
 
         .contact-section h2 {
@@ -430,15 +405,12 @@
             display: flex;
             gap: 60px;
             align-items: flex-start;
-            /* Align items to the top */
             flex-wrap: wrap;
-            /* Allow wrapping on smaller screens */
         }
 
         .contact-info {
             flex: 1;
             min-width: 300px;
-            /* Ensure info column has enough space */
             background-color: #fff;
             padding: 40px;
             border-radius: 15px;
@@ -470,7 +442,6 @@
         .contact-form {
             flex: 2;
             min-width: 400px;
-            /* Ensure form column has enough space */
             background-color: #fff;
             padding: 40px;
             border-radius: 15px;
@@ -510,7 +481,6 @@
 
         .contact-form textarea {
             resize: vertical;
-            /* Allow vertical resizing */
             min-height: 120px;
         }
 
@@ -536,7 +506,6 @@
         /* --- Footer Styles --- */
         footer {
             background-color: #212529;
-            /* Darker, solid footer */
             color: #e9ecef;
             padding-top: 60px;
             position: relative;
@@ -545,7 +514,6 @@
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            /* 4 columns, responsive */
             gap: 40px;
             padding-bottom: 40px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -553,7 +521,6 @@
 
         .footer-column h3 {
             color: #007bff;
-            /* Primary color for footer headings */
             font-size: 1.3em;
             margin-bottom: 25px;
             font-family: 'Montserrat', sans-serif;
@@ -578,7 +545,6 @@
 
         .footer-column ul li a {
             color: #adb5bd;
-            /* Muted gray for links */
             text-decoration: none;
             font-size: 0.95em;
             transition: color 0.3s ease;
@@ -615,10 +581,8 @@
             color: #adb5bd;
         }
 
-
         .footer-bottom {
             background-color: #1a1d20;
-            /* Slightly darker bottom footer */
             padding: 20px 0;
             text-align: center;
         }
@@ -629,19 +593,10 @@
             color: #adb5bd;
         }
 
-        /* --- Responsive Design --- */
-        @media (max-width: 992px) {
-            header .container {
-                flex-direction: column;
-                align-items: flex
-            }
-        }
-
         /* --- Why Choose Us Section Styles --- */
         .why-choose-us-section {
             padding: 100px 0;
             background-color: #ffffff;
-            /* Consistent with services section background */
             text-align: center;
         }
 
@@ -664,30 +619,24 @@
             width: 80px;
             height: 4px;
             background-color: #007bff;
-            /* Primary color underline */
             border-radius: 2px;
         }
 
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            /* Responsive grid for benefits */
             gap: 40px;
-            /* Space between benefit items */
         }
 
         .benefit-item {
             background-color: #f8f9fa;
-            /* Light background for each item */
             padding: 35px;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-            /* Soft shadow */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Center content within each item */
             text-align: center;
         }
 
@@ -698,9 +647,7 @@
 
         .benefit-item .icon-large {
             font-size: 3.5em;
-            /* Large icons */
             color: #007bff;
-            /* Primary blue color for icons */
             margin-bottom: 25px;
         }
 
@@ -718,18 +665,171 @@
             color: #6c757d;
             line-height: 1.7;
             flex-grow: 1;
-            /* Allows text to grow and maintain consistent card height */
         }
 
-        /* Responsive adjustments for "Why Choose Us" section */
+        /* --- Responsive Design --- */
+
+        /* Tablets and smaller desktops (992px) */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 15px; /* Adjust padding for smaller screens */
+            }
+
+            /* Header */
+            header .container {
+                flex-direction: row; /* Keep logo and menu toggle on one line */
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            header nav {
+                display: none; /* Hide regular navigation */
+                width: 100%;
+                order: 2; /* Place below logo on mobile */
+                background-color: rgba(33, 37, 41, 0.95); /* Slightly darker background when open */
+                position: absolute;
+                top: 80px; /* Adjust based on header height */
+                left: 0;
+                padding: 20px 0;
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            header nav.active {
+                display: block; /* Show navigation when active */
+            }
+
+            header nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            header nav ul li {
+                margin: 15px 0; /* More vertical spacing */
+            }
+
+            .login-button {
+                width: 80%; /* Make button wider on mobile menu */
+                margin: 20px auto; /* Center it */
+                display: block;
+            }
+
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
+            }
+
+            /* Hero Section */
+            .hero-content h1 {
+                font-size: 3.5em;
+            }
+
+            .hero-content p {
+                font-size: 1.5em;
+            }
+
+            /* Services Section */
+            .services-section h2 {
+                font-size: 2.8em;
+            }
+
+            .service-cards {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust min width */
+            }
+
+            /* About Section */
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .about-image {
+                min-width: unset; /* Remove min-width to allow shrinking */
+                width: 100%;
+            }
+
+            .about-text h2 {
+                text-align: center;
+            }
+
+            .about-text h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .cta-button-secondary {
+                margin-top: 20px;
+            }
+
+            /* Contact Section */
+            .contact-grid {
+                flex-direction: column;
+                gap: 40px;
+                align-items: stretch; /* Stretch items to fill width */
+            }
+
+            .contact-info,
+            .contact-form {
+                min-width: unset; /* Remove min-width */
+                width: 100%;
+            }
+
+            /* Footer */
+            .footer-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjust min width for footer columns */
+                gap: 30px;
+            }
+        }
+
+        /* Mobile devices (768px and smaller) */
         @media (max-width: 768px) {
+            /* Header */
+            .logo h1 {
+                font-size: 1.8em;
+            }
+
+            /* Hero Section */
+            .hero-content h1 {
+                font-size: 2.8em;
+            }
+
+            .hero-content p {
+                font-size: 1.3em;
+            }
+
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1.1em;
+            }
+
+            /* Services Section */
+            .services-section h2 {
+                font-size: 2.2em;
+                margin-bottom: 50px;
+            }
+
+            .service-cards {
+                grid-template-columns: 1fr; /* Stack service cards */
+            }
+
+            .service-card {
+                padding: 30px;
+            }
+
+            .service-card .icon-primary {
+                font-size: 3em;
+            }
+
+            .service-card h3 {
+                font-size: 22px;
+            }
+
+            /* Why Choose Us Section */
             .why-choose-us-section h2 {
                 font-size: 2.5em;
             }
 
             .benefits-grid {
-                grid-template-columns: 1fr;
-                /* Stack on smaller screens */
+                grid-template-columns: 1fr; /* Stack on smaller screens */
             }
 
             .benefit-item {
@@ -743,9 +843,144 @@
             .benefit-item h3 {
                 font-size: 1.6em;
             }
+
+            /* About Section */
+            .about-text h2 {
+                font-size: 2.5em;
+            }
+
+            .about-text p {
+                font-size: 1em;
+            }
+
+            .cta-button-secondary {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+
+            /* Contact Section */
+            .contact-section h2 {
+                font-size: 2.5em;
+            }
+
+            .contact-intro {
+                font-size: 1.1em;
+                margin-bottom: 40px;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 30px;
+            }
+
+            .contact-info h3 {
+                font-size: 1.6em;
+            }
+
+            .contact-info p,
+            .contact-form label,
+            .contact-form input,
+            .contact-form textarea {
+                font-size: 0.95em;
+            }
+
+            .submit-button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+
+            /* Footer */
+            .footer-grid {
+                grid-template-columns: 1fr; /* Stack footer columns */
+                text-align: center;
+                gap: 30px;
+            }
+
+            .social-icons {
+                margin-top: 15px;
+            }
+
+            .social-icons a {
+                margin: 0 10px; /* Adjust spacing for stacked social icons */
+            }
+
+            .contact-footer p {
+                justify-content: center; /* Center icons and text */
+            }
         }
 
+        /* Smaller mobile devices (480px and smaller) */
         @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .logo h1 {
+                font-size: 1.5em;
+            }
+
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .hero-section {
+                padding: 120px 15px 80px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
+
+            .hero-content p {
+                font-size: 1.1em;
+            }
+
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+
+            .services-section {
+                padding: 80px 0;
+                margin-top: -60px;
+            }
+
+            .services-section h2 {
+                font-size: 1.8em;
+                margin-bottom: 40px;
+            }
+
+            .section-intro {
+                font-size: 1em;
+                margin-bottom: 40px;
+            }
+
+            .service-card {
+                padding: 25px;
+            }
+
+            .service-card .icon-primary {
+                font-size: 2.5em;
+            }
+
+            .service-card h3 {
+                font-size: 20px;
+            }
+
+            .service-card p {
+                font-size: 0.95em;
+            }
+
+            .learn-more-button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+
+            .why-choose-us-section {
+                padding: 80px 0;
+            }
+
             .why-choose-us-section h2 {
                 font-size: 2em;
             }
@@ -761,6 +996,83 @@
             .benefit-item h3 {
                 font-size: 1.4em;
             }
+
+            .benefit-item p {
+                font-size: 0.9em;
+            }
+
+
+            .about-section {
+                padding: 80px 0;
+            }
+
+            .about-text h2 {
+                font-size: 2em;
+            }
+
+            .about-text p {
+                font-size: 0.95em;
+            }
+
+            .contact-section {
+                padding: 80px 0;
+            }
+
+            .contact-section h2 {
+                font-size: 2em;
+            }
+
+            .contact-intro {
+                font-size: 1em;
+                margin-bottom: 30px;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 25px;
+            }
+
+            .contact-info h3 {
+                font-size: 1.4em;
+            }
+
+            .contact-info p,
+            .contact-form label,
+            .contact-form input,
+            .contact-form textarea {
+                font-size: 0.9em;
+            }
+
+            .submit-button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+
+            footer {
+                padding-top: 40px;
+            }
+
+            .footer-grid {
+                gap: 20px;
+            }
+
+            .footer-column h3 {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+            }
+
+            .footer-column p,
+            .footer-column ul li a {
+                font-size: 0.85em;
+            }
+
+            .social-icons a {
+                font-size: 1.2em;
+            }
+
+            .footer-bottom p {
+                font-size: 0.75em;
+            }
         }
     </style>
 </head>
@@ -770,18 +1082,21 @@
         <div class="container">
             <div class="logo">
                 <img src="{{ asset('images/strata.png') }}" alt="Company Logo">
-                <h1>Welcome to Strata Link</h1>
+                <h1>Strata Link</h1>
             </div>
-            <nav>
+            <nav id="main-nav">
                 <ul>
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#services">Services</a></li>
+                    <li><a href="#why-choose-us">Why Choose Us</a></li>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#contact">Contact Us</a></li>
                     <li><a href="{{route('login')}}" class="login-button">Login</a></li>
                 </ul>
-                
             </nav>
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
@@ -899,7 +1214,7 @@
                 <div class="contact-grid">
                     <div class="contact-info">
                         <h3>Our Website</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> <a href="https://www.stratalink.com.au" target="_blank">www.stratalink.com.au</a></p>
+                        <p><i class="fas fa-globe"></i> <a href="https://www.stratalink.com.au" target="_blank">www.stratalink.com.au</a></p>
                         <h3>Email Us</h3>
                         <p><i class="fas fa-envelope"></i> info@stratalink.com.au</p>
                         <h3>Call Us</h3>
@@ -929,7 +1244,7 @@
         <div class="container footer-grid">
             <div class="footer-column about-company">
                 <h3>About Us</h3>
-                <p>At Strata Link, we specialize in managing after-hours calls for strata properties, ensuring seamless communication and prompt responses when it matters most. Our dedicated team is available 24/7 to handle urgent maintenance requests, resident inquiries, and emergency situations, providing peace of mind to property managers, owners, and tenants. With years of experience in strata communication, we prioritize efficiency, professionalism, and reliability in every interaction.</p>
+                <p>At Strata Link, we specialize in managing after-hours calls for strata properties, ensuring seamless communication and prompt responses when it matters most.</p>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
@@ -937,41 +1252,55 @@
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-            <div class="footer-column quick-links">
+            <div class="footer-column">
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#services">Services</a></li>
+                    <li><a href="#why-choose-us">Why Choose Us</a></li>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#contact">Contact Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="footer-column services-links">
-                <h3>Our Services</h3>
-                <ul>
-                    <li><a href="#">Web Development</a></li>
-                    <li><a href="#">Mobile App Development</a></li>
-                    <li><a href="#">Cloud Solutions</a></li>
-                    <li><a href="#">Digital Marketing</a></li>
-                    <li><a href="#">IT Consulting</a></li>
-                    <li><a href="#">Cybersecurity</a></li>
                 </ul>
             </div>
             <div class="footer-column contact-footer">
                 <h3>Contact Info</h3>
-                <p><i class="fas fa-map-marker-alt"></i> <a href="https://www.stratalink.com.au" target="_blank">www.stratalink.com.au</a></p>
-                <p><i class="fas fa-phone-alt"></i> (61) 451 125 816</p>
                 <p><i class="fas fa-envelope"></i> info@stratalink.com.au</p>
+                <p><i class="fas fa-phone-alt"></i> (61) 451 125 816</p>
+                <p><i class="fas fa-map-marker-alt"></i> Sydney, NSW, Australia</p>
+            </div>
+            <div class="footer-column newsletter">
+                <h3>Newsletter</h3>
+                <p>Stay updated with our latest news and offers.</p>
+                <form action="#" method="POST">
+                    <input type="email" placeholder="Your email" required style="width: calc(100% - 22px); padding: 10px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 10px;">
+                    <button type="submit" class="submit-button" style="width: 100%; padding: 10px; font-size: 0.9em; border-radius: 5px;">Subscribe</button>
+                </form>
             </div>
         </div>
         <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2025 Your Company Name. All rights reserved.</p>
-            </div>
+            <p>&copy; 2025 Strata Link. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', function () {
+                    mainNav.classList.toggle('active');
+                });
+
+                // Close menu when a navigation link is clicked
+                mainNav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        mainNav.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
