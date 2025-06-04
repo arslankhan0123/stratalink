@@ -396,7 +396,7 @@ class CallLogsController extends Controller
 
     public function sendSms(Request $request, $id)
     {
-        $to = '+923044627900';
+        $to = '+966509143463';
 
         // Twilio credentials from .env
         $sid = env('TWILIO_SID');
