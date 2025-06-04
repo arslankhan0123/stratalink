@@ -64,6 +64,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/update/{id}', [CallLogsController::class, 'update'])->name('call-logs.update');
         Route::get('/destroy/{id}', [CallLogsController::class, 'destroy'])->name('call-logs.delete');
         Route::get('/view/{id}', [CallLogsController::class, 'view'])->name('call-logs.view');
+        Route::delete('/call-log/{id}/audio/{index}', [CallLogsController::class, 'deleteAudio'])->name('call-log.audio.delete');
     });
 
     Route::group(['prefix' => '/user'], function () {

@@ -108,7 +108,7 @@
                                     <span class="badge bg-secondary">{{ $call_log->status }}</span>
                                     @endif
                                 </td>
-                                <td>
+                                <!-- <td>
                                     @if (!empty($call_log->audio_attachment))
                                     @php
                                     $audioFiles = json_decode($call_log->audio_attachment, true);
@@ -126,6 +126,33 @@
                                     @endif
                                     @else
                                     <p>No audio attachment found.</p>
+                                    @endif
+                                </td> -->
+                                <td>
+                                    @if (!empty($call_log->audio_attachment))
+                                        @php
+                                            $audioFiles = json_decode($call_log->audio_attachment, true);
+                                        @endphp
+
+                                        @if (is_array($audioFiles))
+                                            @foreach ($audioFiles as $index => $file)
+                                                <div style="position: relative; margin-bottom: 8px;">
+                                                    <audio controls>
+                                                        <source src="{{ asset($file) }}" type="audio/mpeg">
+                                                        Your browser does not support the audio element.
+                                                    </audio>
+                                                    <form method="POST" action="{{ route('call-log.audio.delete', [$call_log->id, $index]) }}" style="display: inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this audio?')" style="position: absolute; top: 0; right: 0; border: none; background: transparent; color: red; font-size: 18px; cursor: pointer;">&times;</button>
+                                                    </form>
+                                                </div>
+                                            @endforeach
+                                        @else
+                                            <p>Invalid audio data format.</p>
+                                        @endif
+                                    @else
+                                        <p>No audio attachment found.</p>
                                     @endif
                                 </td>
 

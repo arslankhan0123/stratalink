@@ -366,4 +366,31 @@ class CallLogsController extends Controller
             return redirect()->back()->with('error', 'Failed to execute the cron job.' . $exception->getMessage());
         }
     }
+
+    public function deleteAudio($id, $index)
+    {
+        $callLog = CallLog::findOrFail($id);
+        $audioFiles = json_decode($callLog->audio_attachment, true);
+
+        if (is_array($audioFiles) && isset($audioFiles[$index])) {
+            $filePath = $audioFiles[$index];
+
+            // Delete file from storage (if exists and using local filesystem)
+            if (file_exists(public_path($filePath))) {
+                unlink(public_path($filePath));
+            }
+
+            // Remove from array and reindex
+            unset($audioFiles[$index]);
+            $audioFiles = array_values($audioFiles);
+
+            // Update DB
+            $callLog->audio_attachment = json_encode($audioFiles);
+            $callLog->save();
+
+            return back()->with('success', 'Audio file deleted successfully.');
+        }
+
+        return back()->with('error', 'Audio file not found.');
+    }
 }
