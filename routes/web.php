@@ -65,6 +65,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/destroy/{id}', [CallLogsController::class, 'destroy'])->name('call-logs.delete');
         Route::get('/view/{id}', [CallLogsController::class, 'view'])->name('call-logs.view');
         Route::delete('/call-log/{id}/audio/{index}', [CallLogsController::class, 'deleteAudio'])->name('call-log.audio.delete');
+        Route::post('/call-log/{id}/send-sms', [CallLogsController::class, 'sendSms'])->name('call-log.sms.send');
+
     });
 
     Route::group(['prefix' => '/user'], function () {

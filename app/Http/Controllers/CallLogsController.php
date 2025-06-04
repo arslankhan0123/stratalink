@@ -14,7 +14,7 @@ use Dompdf\Dompdf;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-
+use Twilio\Rest\Client;
 use App\Mail\CallLogMail;
 use App\Models\Building;
 use App\Models\Contractor;
@@ -392,5 +392,28 @@ class CallLogsController extends Controller
         }
 
         return back()->with('error', 'Audio file not found.');
+    }
+
+    public function sendSms(Request $request, $id)
+    {
+        $to = '+923044627900';
+
+        // Twilio credentials from .env
+        $sid = env('TWILIO_SID');
+        $token = env('TWILIO_AUTH_TOKEN');
+        $from = env('TWILIO_PHONE_NUMBER');
+
+        try {
+            $twilio = new Client($sid, $token);
+
+            $twilio->messages->create($to, [
+                'from' => $from,
+                'body' => 'This is a test SMS from your Laravel app.'
+            ]);
+
+            return back()->with('success', 'SMS sent successfully!');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Failed to send SMS: ' . $e->getMessage());
+        }
     }
 }
