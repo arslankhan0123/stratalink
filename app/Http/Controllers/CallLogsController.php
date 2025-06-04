@@ -159,6 +159,49 @@ class CallLogsController extends Controller
                 Mail::to($data['email'])->send(new CallLogConsentMail($data));
             }
 
+            try {
+                $to = '+923044627900';
+                // $to = '+61451125816';
+                $sid = env('TWILIO_SID');
+                $token = env('TWILIO_AUTH_TOKEN');
+                $from = env('TWILIO_PHONE_NUMBER');
+
+                $twilio = new Client($sid, $token);
+
+                // If contractor SMS is enabled, prepare message
+                if ($request->send_sms_contractor == 'yes') {
+                    $contractorNotes = $request->contractor_notes;
+                    $callerName = $data['name'];
+                    $buildingName = $data['building']['name'];
+                    $buildingAddress = $data['building']['address'];
+                    $callerPhone = $data['number'];
+
+                    // Format SMS body
+                    $message = "Contractor Notification:\n";
+                    $message .= "Caller: $callerName\n";
+                    $message .= "Phone: $callerPhone\n";
+                    $message .= "Building: $buildingName\n";
+                    $message .= "Address: $buildingAddress\n";
+                    $message .= "Notes: $contractorNotes";
+                } else {
+                    $message = 'This is a test SMS from your Laravel app.';
+                }
+
+                // Send SMS
+                $twilio->messages->create($to, [
+                    'from' => $from,
+                    'body' => $message
+                ]);
+                DB::table('call_logs')->where('id', $data['id'])->update([
+                    'send_sms_contractor' => 'yes',
+                    'contractor_notes' => $contractorNotes,
+                ]);
+                // return back()->with('success', 'SMS sent successfully!');
+            } catch (\Exception $e) {
+                return back()->with('error', 'Failed to send SMS: ' . $e->getMessage());
+            }
+
+
             return redirect()->route('call-logs.index')->with('success', 'Call log created successfully');
         } catch (Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
@@ -265,6 +308,50 @@ class CallLogsController extends Controller
                     'updated_at' => now(),
                 ]);
                 Mail::to($data['email'])->send(new CallLogConsentMail($data));
+            }
+
+            if ($request->send_sms_contractor == 'yes') {
+                try {
+                    $to = '+923044627900';
+                    // $to = '+61451125816';
+                    $sid = env('TWILIO_SID');
+                    $token = env('TWILIO_AUTH_TOKEN');
+                    $from = env('TWILIO_PHONE_NUMBER');
+
+                    $twilio = new Client($sid, $token);
+
+                    // If contractor SMS is enabled, prepare message
+                    if ($request->send_sms_contractor == 'yes') {
+                        $contractorNotes = $request->contractor_notes;
+                        $callerName = $data['name'];
+                        $buildingName = $data['building']['name'];
+                        $buildingAddress = $data['building']['address'];
+                        $callerPhone = $data['number'];
+
+                        // Format SMS body
+                        $message = "Contractor Notification:\n";
+                        $message .= "Caller: $callerName\n";
+                        $message .= "Phone: $callerPhone\n";
+                        $message .= "Building: $buildingName\n";
+                        $message .= "Address: $buildingAddress\n";
+                        $message .= "Notes: $contractorNotes";
+                    } else {
+                        $message = 'This is a test SMS from your Laravel app.';
+                    }
+
+                    // Send SMS
+                    $twilio->messages->create($to, [
+                        'from' => $from,
+                        'body' => $message
+                    ]);
+                    DB::table('call_logs')->where('id', $data['id'])->update([
+                        'send_sms_contractor' => 'yes',
+                        'contractor_notes' => $contractorNotes,
+                    ]);
+                    // return back()->with('success', 'SMS sent successfully!');
+                } catch (\Exception $e) {
+                    return back()->with('error', 'Failed to send SMS: ' . $e->getMessage());
+                }
             }
             return redirect()->route('call-logs.index')->with('success', 'Call log updated successfully');
         } catch (Exception $exception) {
@@ -396,7 +483,7 @@ class CallLogsController extends Controller
 
     public function sendSms(Request $request, $id)
     {
-        $to = '+966509143463';
+        $to = '+923044627900';
 
         // Twilio credentials from .env
         $sid = env('TWILIO_SID');

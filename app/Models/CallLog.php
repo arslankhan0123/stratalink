@@ -39,6 +39,8 @@ class CallLog extends Model
         'building_manager_email_sent',
         'strata_manager_email_sent',
         'contractor_details_email_sent',
+        'send_sms_contractor',
+        'contractor_notes',
     ];
 
     protected static function boot()

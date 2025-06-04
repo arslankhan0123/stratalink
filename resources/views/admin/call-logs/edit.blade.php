@@ -295,6 +295,12 @@
                                     <textarea name="summary" id="summary" class="form-control" rows="4" placeholder="Enter summary or description">{{ $call_log->summary}}</textarea>
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="contractor_notes">Contractor Notes</label>
+                                    <textarea name="contractor_notes" id="contractor_notes" class="form-control" rows="4" placeholder="Enter notes or description">{{ $call_log->contractor_notes}}</textarea>
+                                </div>
+                            </div>
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" id="send_concent_email" name="send_concent_email" value="yes">
                                 <label class="form-check-label" for="send_concent_email">
@@ -340,6 +346,15 @@
                                 <label class="form-check-label" for="send_contractor_email">
                                     Details to contractor
                                     @if ($call_log->contractor_details_email_sent)
+                                    <span style="color: green;">(Already Sent)</span>
+                                    @endif
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="send_sms_contractor" name="send_sms_contractor" value="yes">
+                                <label class="form-check-label" for="send_sms_contractor">
+                                    Send SMS to contractor
+                                    @if ($call_log->send_sms_contractor)
                                     <span style="color: green;">(Already Sent)</span>
                                     @endif
                                 </label>

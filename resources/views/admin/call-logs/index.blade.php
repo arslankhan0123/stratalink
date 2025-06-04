@@ -204,13 +204,13 @@
                                                 <path d="M21 6V29" stroke="white" stroke-width="4"></path>
                                             </svg>
                                         </a>
-                                        <form method="POST" action="{{ route('call-log.sms.send', $call_log->id) }}">
+                                        <!-- <form method="POST" action="{{ route('call-log.sms.send', $call_log->id) }}">
                                             @csrf
                                             <input type="hidden" name="phone_number" value="{{ $call_log->phone_number }}"> {{-- Adjust field as per your DB --}}
                                             <button type="submit" onclick="return confirm('Send SMS to this number?')" class="btn btn-primary">
                                                 Send SMS
                                             </button>
-                                        </form>
+                                        </form> -->
                                     </div>
                                 </td>
                                 @endif

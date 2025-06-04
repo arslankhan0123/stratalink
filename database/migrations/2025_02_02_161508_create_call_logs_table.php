@@ -56,6 +56,8 @@ return new class extends Migration
             $table->string('building_manager_email_sent')->nullable();
             $table->string('strata_manager_email_sent')->nullable();
             $table->string('contractor_details_email_sent')->nullable();
+            $table->string('send_sms_contractor')->nullable();
+            $table->string('contractor_notes')->nullable();
 
             $table->timestamps();
         });
