@@ -224,19 +224,53 @@ class CallLogRepository
         ]);
 
         // Handle multiple audio attachments
+        // if ($request->hasFile('audio_attachment')) {
+        //     $call_log->audio_attachment = NULL;
+        //     $call_log->save();
+        //     $newAudioPaths = [];
+        //     foreach ($request->file('audio_attachment') as $audioFile) {
+        //         $audioName = time() . '_' . $audioFile->getClientOriginalName();
+        //         $audioFile->move(public_path('audio'), $audioName);
+        //         $newAudioPaths[] = 'audio/' . $audioName;
+        //     }
+
+        //     // Merge with existing attachments (if any)
+        //     $existingAudioPaths = $call_log->audio_attachment ? json_decode($call_log->audio_attachment, true) : [];
+        //     $mergedAudioPaths = array_merge($existingAudioPaths ?: [], $newAudioPaths);
+
+        //     // Update field and save
+        //     $call_log->audio_attachment = json_encode($mergedAudioPaths);
+        //     $call_log->save();
+        // }
+
         if ($request->hasFile('audio_attachment')) {
-            $call_log->audio_attachment = NULL;
-            $call_log->save();
             $newAudioPaths = [];
             foreach ($request->file('audio_attachment') as $audioFile) {
                 $audioName = time() . '_' . $audioFile->getClientOriginalName();
-                $audioFile->move(public_path('audio'), $audioName);
-                $newAudioPaths[] = 'audio/' . $audioName;
+                // Ensure the directory exists
+                $uploadPath = public_path('audio');
+                if (!file_exists($uploadPath)) {
+                    mkdir($uploadPath, 0777, true); // Create directory if it doesn't exist
+                }
+                $audioFile->move($uploadPath, $audioName);
+                $newAudioPaths[] = 'audio/' . $audioName; // Store path relative to public directory
             }
 
-            // Merge with existing attachments (if any)
-            $existingAudioPaths = $call_log->audio_attachment ? json_decode($call_log->audio_attachment, true) : [];
-            $mergedAudioPaths = array_merge($existingAudioPaths ?: [], $newAudioPaths);
+            // Get existing attachments (if any)
+            $existingAudioPaths = []; // Initialize as an empty array by default
+
+            if ($call_log->audio_attachment) { // Check if the database field is not null or empty
+                $decodedPaths = json_decode($call_log->audio_attachment, true);
+                // Ensure that json_decode actually returned an array (or not null)
+                if (is_array($decodedPaths)) {
+                    $existingAudioPaths = $decodedPaths;
+                }
+                // If json_decode returns null or false (invalid JSON), existingAudioPaths remains an empty array
+            }
+
+            // Merge new paths with existing paths
+            // Both $existingAudioPaths and $newAudioPaths are now guaranteed to be arrays
+            $mergedAudioPaths = array_merge($existingAudioPaths, $newAudioPaths);
 
             // Update field and save
             $call_log->audio_attachment = json_encode($mergedAudioPaths);
