@@ -138,6 +138,7 @@
                                 <th>Building Name</th>
                                 <th>Building SP No.</th>
                                 <th>Caller Number</th>
+                                <th>Caller Status</th>
                                 <th>Building Manager</th>
                                 <th>Strata Manager</th>
                                 <th>Contractor</th>
@@ -159,6 +160,7 @@
                                 <td>{{ $call_log->building ? $call_log->building->name : 'N/A' }}</td>
                                 <td>{{ $call_log->building ? $call_log->building->sp_no : 'N/A' }}</td>
                                 <td>{{ $call_log->number }}</td>
+                                <td>{{ $call_log->status }}</td>
                                 <td>{{ optional(optional($call_log->building)->buildingManager)->name ?? 'N/A' }}</td>
                                 <td>{{ optional(optional($call_log->building)->strataManager)->name ?? 'N/A' }}</td>
                                 <td>{{ $call_log->contractor->name ?? '' }}</td>

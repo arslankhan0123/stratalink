@@ -118,6 +118,7 @@ class BuildingController extends Controller
                 'managers' => $managers,
                 'buildingManagers' => $buildingManagers,
                 'strataManagers' => $strataManagers,
+                'building' => $building,
             ]);
         } catch (Exception $exception) {
             return redirect()->back()->with('error', 'Failed to execute the cron job.' . $exception->getMessage());

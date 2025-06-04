@@ -98,7 +98,7 @@
                                         @foreach ($buildings as $building)
                                         <option value="{{ $building->id }}"
                                             {{ $call_log->building_id == $building->id ? 'selected' : '' }}>
-                                            {{ $building->name }} (Address: {{ $building->address }}) (Notes: {{ $building->building_notes }})
+                                            {{ $building->name }} (Address: {{ $building->address }})
                                         </option>
                                         @endforeach
                                     </select>
@@ -121,6 +121,18 @@
                                     @error('contractor_id')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="formrow-mobile-input">Building Notes</label>
+                                        <input type="text" value="{{ $building->building_notes }}" id="building_notes" class="form-control @error('building_notes') is-invalid @enderror"
+                                            name="building_notes" disabled readonly id="formrow-mobile-input" required>
+                                        @error('building_notes')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -504,7 +516,7 @@
                                 `<option disabled>No building managers found</option>`
                             );
                         }
-
+                        $('#building_notes').val(response.building.building_notes)
                         if (response.strataManagers.length > 0) {
                             $.each(response.strataManagers, function(index, strataManager) {
                                 $('#strataManagerSelect').append(

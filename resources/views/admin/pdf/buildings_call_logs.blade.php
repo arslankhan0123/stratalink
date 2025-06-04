@@ -156,7 +156,7 @@
                     <td>{{ $log->status }}</td>
                     <td>{{ $log->number }}</td>
                     <td>{{ $log->total_time_spent_on_call }}</td>
-                    <td>{{ $log->building->address }}</td>
+                    <td>{{ $log->building->address ?? null }}</td>
                 </tr>
             </table>
         </div>
@@ -174,7 +174,7 @@
         <div class="contractor-section">Contractor Name: {{$log->contractor->name ?? ''}}</div>
 
         <div class="strata-manager">Strata Manager</div>
-        <div class="manager-name">{{$log->building->strataManager->name}}</div>
+        <div class="manager-name">{{ optional(optional($log->building)->strataManager)->name ?? 'N/A' }}</div>
     </div>
     @endforeach
 
