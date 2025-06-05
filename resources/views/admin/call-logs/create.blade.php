@@ -75,12 +75,22 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-mobile-input">Building Notes</label>
                                     <input type="text" id="building_notes" class="form-control @error('building_notes') is-invalid @enderror"
                                         name="building_notes" disabled readonly id="formrow-mobile-input" required>
                                     @error('building_notes')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-mobile-input">Building Address</label>
+                                    <input type="text" id="building_address" class="form-control @error('building_address') is-invalid @enderror"
+                                        name="building_address" disabled readonly id="formrow-mobile-input" required>
+                                    @error('building_address')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -386,6 +396,7 @@
                         }
 
                         $('#building_notes').val(response.building.building_notes)
+                        $('#building_address').val(response.building.address)
                         if (response.strataManagers.length > 0) {
                             $.each(response.strataManagers, function(index, strataManager) {
                                 $('#strataManagerSelect').append(
