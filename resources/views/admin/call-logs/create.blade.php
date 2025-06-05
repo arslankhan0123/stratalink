@@ -47,6 +47,45 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-company-input">Select Building</label>
+                                    <select class="form-select mb-3" name="building_id" id="buildingSelect" required>
+                                        <option selected disabled>Select a building</option>
+                                        @foreach ($buildings as $building)
+                                        <option value="{{ $building->id }}">{{ $building->name }} (Address: {{ $building->address }})</option>
+                                        @endforeach
+                                    </select>
+                                    @error('building_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-mobile-input">Caller Number</label>
+                                    <input type="number" class="form-control @error('number') is-invalid @enderror"
+                                        name="number" id="formrow-mobile-input" required>
+                                    @error('number')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-mobile-input">Building Notes</label>
+                                    <input type="text" id="building_notes" class="form-control @error('building_notes') is-invalid @enderror"
+                                        name="building_notes" disabled readonly id="formrow-mobile-input" required>
+                                    @error('building_notes')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label" for="formrow-category-input">Category</label>
@@ -90,20 +129,6 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-company-input">Select Building</label>
-                                    <select class="form-select mb-3" name="building_id" id="buildingSelect" required>
-                                        <option selected disabled>Select a building</option>
-                                        @foreach ($buildings as $building)
-                                        <option value="{{ $building->id }}">{{ $building->name }} (Address: {{ $building->address }})</option>
-                                        @endforeach
-                                    </select>
-                                    @error('building_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
                                     <label class="form-label" for="formrow-category-input">Contractor</label>
                                     {{-- <input type="text" class="form-control @error('contractor') is-invalid @enderror"
                                         name="contractor" id="formrow-category-input"> --}}
@@ -116,14 +141,20 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-mobile-input">Building Notes</label>
-                                    <input type="text" id="building_notes" class="form-control @error('building_notes') is-invalid @enderror"
-                                        name="building_notes" disabled readonly id="formrow-mobile-input" required>
-                                    @error('building_notes')
+                                    <label class="form-label" for="formrow-company-input">Select Status</label>
+                                    <select class="form-select mb-3" name="status"
+                                        @error('status') is-invalid @enderror aria-label="Default select example"
+                                        id="statusSelect">
+                                        <!-- <option selected disabled>Select a Status</option> -->
+                                        <option value="Pending">Pending</option>
+                                        <option value="Contractor Engaged">Contractor Engaged</option>
+                                        <option value="Non emergency">Non emergency</option>
+                                        <option value="Complete" id="completeOption" disabled>Complete</option>
+                                        <option value="Contractor already engaged">Contractor already engaged</option>
+                                    </select>
+                                    @error('status')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -179,16 +210,6 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="formrow-mobile-input">Caller Number</label>
-                                    <input type="number" class="form-control @error('number') is-invalid @enderror"
-                                        name="number" id="formrow-mobile-input" required>
-                                    @error('number')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
                                 @php
                                 $today = \Carbon\Carbon::today()->format('Y-m-d');
                                 @endphp
@@ -212,7 +233,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-mobile-input">Total Time Spent on Call</label>
                                     <input type="text" class="form-control @error('total_time_spent_on_call') is-invalid @enderror"
@@ -227,26 +248,6 @@
                                     <label for="audio_attachment">Upload Audio</label>
                                     <input type="file" name="audio_attachment[]" id="audio_attachment"
                                         class="form-control" multiple>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="formrow-company-input">Select Status</label>
-                                        <select class="form-select mb-3" name="status"
-                                            @error('status') is-invalid @enderror aria-label="Default select example"
-                                            id="statusSelect">
-                                            <!-- <option selected disabled>Select a Status</option> -->
-                                            <option value="Pending">Pending</option>
-                                            <option value="Contractor Engaged">Contractor Engaged</option>
-                                            <option value="Non emergency">Non emergency</option>
-                                            <option value="Complete" id="completeOption" disabled>Complete</option>
-                                            <option value="Contractor already engaged">Contractor already engaged</option>
-                                        </select>
-                                        @error('status')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-12">

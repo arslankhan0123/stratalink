@@ -390,7 +390,7 @@ class CallLogsController extends Controller
     {
         $data = CallLog::where('token', $request->signature_token)->first();
         if ($data->signature) {
-            return redirect()->back()->with('error', 'Signature already exists.');
+            return redirect()->back()->with('error', 'Your details already submitted.');
         }
         // dd($request->signature, $data, $request->signature_token);
         try {
@@ -437,7 +437,7 @@ class CallLogsController extends Controller
             $data->email_file = $filename;
             $data->save();
 
-            return redirect()->back()->with('success', 'Signature updated successfully');
+            return redirect()->back()->with('success', 'Thank you for submitting your details.');
         } catch (Exception $exception) {
             return redirect()->back()->with('error', 'Failed to update signature.' . $exception->getMessage());
         }

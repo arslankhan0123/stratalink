@@ -51,43 +51,6 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label" for="formrow-category-input">Category</label>
-                                    <select class="form-select" aria-label="Default select example" name="category" id="categorySelect">
-                                        <option disabled>Select a Category</option>
-                                        <option value="Plumber" {{ $call_log->category == 'Plumber' ? 'selected' : '' }}>Plumber</option>
-                                        <option value="Electrician" {{ $call_log->category == 'Electrician' ? 'selected' : '' }}>Electrician</option>
-                                        <option value="Lift Company" {{ $call_log->category == 'Lift Company' ? 'selected' : '' }}>Lift Company</option>
-                                        <option value="Garage Door Company" {{ $call_log->category == 'Garage Door Company' ? 'selected' : '' }}>Garage Door Company</option>
-                                        <option value="Access Control System" {{ $call_log->category == 'Access Control System' ? 'selected' : '' }}>Access Control System</option>
-                                        <option value="Fire Contractor" {{ $call_log->category == 'Fire Contractor' ? 'selected' : '' }}>Fire Contractor</option>
-                                        <option value="Cleaning Company" {{ $call_log->category == 'Cleaning Company' ? 'selected' : '' }}>Cleaning Company</option>
-                                        <!-- <option disabled>Select a Category</option>
-                                        <option value="Plumber" {{ $call_log->category == 'Plumber' ? 'selected' : '' }}>Plumber</option>
-                                        <option value="Electrician" {{ $call_log->category == 'Electrician' ? 'selected' : '' }}>Electrician</option>
-                                        <option value="HVAC Technician" {{ $call_log->category == 'HVAC Technician' ? 'selected' : '' }}>HVAC Technician</option>
-                                        <option value="Carpenter" {{ $call_log->category == 'Carpenter' ? 'selected' : '' }}>Carpenter</option>
-                                        <option value="Mason" {{ $call_log->category == 'Mason' ? 'selected' : '' }}>Mason</option>
-                                        <option value="Painter" {{ $call_log->category == 'Painter' ? 'selected' : '' }}>Painter</option>
-                                        <option value="Roofer" {{ $call_log->category == 'Roofer' ? 'selected' : '' }}>Roofer</option>
-                                        <option value="Welder/Fabricator" {{ $call_log->category == 'Welder/Fabricator' ? 'selected' : '' }}>Welder/Fabricator</option>
-                                        <option value="Pest Control Specialist" {{ $call_log->category == 'Pest Control Specialist' ? 'selected' : '' }}>Pest Control Specialist</option>
-                                        <option value="General Handyman" {{ $call_log->category == 'General Handyman' ? 'selected' : '' }}>General Handyman</option>
-                                        <option value="Elevator Technician" {{ $call_log->category == 'Elevator Technician' ? 'selected' : '' }}>Elevator Technician</option>
-                                        <option value="Fire Safety Technician" {{ $call_log->category == 'Fire Safety Technician' ? 'selected' : '' }}>Fire Safety Technician</option>
-                                        <option value="Security System Installer" {{ $call_log->category == 'Security System Installer' ? 'selected' : '' }}>Security System Installer</option>
-                                        <option value="Flooring Specialist" {{ $call_log->category == 'Flooring Specialist' ? 'selected' : '' }}>Flooring Specialist</option>
-                                        <option value="Glass & Window Installer" {{ $call_log->category == 'Glass & Window Installer' ? 'selected' : '' }}>Glass & Window Installer</option>
-                                        <option value="Waterproofing Specialist" {{ $call_log->category == 'Waterproofing Specialist' ? 'selected' : '' }}>Waterproofing Specialist</option>
-                                        <option value="Landscaper/Gardener" {{ $call_log->category == 'Landscaper/Gardener' ? 'selected' : '' }}>Landscaper/Gardener</option>
-                                        <option value="Cleaning & Janitorial Services" {{ $call_log->category == 'Cleaning & Janitorial Services' ? 'selected' : '' }}>Cleaning & Janitorial Services</option> -->
-                                    </select>
-                                    @error('category')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-company-input">Select Building</label>
@@ -109,16 +72,10 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="formrow-category-input">Contractor</label>
-                                    {{-- <input type="text" class="form-control @error('contractor') is-invalid @enderror"
-                                        name="contractor" id="formrow-category-input"> --}}
-                                    <input type="hidden" id="selectedContractorId"
-                                        value="{{ $call_log->contractor_id }}">
-                                    <select class="form-select mb-3" name="contractor_id" id="contractorSelect"
-                                        aria-label="Default select example" required>
-                                        <option selected disabled>Select a contractor</option>
-                                    </select>
-                                    @error('contractor_id')
+                                    <label class="form-label" for="formrow-mobile-input">Caller Number</label>
+                                    <input type="number" class="form-control @error('number') is-invalid @enderror"
+                                        name="number" value="{{ $call_log->number }}" id="formrow-mobile-input" required>
+                                    @error('number')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -133,6 +90,61 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-category-input">Category</label>
+                                    <select class="form-select" aria-label="Default select example" name="category" id="categorySelect">
+                                        <option disabled>Select a Category</option>
+                                        <option value="Plumber" {{ $call_log->category == 'Plumber' ? 'selected' : '' }}>Plumber</option>
+                                        <option value="Electrician" {{ $call_log->category == 'Electrician' ? 'selected' : '' }}>Electrician</option>
+                                        <option value="Lift Company" {{ $call_log->category == 'Lift Company' ? 'selected' : '' }}>Lift Company</option>
+                                        <option value="Garage Door Company" {{ $call_log->category == 'Garage Door Company' ? 'selected' : '' }}>Garage Door Company</option>
+                                        <option value="Access Control System" {{ $call_log->category == 'Access Control System' ? 'selected' : '' }}>Access Control System</option>
+                                        <option value="Fire Contractor" {{ $call_log->category == 'Fire Contractor' ? 'selected' : '' }}>Fire Contractor</option>
+                                        <option value="Cleaning Company" {{ $call_log->category == 'Cleaning Company' ? 'selected' : '' }}>Cleaning Company</option>
+                                    </select>
+                                    @error('category')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-category-input">Contractor</label>
+                                    {{-- <input type="text" class="form-control @error('contractor') is-invalid @enderror"
+                                        name="contractor" id="formrow-category-input"> --}}
+                                    <input type="hidden" id="selectedContractorId"
+                                        value="{{ $call_log->contractor_id }}">
+                                    <select class="form-select mb-3" name="contractor_id" id="contractorSelect"
+                                        aria-label="Default select example" required>
+                                        <option selected disabled>Select a contractor</option>
+                                    </select>
+                                    @error('contractor_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-company-input">Select Status</label>
+                                    <select class="form-select mb-3" name="status"
+                                        @error('status') is-invalid @enderror aria-label="Default select example" id="statusSelect" required>
+                                        <!-- <option disabled>Select a Status</option> -->
+                                        <option value="Pending" {{ $call_log->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                        <option value="Contractor Engaged" {{ $call_log->status == 'Contractor Engaged' ? 'selected' : '' }}>Contractor Engaged</option>
+                                        <option value="Non emergency" {{ $call_log->status == 'Non emergency' ? 'selected' : '' }}>Non emergency</option>
+                                        <!-- <option value="Completed" {{ $call_log->status == 'Completed' ? 'selected' : '' }}>Completed</option> -->
+                                        <option value="Completed" id="completeOption"
+                                            {{ $call_log->status == 'Completed' ? 'selected' : '' }}
+                                            {{ $call_log->audio_attachment ? '' : 'disabled' }}>Completed
+                                        </option>
+                                        <option value="Contractor already engaged" {{ $call_log->status == 'Contractor already engaged' ? 'selected' : '' }}>Contractor already engaged</option>
+                                    </select>
+                                    @error('status')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -161,40 +173,6 @@
                                     @enderror
                                 </div>
                             </div>
-                            <!-- <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="formrow-email-input">Building Manager</label>
-                                    <input type="text"
-                                        class="form-control @error('building_manager') is-invalid @enderror"
-                                        name="building_manager" value="{{ $call_log->building_manager }}"
-                                        id="formrow-email-input" required>
-                                    @error('building_manager')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div> -->
-                            <!-- <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="formrow-category-input">Strata Manager</label>
-                                    <input type="text"
-                                        class="form-control @error('strata_manager') is-invalid @enderror"
-                                        name="strata_manager" value="{{ $call_log->strata_manager }}"
-                                        id="formrow-category-input" required>
-                                    @error('strata_manager')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div> -->
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="formrow-mobile-input">Caller Number</label>
-                                    <input type="number" class="form-control @error('number') is-invalid @enderror"
-                                        name="number" value="{{ $call_log->number }}" id="formrow-mobile-input" required>
-                                    @error('number')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-mobile-input">Call Date</label>
@@ -215,7 +193,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label" for="formrow-mobile-input">Total Time Spent on Call</label>
                                     <input type="text" class="form-control @error('total_time_spent_on_call') is-invalid @enderror"
@@ -261,27 +239,6 @@
                                     }
                                 });
                             </script>
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label" for="formrow-company-input">Select Status</label>
-                                    <select class="form-select mb-3" name="status"
-                                        @error('status') is-invalid @enderror aria-label="Default select example" id="statusSelect" required>
-                                        <!-- <option disabled>Select a Status</option> -->
-                                        <option value="Pending" {{ $call_log->status == 'Pending' ? 'selected' : '' }}>Pending</option>
-                                        <option value="Contractor Engaged" {{ $call_log->status == 'Contractor Engaged' ? 'selected' : '' }}>Contractor Engaged</option>
-                                        <option value="Non emergency" {{ $call_log->status == 'Non emergency' ? 'selected' : '' }}>Non emergency</option>
-                                        <!-- <option value="Completed" {{ $call_log->status == 'Completed' ? 'selected' : '' }}>Completed</option> -->
-                                        <option value="Completed" id="completeOption"
-                                            {{ $call_log->status == 'Completed' ? 'selected' : '' }}
-                                            {{ $call_log->audio_attachment ? '' : 'disabled' }}>Completed
-                                        </option>
-                                        <option value="Contractor already engaged" {{ $call_log->status == 'Contractor already engaged' ? 'selected' : '' }}>Contractor already engaged</option>
-                                    </select>
-                                    @error('status')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
                             <!-- <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="audio_attachment">Upload Audio</label>
