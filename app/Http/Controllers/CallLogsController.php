@@ -503,4 +503,16 @@ class CallLogsController extends Controller
             return back()->with('error', 'Failed to send SMS: ' . $e->getMessage());
         }
     }
+
+    public function bulkDelete(Request $request)
+    {
+        $ids = $request->input('ids');
+
+        if ($ids && is_array($ids)) {
+            CallLog::whereIn('id', $ids)->delete();
+            return back()->with('success', 'Selected call logs deleted successfully.');
+        }
+
+        return back()->with('error', 'No call logs selected.');
+    }
 }

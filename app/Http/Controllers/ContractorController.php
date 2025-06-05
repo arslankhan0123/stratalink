@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Building;
+use App\Models\Contractor;
 use App\Repositories\ContractorRepository;
 use Exception;
 use Illuminate\Http\Request;
@@ -122,5 +123,17 @@ class ContractorController extends Controller
         } catch (Exception $exception) {
             return redirect()->back()->with('error', 'Failed.' . $exception->getMessage());
         }
+    }
+
+    public function bulkDelete(Request $request)
+    {
+        $ids = $request->input('ids');
+
+        if ($ids && is_array($ids)) {
+            Contractor::whereIn('id', $ids)->delete();
+            return back()->with('success', 'Selected contractors deleted successfully.');
+        }
+
+        return back()->with('error', 'No contractors selected.');
     }
 }

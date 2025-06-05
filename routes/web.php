@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/update/{id}', [BuildingController::class, 'update'])->name('buildings.update');
         Route::get('/destroy/{id}', [BuildingController::class, 'destroy'])->name('buildings.delete');
         Route::get('/get-contractors', [BuildingController::class, 'getContractors']);
+        Route::delete('/building/bulk-delete', [BuildingController::class, 'bulkDelete'])->name('buildings.bulk-delete');
     });
 
     Route::group(['prefix' => '/call-logs'], function () {
@@ -66,7 +67,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/view/{id}', [CallLogsController::class, 'view'])->name('call-logs.view');
         Route::delete('/call-log/{id}/audio/{index}', [CallLogsController::class, 'deleteAudio'])->name('call-log.audio.delete');
         Route::post('/call-log/{id}/send-sms', [CallLogsController::class, 'sendSms'])->name('call-log.sms.send');
-
+        Route::delete('/call-logs/bulk-delete', [CallLogsController::class, 'bulkDelete'])->name('call-logs.bulk-delete');
     });
 
     Route::group(['prefix' => '/user'], function () {
@@ -81,6 +82,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/{id}', [ContractorController::class, 'edit'])->name('contractors.edit');
         Route::post('/update/{id}', [ContractorController::class, 'update'])->name('contractors.update');
         Route::get('/destroy/{id}', [ContractorController::class, 'destroy'])->name('contractors.delete');
+        Route::delete('/contractors/bulk-delete', [ContractorController::class, 'bulkDelete'])->name('contractors.bulk-delete');
     });
 
     Route::group(['prefix' => '/managers'], function () {

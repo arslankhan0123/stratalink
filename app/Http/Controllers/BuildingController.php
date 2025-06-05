@@ -124,4 +124,16 @@ class BuildingController extends Controller
             return redirect()->back()->with('error', 'Failed to execute the cron job.' . $exception->getMessage());
         }
     }
+
+    public function bulkDelete(Request $request)
+    {
+        $ids = $request->input('ids');
+
+        if ($ids && is_array($ids)) {
+            Building::whereIn('id', $ids)->delete();
+            return back()->with('success', 'Selected buildings deleted successfully.');
+        }
+
+        return back()->with('error', 'No buildings selected.');
+    }
 }
