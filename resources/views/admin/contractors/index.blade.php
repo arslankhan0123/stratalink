@@ -30,6 +30,7 @@
                                     </span>
                                 </th>
                                 <th>ID</th>
+                                <th>Date</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
@@ -49,6 +50,7 @@
                                     </span>
                                 </td>
                                 <td>{{ $contractor->id }}</td>
+                                <td>{{ \Carbon\Carbon::parse($contractor->created_at)->format('d M Y H:i') }}</td>
                                 <td>{{ $contractor->name }}</td>
                                 <td>{{ $contractor->email }}</td>
                                 <td>{{ $contractor->phone }}</td>

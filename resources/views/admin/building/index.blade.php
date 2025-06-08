@@ -40,6 +40,7 @@
                                     </span>
                                 </th>
                                 <th>ID</th>
+                                <th>Date</th>
                                 <th>Client Name</th>
                                 <th>Building Name</th>
                                 <th>Address</th>
@@ -62,6 +63,7 @@
                                     </span>
                                 </td>
                                 <td>{{$building->id}}</td>
+                                <td>{{ \Carbon\Carbon::parse($building->created_at)->format('d M Y H:i') }}</td>
                                 <td>{{$building->user->name}}</td>
                                 <td>{{$building->name}}</td>
                                 <td>{{$building->address}}</td>

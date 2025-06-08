@@ -28,6 +28,8 @@
                 <table id="custom-table" class="table table-striped table-bordered">
                     <thead>
                         <tr>
+                            <th>ID</th>
+                            <th>Date</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Type</th>
@@ -40,6 +42,8 @@
                     <tbody>
                         @foreach($managers as $manager)
                         <tr>
+                            <td>{{$manager->id}}</td>
+                            <td>{{ \Carbon\Carbon::parse($manager->created_at)->format('d M Y H:i') }}</td>
                             <td>{{$manager->name}}</td>
                             <td>{{$manager->email}}</td>
                             <td>{{$manager->type}}</td>

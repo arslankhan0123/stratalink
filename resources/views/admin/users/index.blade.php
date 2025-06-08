@@ -37,6 +37,8 @@
                                         <label for="selectAll"></label>
                                     </span>
                                 </th> -->
+                                <th>ID</th>
+                                <th>Date</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
@@ -52,6 +54,8 @@
                                             <label for="checkbox1"></label>
                                         </span>
                                     </td> -->
+                                    <td>{{ $user->id }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($user->created_at)->format('d M Y H:i') }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     
