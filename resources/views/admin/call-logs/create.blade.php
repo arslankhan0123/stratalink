@@ -410,6 +410,7 @@
                         }
 
                         // Populate pendingCalls table
+                        $('#pendingCallsTable tbody').empty();
                         if (response.pendingCalls.length > 0) {
                             $.each(response.pendingCalls, function(index, pendingCall) {
                                 $('#pendingCallsTable tbody').append(
@@ -430,7 +431,7 @@
                             });
                         } else {
                             $('#pendingCallsTable tbody').append(
-                                `<tr><td colspan="6" class="text-center">No pending calls found</td></tr>`
+                                `<tr><td colspan="9" class="text-center">No pending calls found</td></tr>`
                             );
                         }
                         // if (response.length > 0) {
@@ -514,6 +515,7 @@
                         }
 
                         // Populate pendingCalls table
+                        $('#pendingCallsTable tbody').empty();
                         if (response.pendingCalls.length > 0) {
                             $.each(response.pendingCalls, function(index, pendingCall) {
                                 $('#pendingCallsTable tbody').append(
@@ -534,7 +536,7 @@
                             });
                         } else {
                             $('#pendingCallsTable tbody').append(
-                                `<tr><td colspan="6" class="text-center">No pending calls found</td></tr>`
+                                `<tr><td colspan="9" class="text-center">No pending calls found</td></tr>`
                             );
                         }
                         // if (response.length > 0) {
