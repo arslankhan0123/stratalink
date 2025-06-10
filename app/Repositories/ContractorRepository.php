@@ -18,9 +18,9 @@ class ContractorRepository
         if (Auth::user()->role_id == 3) {
             $buildings = Building::where('user_id', Auth::user()->id)->get();
             $buildingIds = Building::where('user_id', Auth::user()->id)->pluck('id');
-            return Contractor::whereIn('building_id', $buildingIds)->get();
+            return Contractor::whereIn('building_id', $buildingIds)->orderBy('id', 'desc')->get();
         } else {
-            return Contractor::all();
+            return Contractor::orderBy('id', 'desc')->get();
         }
     }
 

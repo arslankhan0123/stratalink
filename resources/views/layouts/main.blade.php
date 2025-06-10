@@ -486,8 +486,8 @@
         $('#custom-table').DataTable({
             "pageLength": 10, // Show 10 records per page
             "lengthMenu": [5, 10, 25, 50, 100], // Dropdown options
-            "ordering": true,
-            "searching": true
+            "ordering": false, // ❌ Disable DataTable's sorting
+            "searching": true  // ✅ Keep search functionality
         });
     });
 </script>

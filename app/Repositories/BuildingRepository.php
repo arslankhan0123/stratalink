@@ -12,9 +12,9 @@ class BuildingRepository
     public function all($request)
     {
         if (Auth::user()->role_id == 3) {
-            $data = Building::where('user_id', Auth::user()->id)->get();
+            $data = Building::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
         } else {
-            $data = Building::all();
+            $data = Building::orderBy('id', 'desc')->get();
         }
         return $data;
         // return Building::ApplyFilter(

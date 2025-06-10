@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UserRepository
 {
     public function all() {
-        return User::with('roles')->where('role_id', '!=', 1)->get();
+        return User::orderBy('id', 'desc')->with('roles')->where('role_id', '!=', 1)->get();
     }
 
     public function store($request) {

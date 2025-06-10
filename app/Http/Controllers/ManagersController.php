@@ -9,7 +9,7 @@ class ManagersController extends Controller
 {
     public function index()
     {
-        $managers = Manager::all();
+        $managers = Manager::orderBy('id', 'desc')->get();
         return view('admin.managers.index', compact('managers'));
     }
 

@@ -41,7 +41,7 @@ class CallLogRepository
                 $query->whereIn('status', ['Pending', 'Contractor Engaged', 'Contractor already engaged']);
             }
 
-            $data = $query->get();
+            $data = $query->orderBy('id', 'desc')->get();
         } elseif (Auth::user()->role_id == 2) {
             // $data = CallLog::where('created_by', Auth::user()->id)->get();
             $query = CallLog::where('created_by', Auth::id());
@@ -61,7 +61,7 @@ class CallLogRepository
                 $query->whereIn('status', ['Pending', 'Contractor Engaged', 'Contractor already engaged']);
             }
 
-            $data = $query->get();
+            $data = $query->orderBy('id', 'desc')->get();
         } else {
             $query = CallLog::query();
             if (request()->has('status')) {
@@ -80,13 +80,10 @@ class CallLogRepository
                 $query->whereIn('status', ['Pending', 'Contractor Engaged', 'Contractor already engaged']);
             }
 
-            $data = $query->get();
+            $data = $query->orderBy('id', 'desc')->get();
             // $data = CallLog::all();
         }
         return $data;
-        // return CallLog::with('contractor:id,name')->ApplyFilter(
-        //     $request->only([''])
-        // )->get();
     }
 
     /**
